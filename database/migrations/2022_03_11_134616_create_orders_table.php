@@ -6,38 +6,38 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            
-            $table->mediumInteger("order_number")->unique();
-            $table->string("client_name", 100);
-            $table->string("client_surname", 100);
-            $table->string("client_address", 150);
-            $table->string("client_email", 150);
-            $table->string("client_phone", 20)->unique();
-            $table->text("note")->nullable();
-            $table->tinyInteger("delivery_time")->default(15);
-            $table->string("delivery_address", 150);
-            $table->float("price_tot", 10, 2);
-            $table->foreignId("restaurant_id")->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('orders', function (Blueprint $table) {
+      $table->id();
+      //
+      $table->mediumInteger("order_number")->unique();
+      $table->string("client_name", 100);
+      $table->string("client_surname", 100);
+      $table->string("client_address", 150);
+      $table->string("client_email", 150);
+      $table->string("client_phone", 20)->unique();
+      $table->text("note")->nullable();
+      $table->tinyInteger("delivery_time")->default(15);
+      $table->string("delivery_address", 150);
+      $table->float("price_tot", 10, 2);
+      //
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('orders');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('orders');
+  }
 }

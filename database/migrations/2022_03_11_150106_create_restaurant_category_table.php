@@ -15,8 +15,6 @@ class CreateRestaurantCategoryTable extends Migration
     {
         Schema::create('restaurant_category', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("restaurant_id")->nullable()->constrained()->onDelete('set null');
-            $table->foreignId("category_id")->nullable()->constrained()->onDelete('set null');
             $table->timestamps(); 
         });
     }

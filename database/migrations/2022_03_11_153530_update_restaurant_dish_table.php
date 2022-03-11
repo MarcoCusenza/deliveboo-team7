@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestaurantOrderTable extends Migration
+class UpdateRestaurantDishTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,13 +13,9 @@ class CreateRestaurantOrderTable extends Migration
    */
   public function up()
   {
-    Schema::create('restaurant_order', function (Blueprint $table) {
-      $table->id();
-      $table->float("price", 7, 2);
-      $table->tinyint("quantity");
+    Schema::table('restaurant_dish', function (Blueprint $table) {
       $table->foreignId("order_id")->constrained()->onDelete('cascade');
       $table->foreignId("dish_id")->nullable()->constrained()->onDelete('set null');
-      $table->timestamps();
     });
   }
 
@@ -30,6 +26,11 @@ class CreateRestaurantOrderTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('restaurant_order');
+    Schema::table('restaurant_dish', function (Blueprint $table) {
+      $table->dropForeign(['order_id']);
+      $table->dropColumn('order_id');
+      $table->dropForeign(['dish_id']);
+      $table->dropColumn('dish_id');
+    });
   }
 }
