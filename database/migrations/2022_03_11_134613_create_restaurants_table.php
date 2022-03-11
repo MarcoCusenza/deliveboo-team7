@@ -22,6 +22,7 @@ class CreateRestaurantsTable extends Migration
       $table->string("address", 150);
       $table->string("image");
       $table->float("delivery_price", 4, 2);
+      $table->foreignId("user_id")->constrained()->onDelete('cascade');
       //
       $table->timestamps();
     });
