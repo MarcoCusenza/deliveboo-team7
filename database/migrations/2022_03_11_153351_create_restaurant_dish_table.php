@@ -16,7 +16,7 @@ class CreateRestaurantDishTable extends Migration
     Schema::create('restaurant_dish', function (Blueprint $table) {
       $table->id();
       $table->float("price", 7, 2);
-      $table->tinyint("quantity");
+      $table->tinyInteger("quantity");
       $table->timestamps();
     });
   }
