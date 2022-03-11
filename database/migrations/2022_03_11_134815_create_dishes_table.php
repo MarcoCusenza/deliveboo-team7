@@ -16,8 +16,6 @@ class CreateDishesTable extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId("restaurant_id")->constrained()->onDelete('cascade');
-            $table->foreignId("course_id")->constrained()->onDelete('set null');
             $table->string("slug", 135)->unique();
             $table->string("name", 120);
             $table->float('price', 7, 2);
@@ -25,6 +23,8 @@ class CreateDishesTable extends Migration
             $table->text("description")->nullable();
             $table->text("ingredients");
             $table->string("image")->nullable();
+            $table->foreignId("restaurant_id")->constrained()->onDelete('cascade');
+            $table->foreignId("course_id")->nullable()->constrained()->onDelete('set null');
 
             $table->timestamps();
         });
