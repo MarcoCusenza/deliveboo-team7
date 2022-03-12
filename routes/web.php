@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Auth;
 // Auth::routes(["verify" => true]);
 Auth::routes();
 
-// Route::get('/', function () {
-//   return view('welcome');
-// });
+Route::get('/', function () {
+  return view('front');
+});
 
 
 Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
