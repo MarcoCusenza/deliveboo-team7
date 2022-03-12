@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+
+                                @error('surname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -58,6 +72,20 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="VAT_number" class="col-md-4 col-form-label text-md-right">{{ __('VAT number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="VAT_number" type="text" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number" autofocus>
+
+                                @error('VAT_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

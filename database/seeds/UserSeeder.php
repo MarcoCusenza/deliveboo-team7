@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+// use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -12,16 +12,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = config("users-filler");
+        // $users = config("users-filler");
 
-        foreach($users as $user){
-            $newUser = new User();
-            $newUser->name = $user["name"];
-            $newUser->surname = $user["surname"];
-            $newUser->email = $user["email"];
-            $newUser->password = $user["password"];
-            $newUser->VAT_number = $user["VAT_number"];
-            $newUser->save();
-        }
+        // foreach($users as $user){
+        //     $newUser = new User();
+        //     $newUser->name = $user["name"];
+        //     $newUser->surname = $user["surname"];
+        //     $newUser->email = $user["email"];
+        //     $newUser->password = $user["password"];
+        //     $newUser->VAT_number = $user["VAT_number"];
+        //     $newUser->save();
+        // }
     }
 }
