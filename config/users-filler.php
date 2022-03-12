@@ -1,5 +1,3 @@
-<!-- USER FILLER -->
-
 <?php
 
 return [
@@ -47,7 +45,7 @@ return [
     "password" => "MyPassword123",
     "VAT_number" => "12345678904"
   ],
-  
+
   //id=6
   [
     "name" => "Franco",
@@ -56,5 +54,4 @@ return [
     "password" => "MyPassword123",
     "VAT_number" => "12345678905"
   ],
-]
-?>
+];

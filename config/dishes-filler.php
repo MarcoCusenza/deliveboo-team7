@@ -1,5 +1,3 @@
-<!-- DISHES FILLER -->
-
 <?php
 
 return [
@@ -737,5 +735,4 @@ return [
     "image" => null,
   ],
   // FINE Il Corner - ID: 6
-]
-?>
+];

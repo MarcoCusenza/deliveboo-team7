@@ -1,5 +1,3 @@
-<!-- COURSES FILLER -->
-
 <?php
 
 return [
@@ -63,5 +61,4 @@ return [
     "slug" => "hamburger",
     "image" => "https://imgur.com/qeNtx1r"
   ],
-]
-?>
+];

@@ -1,5 +1,3 @@
-<!-- RESTAURANTS FILLER -->
-
 <?php
 
 return [
@@ -57,5 +55,4 @@ return [
     "image" => "https://images.unsplash.com/photo-1566380055434-1dfac9eb516d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80",
     "delivery_price" => 2.50
   ],
-]
-?>
+];

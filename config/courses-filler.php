@@ -1,5 +1,3 @@
-<!-- COURSES FILLER -->
-
 <?php
 
 return [
@@ -44,5 +42,4 @@ return [
     "name" => "Piatti Unici",
     "slug" => "piatti-unici"
   ],
-]
-?>
+];
