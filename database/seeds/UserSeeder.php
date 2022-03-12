@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = config("filler_files/users-filler");
+        $users = config("users-filler");
 
         foreach($users as $user){
             $newUser = new User();
