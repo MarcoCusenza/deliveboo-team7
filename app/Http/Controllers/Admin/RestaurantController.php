@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     "restaurant_name" => "required|string|max:150",
     "phone" => "required|string|max:20",
     "address" => "required|string|max:150",
-    "image" => "required|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+    "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
     "delivery_price" => "required|numeric",
   ];
   /**
@@ -65,6 +65,8 @@ class RestaurantController extends Controller
 
     $path_image = Storage::put("uploads", $data["image"]);
     $newRestaurant->image = $path_image;
+
+    $newRestaurant->user_id = auth()->id();
 
     $newRestaurant->save();
 
