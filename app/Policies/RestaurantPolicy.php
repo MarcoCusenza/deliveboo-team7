@@ -21,19 +21,18 @@ class RestaurantPolicy
   //     //
   // }
 
-  /**
-   * Determine whether the user can create models.
-   *
-   * @param  \App\User  $user
-   * @return mixed
-   */
-  public function create(User $user)
-  {
-    $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray();
-    return $tot_rest == null
-      ? Response::allow($user->id)
-      : Response::deny('You already have a Restaurant!');
-  }
+  // /**
+  //  * Determine whether the user can view any models.
+  //  *
+  //  * @param  \App\User  $user
+  //  * @return mixed
+  //  */
+  // public function viewAny(User $user)
+  // {
+  //   return $user->id == auth()->id()
+  //     ? Response::allow()
+  //     : Response::deny('You are not the owner of these Restaurants!');
+  // }
 
   /**
    * Determine whether the user can view the model.
@@ -47,6 +46,20 @@ class RestaurantPolicy
     return $user->id === $restaurant->user_id
       ? Response::allow()
       : Response::deny('You do not own this restaurant.');
+  }
+
+  /**
+   * Determine whether the user can create models.
+   *
+   * @param  \App\User  $user
+   * @return mixed
+   */
+  public function create(User $user)
+  {
+    $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray();
+    return $tot_rest == null
+      ? Response::allow()
+      : Response::deny('You already have a Restaurant!');
   }
 
   /**

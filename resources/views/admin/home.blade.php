@@ -14,6 +14,17 @@
                             </div>
                         @endif
                         Benvenuto {{ Auth::user()->name }}
+
+                        {{-- PULSANTE CREA RISTORANTE --}}
+                        <a type="button" class="btn btn-danger" href="{{ route('restaurants.create') }}">Crea
+                            Ristorante</a>
+
+                        {{-- PULSANTE GUARDA RISTORANTE --}}
+                        {{-- <button type="button" class="btn btn-link"
+                            href="{{ route('restaurants.show', $restaurant->id) }}">Crea
+                            Ristorante</button> --}}
+                        <a type="button" class="btn btn-success" href="{{ route('restaurants.index') }}">Guarda il tuo
+                            Ristorante</a>
                     </div>
                 </div>
             </div>
