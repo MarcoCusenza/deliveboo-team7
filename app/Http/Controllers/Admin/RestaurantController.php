@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
+    protected $validationRules = [
+        "restaurant_name" => "required|string|max:150",
+        "phone" => "required|string|max:20",
+        "address" => "required|string|max:150",
+        "image" => "required|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+        "delivery_price" => "required|numeric",
+    ];
     /**
      * Display a listing of the resource.
      *
