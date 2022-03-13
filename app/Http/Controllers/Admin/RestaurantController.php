@@ -1,12 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Restaurant;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
+    protected $validationRules = [
+        "restaurant_name" => "required|string|max:150",
+        "phone" => "required|string|max:20",
+        "address" => "required|string|max:150",
+        "image" => "required|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+        "delivery_price" => "required|numeric",
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +35,9 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view("admin.restaurants.create", compact("categories"));
     }
 
     /**
@@ -35,7 +48,28 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRules);
+
+        $data = $request->all();
+
+        $newRestaurant = new Restaurant();
+        $newRestaurant->restaurant_name = $data['restaurant_name'];
+        $newRestaurant->phone = $data['phone'];
+        $newRestaurant->address = $data['address'];
+        $newRestaurant->delivery_price = $data['delivery_price'];
+
+        $newRestaurant->slug = $this->getSlug($newRestaurant->restaurant_name);
+
+        $path_image = Storage::put("uploads", $data["image"]);
+        $newRestaurant->image = $path_image;
+        
+        $newRestaurant->save();
+
+        if (isset($data["categories"])) {
+            $newRestaurant->categories()->sync($data["categories"]);
+        }
+
+        return redirect()->route('restaurants.show', $newRestaurant->id);
     }
 
     /**
@@ -46,7 +80,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return view("admin.restaurants.show", compact('restaurant'));
     }
 
     /**
@@ -57,7 +91,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $categories = Category::all();
+
+        return view("admin.restaurants.edit", compact("categories"));
     }
 
     /**
@@ -69,7 +105,34 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        // validazione
+        $request->validate($this->validationRules);
+
+        $data = $request->all();
+
+        //GESTIONE SLUG NEL CASO SIA GIA PRESENTE
+        if ($restaurant->restaurant_name != $data['restaurant_name']) {
+            $restaurant->restaurant_name = $data['restaurant_name'];
+
+            $slug = Str::slug($restaurant->restaurant_name, '-');
+
+            if ($slug != $restaurant->slug) {
+                $restaurant->slug = $this->getSlug($restaurant->restaurant_name);
+            }
+        }
+
+        $restaurant->restaurant_name = $data['restaurant_name'];
+        $restaurant->phone = $data['phone'];
+        $restaurant->address = $data['address'];
+        $restaurant->delivery_price = $data['delivery_price'];
+
+        $restaurant->save();
+
+        if (isset($data["categories"])) {
+            $restaurant->categories()->sync($data["categories"]);
+        }
+
+        return redirect()->route('restaurants.show', $restaurant->id);
     }
 
     /**
@@ -80,6 +143,24 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        //CANCELLAZIONE IMMAGINE
+        // if ($restaurant->image) {
+        //     Storage::delete($restaurant->image);
+        // }
+        $restaurant->delete();
+
+        return redirect()->route("home");
+    }
+
+    private function getSlug($name)
+    {
+        $slug = Str::slug($name, '-');
+        $i = 1;
+
+        while (Restaurant::where("slug", $slug)->first()) {
+            $slug = Str::slug($name, '-') . "-{$i}";
+            $i++;
+        }
+        return $slug;
     }
 }
