@@ -1,40 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-dark text-white">
+  <div class="container">
     <form action="{{route("restaurants.store")}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group">
-          <label for="restaurant_name">Nome ristorante</label>
-          <input type="text" class="form-control" id="restaurant_name" placeholder="Scrivi il nome del ristorante">
-        </div>
+      @csrf
+      <div class="form-group">
+        <label for="restaurant_name">Nome ristorante</label>
+        <input type="text" class="form-control @error("restaurant_name") is-invalid @enderror" id="restaurant_name" name="restaurant_name" placeholder="Scrivi il nome del ristorante" value="{{old("restaurant_name")}}">
+      </div>
+      @error("restaurant_name")
+        <div class="alert alert-danger">{{$message}}</div>
+      @enderror
 
-        <div class="form-group">
-            <label for="phone">Numero di telefono</label>
-            <input type="text" class="form-control" id="phone" placeholder="Scrivi il numero di telefono">
-        </div>
+      <div class="form-group">
+        <label for="phone">Numero di telefono</label>
+        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
+      </div>
+      @error("phone")
+        <div class="alert alert-danger">{{$message}}</div>
+      @enderror
 
-        <div class="form-group">
-            <label for="address">Indirizzo</label>
-            <input type="text" class="form-control" id="address" placeholder="Scrivi l'indirizzo">
-        </div>
+      <div class="form-group">
+        <label for="address">Indirizzo</label>
+        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
+      </div>
+      @error("address")
+        <div class="alert alert-danger">{{$message}}</div>
+      @enderror
 
-        <div class="form-group mb-4">
-          <label for="delivery_price">Costo spedizione</label>
-          <input type="text" class="form-control" id="delivery_price" placeholder="Scrivi quanto costa la spedizione">
-        </div>
+      <div class="form-group mb-4">
+        <label for="delivery_price">Costo spedizione</label>
+        <input type="number" step=".05" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
+      </div>
+      @error("delivery_price")
+        <div class="alert alert-danger">{{$message}}</div>
+      @enderror
 
-        <div class="input-group mb-5 form-group">
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="image">
-              <label class="custom-file-label" for="image">Scegli immagine</label>
+      <div class="form-group mb-4">
+        <p>Seleziona le categorie</p>
+        @foreach ($categories as $category)
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="category[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
+                <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
             </div>
-            <div class="input-group-append">
-              <span class="input-group-text" id="">Upload</span>
-            </div>
-        </div>
+        @endforeach
+        @error('category')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="form-group">
+        <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
+        <label for="image">Aggiungi immagine</label>
+        <input type="file" id="image" name="image" onchange="PreviewImage();">
+
+        <script type="text/javascript">
+          function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("image").files[0]);
+    
+            oFReader.onload = function (oFREvent) {
+              document.getElementById("uploadPreview").src = oFREvent.target.result;
+            };
+          };
+        </script>
+        @error('image')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+
+      <button type="submit" class="btn btn-primary px-4 py-2">Crea</button>
     </form>
-</div>
+  </div>
 @endsection
