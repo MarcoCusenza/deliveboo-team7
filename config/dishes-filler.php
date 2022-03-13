@@ -1,8 +1,6 @@
 <?php
 
 return [
-
-  // Jotaro Sushi - ID: 1
   [
     "restaurant_id" => 1,
     "course_id" => 7,
@@ -80,9 +78,6 @@ return [
     "ingredients" => "pollo, salsa teriyaki, cipollotto",
     "image" => "https://images.unsplash.com/photo-1609183480237-ccbb2d7c5772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   ],
-  // FINE Jotaro Sushi - ID: 1
-
-  // Pizza in teglia da Mario - ID: 2
   [
     "resturant_id" => 2,
     "course_id" => 7,
@@ -171,9 +166,6 @@ return [
     "ingredients" => "Pomodori, Tonno, Cipolla, Basilico",
     "image" => "https://www.bofrost.it/writable/products/images-v2/15196.jpg"
   ],
-  // FINE Pizza in teglia da Mario - ID: 2
-
-  // Al Noor - ID: 3
   [
     "restaurant_id" => 3,
     "course_id" => 1,
@@ -251,9 +243,6 @@ return [
     "ingredients" => "pollo, spezie, mango, riso",
     "image" => "https://www.vitamix.com/media/other/images/Vitamix-Mango-Sauce---Chicken-Square.jpg"
   ],
-  // FINE Al Noor - ID: 3
-
-  // Todo in Todos - ID: 4
   [
     "restaurant_id" => 4,
     "course_id" => 1,
@@ -268,7 +257,7 @@ return [
   [
     "restaurant_id" => 4,
     "course_id" => 1,
-    "name" => "Tostadas de camarÃ³n",
+    "name" => "Tostadas de camaron",
     "slug" => "tostadas-de-camaron",
     "price" => 6,
     "visible" => 1,
@@ -280,7 +269,7 @@ return [
     "restaurant_id" => 4,
     "course_id" => 3,
     "name" => "Fajitas Combo",
-    "slug" => "Fajitas-Combo",
+    "slug" => "fajitas-combo",
     "price" => 8,
     "visible" => 1,
     "description" => "Striscioline di carne di manzo e pollo marinate in spezie messicane e cucinate con cipolle e peperoni",
@@ -342,12 +331,6 @@ return [
     "ingredients" => "churros, cioccolata calda",
     "image" => "https://walnuts.org/wp-content/uploads/2017/09/e909bf5d1819a5d-963DFC89-EB32-4262-BD44F909E1100214-900x600.jpg"
   ],
-  // FINE Todo in Todos - ID: 4
-
-  // Calcio Champagne - ID: 5
-  /********************************
-   *          ANTIPASTI           *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 1,
@@ -370,10 +353,6 @@ return [
     "ingredients" => "Polpo, patate, aglio, prezzemolo, limone, olive, pomodorini, olio extravergine d'oliva",
     "image" => "https://images.pexels.com/photos/10038710/pexels-photo-10038710.jpeg?cs=srgb&dl=pexels-valeria-boltneva-10038710.jpg&fm=jpg",
   ],
-
-  /********************************
-   *          PRIMI               *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 2,
@@ -407,10 +386,6 @@ return [
     "ingredients" => "Spaghetti, basilico, olio extravergine d'olive, pomodori pelati, aglio",
     "image" => "https://images.unsplash.com/photo-1612524681749-2f7615663729?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
   ],
-
-  /********************************
-   *          SECONDI             *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 3,
@@ -444,10 +419,6 @@ return [
     "ingredients" => "Manzo, rucola, grana",
     "image" => "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
   ],
-
-  /********************************
-   *          CONTORNO            *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 4,
@@ -470,10 +441,6 @@ return [
     "ingredients" => "patate, sale fino",
     "image" => null, //https://images.unsplash.com/photo-1585109649139-366815a0d713?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80
   ],
-
-  /********************************
-   *          DESSERT             *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 5,
@@ -489,17 +456,13 @@ return [
     "restaurant_id" => 5,
     "course_id" => 5,
     "name" => "Tiramisù",
-    "slug" => "tiramisù",
+    "slug" => "tiramisu",
     "price" => 4,
     "visible" => 1,
     "description" => "Tiramisù fatto in casa",
     "ingredients" => "Mascarpone, savoiardi, caffè, uova, zucchero",
     "image" => "https://images.unsplash.com/photo-1631206753348-db44968fd440?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
   ],
-
-  /********************************
-   *          DRINK               *
-   ********************************/
   [
     "restaurant_id" => 5,
     "course_id" => 5,
@@ -566,12 +529,6 @@ return [
     "ingredients" => "Vino bianco",
     "image" => null,
   ],
-  // FINE Calcio Champagne - ID: 5
-
-  // Il Corner - ID: 6
-  /********************************
-   *          PIATTI UNICI        *
-   ********************************/
   [
     "restaurant_id" => 6,
     "course_id" => 7,
@@ -660,15 +617,11 @@ return [
     "ingredients" => "Manzo, cheddar, cipolle, cetrioli sotto aceto, bacon,  pane ai semi misti",
     "image" => "https://images.unsplash.com/photo-1598182198871-d3f4ab4fd181?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
   ],
-
-  /********************************
-   *          CONTORNO            *
-   ********************************/
   [
     "restaurant_id" => 6,
     "course_id" => 4,
     "name" => "Patatine fritte",
-    "slug" => "patatine-fritte",
+    "slug" => "patatine-fritte-1",
     "price" => 0, 50,
     "visible" => 1,
     "description" => null,
@@ -687,14 +640,11 @@ return [
     "image" => null, //https://images.unsplash.com/photo-1426869981800-95ebf51ce900?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80
   ],
 
-  /********************************
-   *          DRINK               *
-   ********************************/
   [
     "restaurant_id" => 6,
     "course_id" => 5,
     "name" => "Acqua naturale",
-    "slug" => "acqua-naturale",
+    "slug" => "acqua-naturale-2",
     "price" => 1,
     "visible" => 1,
     "description" => null,
@@ -705,7 +655,7 @@ return [
     "restaurant_id" => 6,
     "course_id" => 5,
     "name" => "Acqua frizzante",
-    "slug" => "acqua-frizzante",
+    "slug" => "acqua-frizzante-2",
     "price" => 1,
     "visible" => 1,
     "description" => null,
@@ -716,7 +666,7 @@ return [
     "restaurant_id" => 6,
     "course_id" => 5,
     "name" => "Coca-cola",
-    "slug" => "coca-cola",
+    "slug" => "coca-cola-2",
     "price" => 2,
     "visible" => 1,
     "description" => null,
@@ -734,5 +684,4 @@ return [
     "ingredients" => "peroni",
     "image" => null,
   ],
-  // FINE Il Corner - ID: 6
 ];
