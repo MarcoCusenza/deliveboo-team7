@@ -79,7 +79,7 @@
                             <label for="VAT_number" class="col-md-4 col-form-label text-md-right">{{ __('VAT number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="VAT_number" type="text" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number" autofocus>
+                                <input id="VAT_number" minlength="10" type="text" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number" autofocus>
 
                                 @error('VAT_number')
                                     <span class="invalid-feedback" role="alert">
