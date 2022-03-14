@@ -16,7 +16,7 @@ class DishController extends Controller
     "name" => "required|string|max:150",
     "price" => "required|numeric",
     "visible" => "sometimes|accepted",
-    "description" => "required|string|max:150",
+    "description" => "nullable|string|max:150",
     "ingredients" => "required|string|max:150",
     "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
   ];
@@ -108,7 +108,7 @@ class DishController extends Controller
 
     $courses = Course::all();
 
-    return view("admin.dishes.edit", compact("courses"));
+    return view("admin.dishes.edit", compact("dish", "courses"));
   }
 
   /**
@@ -138,7 +138,9 @@ class DishController extends Controller
 
     $dish->name = $data['name'];
     $dish->price = $data['price'];
-    $dish->visible = $data['visible'];
+    if (isset($data["visible"])) {
+      $dish->visible = true;
+    }
     $dish->description = $data['description'];
 
     $dish->save();
