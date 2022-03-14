@@ -7,34 +7,34 @@
       <div class="form-group">
         <label for="restaurant_name">Nome ristorante</label>
         <input type="text" class="form-control @error("restaurant_name") is-invalid @enderror" id="restaurant_name" name="restaurant_name" placeholder="Scrivi il nome del ristorante" value="{{old("restaurant_name")}}">
+        @error("restaurant_name")
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
-      @error("restaurant_name")
-        <div class="alert alert-danger">{{$message}}</div>
-      @enderror
 
       <div class="form-group">
         <label for="phone">Numero di telefono</label>
-        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
+        <input type="text" minlength="10" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
+        @error("phone")
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
-      @error("phone")
-        <div class="alert alert-danger">{{$message}}</div>
-      @enderror
 
       <div class="form-group">
         <label for="address">Indirizzo</label>
         <input type="text" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
+        @error("address")
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
-      @error("address")
-        <div class="alert alert-danger">{{$message}}</div>
-      @enderror
 
       <div class="form-group mb-4">
         <label for="delivery_price">Costo spedizione</label>
         <input type="number" step=".05" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
+        @error("delivery_price")
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
-      @error("delivery_price")
-        <div class="alert alert-danger">{{$message}}</div>
-      @enderror
 
       <div class="form-group mb-4">
         <p>Seleziona le categorie</p>
@@ -65,7 +65,7 @@
           };
         </script>
         @error('image')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
         @enderror
       </div>
 

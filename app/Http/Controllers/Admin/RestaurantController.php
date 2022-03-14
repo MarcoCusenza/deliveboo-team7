@@ -13,7 +13,7 @@ class RestaurantController extends Controller
 {
   protected $validationRules = [
     "restaurant_name" => "required|string|max:150",
-    "phone" => "required|string|max:20",
+    "phone" => "required|string|min:10|max:20",
     "address" => "required|string|max:150",
     "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
     "delivery_price" => "required|numeric",
@@ -109,7 +109,7 @@ class RestaurantController extends Controller
 
     $categories = Category::all();
 
-    return view("admin.restaurants.edit", compact("categories"));
+    return view("admin.restaurants.edit", compact("categories", "restaurant"));
   }
 
   /**
