@@ -15,7 +15,7 @@ class DishController extends Controller
   protected $validationRules = [
     "name" => "required|string|max:150",
     "price" => "required|numeric",
-    "visible" => "sometimes|accepted", 
+    "visible" => "sometimes|accepted",
     "description" => "required|string|max:150",
     "ingredients" => "required|string|max:150",
     "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
@@ -28,7 +28,7 @@ class DishController extends Controller
    */
   public function index()
   {
-    $dishes = Dish::all(); //ATTENZIONE: BISOGNA MOSTRARE SOLO I PIATTI DI QUEL RISTORANTE!
+    $dishes = Dish::all()->where("restaurant_id", auth()->id()); //ATTENZIONE: BISOGNA MOSTRARE SOLO I PIATTI DI QUEL RISTORANTE!
 
     return view("admin.dishes.index", compact("dishes"));
   }
@@ -64,7 +64,7 @@ class DishController extends Controller
     $newDish->visible = $data['visible'];
     $newDish->description = $data['description'];
 
-    $myRestaurant = Restaurant::all() -> where('user_id', auth()->id());
+    $myRestaurant = Restaurant::all()->where('user_id', auth()->id());
     $newDish->restaurant_id = $myRestaurant->id;
     $newDish->course_id = $data['course_id'];
 
@@ -143,7 +143,7 @@ class DishController extends Controller
 
     return redirect()->route('dishes.show', $dish->id);
   }
-  
+
 
   /**
    * Remove the specified resource from storage.
@@ -170,4 +170,3 @@ class DishController extends Controller
     return $slug;
   }
 }
-
