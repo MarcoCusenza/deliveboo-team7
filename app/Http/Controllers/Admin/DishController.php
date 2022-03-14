@@ -7,15 +7,18 @@ use App\Dish;
 use App\Restaurant;
 use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class DishController extends Controller
 {
   protected $validationRules = [
-    "restaurant_name" => "required|string|max:150",
-    "phone" => "required|string|max:20",
-    "address" => "required|string|max:150",
-    "image" => "required|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
-    "delivery_price" => "required|numeric",
+    "name" => "required|string|max:150",
+    "price" => "required|numeric",
+    "visible" => "sometimes|accepted", 
+    "description" => "required|string|max:150",
+    "ingredients" => "required|string|max:150",
+    "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
   ];
 
   /**
@@ -51,7 +54,30 @@ class DishController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate($this->validationRules);
+
+    $data = $request->all();
+
+    $newDish = new Dish();
+    $newDish->name = $data['name'];
+    $newDish->price = $data['price'];
+    $newDish->visible = $data['visible'];
+    $newDish->description = $data['description'];
+
+    $myRestaurant = Restaurant::all() -> where('user_id', auth()->id());
+    $newDish->restaurant_id = $myRestaurant->id;
+    $newDish->course_id = $data['course_id'];
+
+    $newDish->slug = $this->getSlug($newDish->name);
+
+    $newDish->save();
+
+    //**********INDECISI**********
+    // if (isset($data["restaurants"])) {
+    //   $newDish->restaurants()->sync($data["restaurants"]);
+    // }
+
+    return redirect()->route('dishes.show', $newDish->id);
   }
 
   /**
@@ -62,7 +88,7 @@ class DishController extends Controller
    */
   public function show(Dish $dish)
   {
-    //
+    return view("admin.dishes.show", compact('dish'));
   }
 
   /**
@@ -73,7 +99,9 @@ class DishController extends Controller
    */
   public function edit(Dish $dish)
   {
-    //
+    $courses = Course::all();
+
+    return view("admin.dishes.edit", compact("courses"));
   }
 
   /**
@@ -85,8 +113,37 @@ class DishController extends Controller
    */
   public function update(Request $request, Dish $dish)
   {
-    //
+    // validazione
+    $request->validate($this->validationRules);
+
+    $data = $request->all();
+
+    //GESTIONE SLUG NEL CASO SIA GIA PRESENTE
+    if ($dish->name != $data['name']) {
+      $dish->name = $data['name'];
+
+      $slug = Str::slug($dish->name, '-');
+
+      if ($slug != $dish->slug) {
+        $dish->slug = $this->getSlug($dish->name);
+      }
+    }
+
+    $dish->name = $data['name'];
+    $dish->price = $data['price'];
+    $dish->visible = $data['visible'];
+    $dish->description = $data['description'];
+
+    $dish->save();
+
+    //**********INDECISI**********
+    // if (isset($data["restaurants"])) {
+    //   $newDish->restaurants()->sync($data["restaurants"]);
+    // }
+
+    return redirect()->route('dishes.show', $dish->id);
   }
+  
 
   /**
    * Remove the specified resource from storage.
@@ -96,6 +153,21 @@ class DishController extends Controller
    */
   public function destroy(Dish $dish)
   {
-    //
+    $dish->delete();
+
+    return redirect()->route("home");
+  }
+
+  private function getSlug($name)
+  {
+    $slug = Str::slug($name, '-');
+    $i = 1;
+
+    while (Dish::where("slug", $slug)->first()) {
+      $slug = Str::slug($name, '-') . "-{$i}";
+      $i++;
+    }
+    return $slug;
   }
 }
+
