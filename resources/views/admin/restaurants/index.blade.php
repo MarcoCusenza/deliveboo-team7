@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
         @endforeach
     </div>
 @endsection
