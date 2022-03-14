@@ -15,16 +15,24 @@
                         @endif
                         Benvenuto {{ Auth::user()->name }}
 
-                        {{-- PULSANTE CREA RISTORANTE --}}
-                        <a type="button" class="btn btn-danger" href="{{ route('restaurants.create') }}">Crea
-                            Ristorante</a>
+                        @php
+                            use App\Restaurant;
+                            $tot_rest = Restaurant::all()
+                                ->where('user_id', auth()->id())
+                                ->toArray();
+                        @endphp
 
-                        {{-- PULSANTE GUARDA RISTORANTE --}}
-                        {{-- <button type="button" class="btn btn-link"
-                            href="{{ route('restaurants.show', $restaurant->id) }}">Crea
-                            Ristorante</button> --}}
-                        <a type="button" class="btn btn-success" href="{{ route('restaurants.index') }}">Guarda il tuo
-                            Ristorante</a>
+                        {{-- PULSANTE CREA RISTORANTE --}}
+                        @if ($tot_rest == null)
+                            <a type="button" class="btn btn-danger" href="{{ route('restaurants.create') }}">Crea
+                                Ristorante</a>
+                        @endif
+
+                        @if ($tot_rest != null)
+                            {{-- PULSANTE GUARDA RISTORANTE --}}
+                            <a type="button" class="btn btn-success" href="{{ route('restaurants.index') }}">Guarda il tuo
+                                Ristorante</a>
+                        @endif
                     </div>
                 </div>
             </div>
