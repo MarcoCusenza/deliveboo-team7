@@ -159,6 +159,9 @@ class RestaurantController extends Controller
    */
   public function destroy(Restaurant $restaurant)
   {
+    // The current user can delete this restaurant?
+    $this->authorize('delete', $restaurant);
+
     //CANCELLAZIONE IMMAGINE
     // if ($restaurant->image) {
     //     Storage::delete($restaurant->image);
