@@ -7,16 +7,16 @@
         @csrf
         @method("PUT")
         <div class="form-group">
-            <label for="name">Modifica il nome del piatto</label>
+            <label for="name">Modifica il nome del piatto *</label>
             <input type="text" class="form-control @error(" name") is-invalid @enderror" id="name" name="name"
-                placeholder="Scrivi il nuovo nome del ristorante" value="{{old("name", $dish->name)}}">
+                placeholder="Scrivi il nuovo nome del piatto" value="{{old("name", $dish->name)}}">
             @error("name")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="price">Modifica il prezzo del piatto</label>
+            <label for="price">Modifica il prezzo del piatto *</label>
             <input type="numeric" step=".05" class="form-control @error(" price") is-invalid @enderror" id="price"
                 name="price" placeholder="Scrivi il nuovo numero di telefono" value="{{old("price", $dish->price)}}">
             @error("price")
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group mb-4">
-            <label for="ingredients">Modifica gli ingredienti</label>
+            <label for="ingredients">Modifica gli ingredienti *</label>
             <input type="text" class="form-control @error(" phone") is-invalid @enderror" id="ingredients"
                 name="ingredients" placeholder="Scrivi il nuovo costo della spedizione"
                 value="{{old("ingredients", $dish->ingredients)}}">
@@ -68,7 +68,7 @@
             <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror
         </div>
-
+        <h5 class="text-muted">* Campo obbligatorio</h5>
         <button type="submit" class="btn btn-primary px-4 py-2">Modifica</button>
     </form>
 </div>

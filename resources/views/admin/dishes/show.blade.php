@@ -24,5 +24,7 @@
                 </div>
             </div>
         <a href="{{ route('dishes.index', $dish->id) }}" class="btn btn-warning">Torna ai piatti</a>
+        <a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-warning">Modifica piatto</a>
+
     </div>
 @endsection
