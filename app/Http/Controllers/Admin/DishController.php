@@ -67,6 +67,7 @@ class DishController extends Controller
     $newDish->description = $data['description'];
 
     $myRestaurant = Restaurant::first()->where('user_id', auth()->id())->get();
+    dd($myRestaurant);
     $newDish->restaurant_id = $myRestaurant->id;
     $newDish->course_id = $data['course_id'];
 
