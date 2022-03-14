@@ -56,7 +56,7 @@ class RestaurantPolicy
    */
   public function create(User $user)
   {
-    $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray(); //ATTENZIONE: potrebbe esserci bisogno di usare first anziché all
+    $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray();
     return $tot_rest == null
       ? Response::allow()
       : Response::deny('You already have a Restaurant!');

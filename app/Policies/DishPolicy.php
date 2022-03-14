@@ -42,8 +42,8 @@ class DishPolicy
    */
   public function view(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::all()->where("user_id", $user->id); //ATTENZIONE: potrebbe esserci bisogno di usare first anziché all
-    return $myRestaurant->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
+    return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Your restaurant doesn't own the dish you are trying to show.");
   }
@@ -69,8 +69,8 @@ class DishPolicy
    */
   public function update(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::all()->where("user_id", $user->id); //ATTENZIONE: potrebbe esserci bisogno di usare first anziché all
-    return $myRestaurant->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
+    return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Your restaurant doesn't own the dish you are trying to edit.");
   }
@@ -84,8 +84,8 @@ class DishPolicy
    */
   public function delete(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::all()->where("user_id", $user->id); //ATTENZIONE: potrebbe esserci bisogno di usare first anziché all
-    return $myRestaurant->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
+    return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Your restaurant doesn't own the dish you are trying to delete.");
   }
