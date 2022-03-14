@@ -28,7 +28,8 @@ class DishController extends Controller
    */
   public function index()
   {
-    $dishes = Dish::all()->where("restaurant_id", auth()->id()); //ATTENZIONE: BISOGNA MOSTRARE SOLO I PIATTI DI QUEL RISTORANTE!
+    $myRestaurant = Restaurant::all()->where("user_id", auth()->id()); //ATTENZIONE: potrebbe esserci bisogno di usare first anziché all
+    $dishes = Dish::all()->where("restaurant_id", $myRestaurant->id);
 
     return view("admin.dishes.index", compact("dishes"));
   }
@@ -40,9 +41,10 @@ class DishController extends Controller
    */
   public function create()
   {
+    // LA POLICY SULLA CREATE NON SERVE, UN UTENTE REGISTRATO PUO' SEMPRE CREARE UN NUOVO PIATTO CHE VERRA' AGGIUNTO AL SUO RISTORANTE
+
     $courses = Course::all();
 
-    //ATTENZIONE: COME FACCIO A SAPERE CHI STA MODIFICANDO?
     return view("admin.dishes.create", compact("courses"));
   }
 
@@ -72,10 +74,8 @@ class DishController extends Controller
 
     $newDish->save();
 
-    //**********INDECISI**********
-    // if (isset($data["restaurants"])) {
-    //   $newDish->restaurants()->sync($data["restaurants"]);
-    // }
+    $newDish->restaurants()->sync($data["restaurants"]);
+
 
     return redirect()->route('dishes.show', $newDish->id);
   }
@@ -88,6 +88,9 @@ class DishController extends Controller
    */
   public function show(Dish $dish)
   {
+    // The current user can view this dish?
+    $this->authorize('view', $dish);
+
     return view("admin.dishes.show", compact('dish'));
   }
 
@@ -99,6 +102,9 @@ class DishController extends Controller
    */
   public function edit(Dish $dish)
   {
+    // The current user can edit this dish?
+    $this->authorize('update', $dish);
+
     $courses = Course::all();
 
     return view("admin.dishes.edit", compact("courses"));
@@ -136,11 +142,6 @@ class DishController extends Controller
 
     $dish->save();
 
-    //**********INDECISI**********
-    // if (isset($data["restaurants"])) {
-    //   $newDish->restaurants()->sync($data["restaurants"]);
-    // }
-
     return redirect()->route('dishes.show', $dish->id);
   }
 
@@ -153,6 +154,14 @@ class DishController extends Controller
    */
   public function destroy(Dish $dish)
   {
+    // The current user can delete this dish?
+    $this->authorize('delete', $dish);
+
+    //CANCELLAZIONE IMMAGINE
+    // if ($dish->image) {
+    //     Storage::delete($dish->image);
+    // }
+
     $dish->delete();
 
     return redirect()->route("home");
