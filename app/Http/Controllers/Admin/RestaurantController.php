@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     "restaurant_name" => "required|string|max:150",
     "phone" => "required|string|min:10|max:20",
     "address" => "required|string|max:150",
-    "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+    // "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
     "delivery_price" => "required|numeric",
   ];
   /**
@@ -57,8 +57,11 @@ class RestaurantController extends Controller
   {
     $request->validate($this->validationRules);
 
+    $request->validate([
+      "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+    ]);
+    
     $data = $request->all();
-
     $newRestaurant = new Restaurant();
     $newRestaurant->restaurant_name = $data['restaurant_name'];
     $newRestaurant->phone = $data['phone'];
@@ -109,7 +112,7 @@ class RestaurantController extends Controller
 
     $categories = Category::all();
 
-    return view("admin.restaurants.edit", compact("categories", "restaurant"));
+    return view("admin.restaurants.edit", compact("restaurant", "categories"));
   }
 
   /**
@@ -141,6 +144,11 @@ class RestaurantController extends Controller
     $restaurant->phone = $data['phone'];
     $restaurant->address = $data['address'];
     $restaurant->delivery_price = $data['delivery_price'];
+
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $restaurant->image = $path_image;
+    }
 
     $restaurant->save();
 
