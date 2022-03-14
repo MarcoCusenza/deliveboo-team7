@@ -16,6 +16,7 @@
                         <th scope="col">Prezzo</th>
                         <th scope="col">Visible</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     
@@ -26,7 +27,8 @@
                             <td>{{$dish->slug}}</td>
                             <td>{{$dish->price}} euro</td>
                             <td>{{$dish->visible}}</td>
-                            {{-- <td><a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-warning">Modifica piatto</a></td> --}}
+                            <td><a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-warning">Visualizza piatto</a></td>
+                            <td><a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-warning">Modifica piatto</a></td>
                         </tr>
                         @endforeach
                     </tbody>                      
