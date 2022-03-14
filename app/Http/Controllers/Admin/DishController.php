@@ -66,7 +66,7 @@ class DishController extends Controller
     $newDish->visible = $data['visible'];
     $newDish->description = $data['description'];
 
-    $myRestaurant = Restaurant::all()->where('user_id', auth()->id());
+    $myRestaurant = Restaurant::first()->where('user_id', auth()->id())->get();
     $newDish->restaurant_id = $myRestaurant->id;
     $newDish->course_id = $data['course_id'];
 
