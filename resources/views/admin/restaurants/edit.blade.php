@@ -51,30 +51,30 @@
                     </div>
                 @endforeach
             </div>
-
-            {{-- @foreach ($categories as $category)
-            <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="category[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
-                <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
-            </div>
-            @endforeach
-            @error('category')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror --}}
+                
+                {{-- @foreach ($categories as $category)
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="category[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
+                    <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
+                </div>
+                @endforeach
+                @error('category')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror --}}
 
             <div class="form-group">
-                <img id="uploadPreview" width="100" src="{{ asset('storage/'.$restaurant->image) }}">
+                {{-- <img id="uploadPreview" width="100" src="{{ asset('storage/'.$restaurant->image) }}"> --}}
                 <label for="image">Modifica l'immagine</label>
                 <input type="file" id="image" name="image" onchange="PreviewImage();">
 
                 <script type="text/javascript">
                     function PreviewImage() {
-                    var oFReader = new FileReader();
-                    oFReader.readAsDataURL(document.getElementById("image").files[0]);
+                        var oFReader = new FileReader();
+                        oFReader.readAsDataURL(document.getElementById("image").files[0]);
 
-                    oFReader.onload = function (oFREvent) {
-                        document.getElementById("uploadPreview").src = oFREvent.target.result;
-                    };
+                        oFReader.onload = function (oFREvent) {
+                            document.getElementById("uploadPreview").src = oFREvent.target.result;
+                        };
                     };
                 </script>
                 @error('image')
