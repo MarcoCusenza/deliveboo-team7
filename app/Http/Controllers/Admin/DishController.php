@@ -28,8 +28,8 @@ class DishController extends Controller
    */
   public function index()
   {
-    $myRestaurants = Restaurant::all()->where("user_id", auth()->id());
-    $dishes = Dish::all()->where("restaurant_id", $myRestaurants[0]->id);
+    $myRestaurant = Restaurant::first()->where("user_id", auth()->id())->get();
+    $dishes = Dish::all()->where("restaurant_id", $myRestaurant[0]->id);
 
     return view("admin.dishes.index", compact("dishes"));
   }
@@ -66,8 +66,8 @@ class DishController extends Controller
     $newDish->visible = $data['visible'];
     $newDish->description = $data['description'];
 
-    $myRestaurants = Restaurant::all()->where('user_id', auth()->id());
-    $newDish->restaurant_id = $myRestaurants[0]->id;
+    $myRestaurant = Restaurant::first()->where('user_id', auth()->id())->get();
+    $newDish->restaurant_id = $myRestaurant[0]->id;
     $newDish->course_id = $data['course_id'];
 
     $newDish->slug = $this->getSlug($newDish->name);
