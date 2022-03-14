@@ -63,8 +63,12 @@ class DishController extends Controller
     $newDish = new Dish();
     $newDish->name = $data['name'];
     $newDish->price = $data['price'];
-    $newDish->visible = $data['visible'];
+    if (isset($data["visible"])) {
+      $newDish->visible = true;
+    }
     $newDish->description = $data['description'];
+    $newDish->ingredients = $data['ingredients'];
+
 
     $myRestaurant = Restaurant::first()->where('user_id', auth()->id())->get();
     $newDish->restaurant_id = $myRestaurant[0]->id;
@@ -73,9 +77,6 @@ class DishController extends Controller
     $newDish->slug = $this->getSlug($newDish->name);
 
     $newDish->save();
-
-    $newDish->restaurants()->sync($data["restaurants"]);
-
 
     return redirect()->route('dishes.show', $newDish->id);
   }
