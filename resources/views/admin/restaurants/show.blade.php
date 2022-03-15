@@ -14,6 +14,13 @@
           <li class="list-group-item">Numero di telefono: {{$restaurant->phone}}</li>
           <li class="list-group-item">Indirizzo: {{$restaurant->address}}</li>
           <li class="list-group-item">Prezzo per la consegna: {{$restaurant->delivery_price}} euro</li>
+          <li class="list-group-item">Categorie: 
+            <ul>
+            @foreach ($restaurant->categories as $category)
+              <li>{{$category->name}}</li>
+            @endforeach
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="container p-0 d-flex flex-row mt-3">

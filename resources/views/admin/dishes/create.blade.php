@@ -52,7 +52,7 @@
                 </option>
                 @endforeach
             </select>
-            @error('course')
+            @error('courses')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
