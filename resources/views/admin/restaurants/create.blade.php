@@ -22,7 +22,7 @@
 
       <div class="form-group">
         <label for="address">Indirizzo *</label>
-        <input type="text" maxlength="150" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
+        <input type="text" maxlength="150" class="form-control @error("address") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
         @error("address")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -30,7 +30,7 @@
 
       <div class="form-group mb-4">
         <label for="delivery_price">Costo spedizione *</label>
-        <input type="number" step=".05" max="99" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
+        <input type="number" step=".05" max="99" class="form-control @error("delivery_price") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
         @error("delivery_price")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -40,11 +40,11 @@
         <p>Seleziona le categorie *</p>
         @foreach ($categories as $category)
             <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="category[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
+                <input type="checkbox" class="form-check-input @error("categories") is-invalid @enderror" id="{{$category->slug}}" name="categories[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
                 <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
             </div>
         @endforeach
-        @error('category')
+        @error('categories')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>

@@ -41,10 +41,10 @@
             @enderror
         </div>
 
-        <div class="form-group mb-4">
-            <label for="course">Portata *</label>
-            <select class="form-control form-control-md @error('course') is-invalid @enderror" id="course"
-                name="course_id">
+        <div class="form-group">
+            <label for="course">Seleziona la portata</label>
+            <select class="form-control form-control-md @error('course_id') is-invalid @enderror" id="course"
+                name="course_id" required>
                 <option value="">Seleziona una portata</option>
                 @foreach ($courses as $course)
                 <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
@@ -52,7 +52,7 @@
                 </option>
                 @endforeach
             </select>
-            @error('course')
+            @error('course_id')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

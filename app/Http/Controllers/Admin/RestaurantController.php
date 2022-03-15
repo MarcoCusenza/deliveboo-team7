@@ -16,6 +16,7 @@ class RestaurantController extends Controller
     "phone" => "required|regex:/[0-9]{10}/|size:10",
     "address" => "required|string|max:150",
     "delivery_price" => "required|numeric|max:99",
+    "categories" => "required|min:1"
   ];
   /**
    * Display a listing of the resource.
