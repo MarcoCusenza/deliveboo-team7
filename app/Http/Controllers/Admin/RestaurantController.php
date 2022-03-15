@@ -14,7 +14,6 @@ class RestaurantController extends Controller
   protected $validationRules = [
     "restaurant_name" => "required|string|max:150",
     "phone" => "required|regex:/[0-9]{10}/|size:10",
-    // "phone" => "required|numeric|min:10|max:20",
     "address" => "required|string|max:150",
     "delivery_price" => "required|numeric",
   ];
