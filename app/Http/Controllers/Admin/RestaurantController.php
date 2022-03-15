@@ -13,7 +13,7 @@ class RestaurantController extends Controller
 {
   protected $validationRules = [
     "restaurant_name" => "required|string|max:150",
-    "phone" => "required|regex:/[0-9]{10}/|size:10",
+    "phone" => "required|regex:/[+-0-9]/|min:8|max:15",
     "address" => "required|string|max:150",
     "delivery_price" => "required|numeric|max:99",
     "categories" => "required|min:1"
@@ -60,7 +60,7 @@ class RestaurantController extends Controller
     $request->validate([
       "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:4096",
     ]);
-    
+
     $data = $request->all();
     $newRestaurant = new Restaurant();
     $newRestaurant->restaurant_name = $data['restaurant_name'];
