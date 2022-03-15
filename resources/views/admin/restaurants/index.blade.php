@@ -22,7 +22,11 @@
                     </div>
                 </div>
             </div>
+
+            <a href="{{ route('restaurants.edit', $restaurant->id) }}" class="btn btn-primary">Modifica ristorante</a>
             <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
+            
+
         @endforeach
     </div>
 @endsection
