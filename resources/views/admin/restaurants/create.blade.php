@@ -6,7 +6,7 @@
       @csrf
       <div class="form-group">
         <label for="restaurant_name">Nome ristorante *</label>
-        <input type="text" class="form-control @error("restaurant_name") is-invalid @enderror" id="restaurant_name" name="restaurant_name" placeholder="Scrivi il nome del ristorante" value="{{old("restaurant_name")}}">
+        <input type="text" maxlength="150" class="form-control @error("restaurant_name") is-invalid @enderror" id="restaurant_name" name="restaurant_name" placeholder="Scrivi il nome del ristorante" value="{{old("restaurant_name")}}">
         @error("restaurant_name")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label for="phone">Numero di telefono *</label>
-        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
+        <input type="text" minlength="10" maxlength="10" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
         @error("phone")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -22,7 +22,7 @@
 
       <div class="form-group">
         <label for="address">Indirizzo *</label>
-        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
+        <input type="text" maxlength="150" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi l'indirizzo" value="{{old("address")}}">
         @error("address")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -30,7 +30,7 @@
 
       <div class="form-group mb-4">
         <label for="delivery_price">Costo spedizione *</label>
-        <input type="number" step=".05" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
+        <input type="number" step=".05" max="99" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione" value="{{old("delivery_price")}}">
         @error("delivery_price")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -50,7 +50,7 @@
       </div>
 
       <div class="form-group">
-        <span class="text-muted d-block">L'immagine non deve pesare più di 2 MB</span>
+        <span class="text-muted d-block">L'immagine non deve pesare più di 4 MB</span>
         <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
         <label for="image">Aggiungi immagine *</label>
         <input class="d-block mt-1" type="file" id="image" name="image" onchange="PreviewImage();">

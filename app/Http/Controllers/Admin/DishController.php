@@ -14,11 +14,11 @@ class DishController extends Controller
 {
   protected $validationRules = [
     "name" => "required|string|max:150",
-    "price" => "required|numeric",
+    "price" => "required|numeric|max:99999",
     "visible" => "sometimes|accepted",
     "description" => "nullable|string|max:150",
     "ingredients" => "required|string|max:150",
-    "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+    "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:4096",
   ];
 
   /**
