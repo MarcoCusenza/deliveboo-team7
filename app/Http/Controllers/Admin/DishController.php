@@ -167,7 +167,7 @@ class DishController extends Controller
 
     $dish->delete();
 
-    return redirect()->route("home");
+    return redirect()->route("dishes.index");
   }
 
   private function getSlug($name)
