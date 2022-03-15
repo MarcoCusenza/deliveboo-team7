@@ -18,7 +18,8 @@
         <div class="form-group">
             <label for="price">Modifica il prezzo del piatto *</label>
             <input type="numeric" step=".05" class="form-control @error(" price") is-invalid @enderror" id="price"
-                name="price" placeholder="Scrivi il nuovo numero di telefono" value="{{old("price", $dish->price)}}" required>
+                name="price" placeholder="Scrivi il nuovo numero di telefono" value="{{old("price", $dish->price)}}"
+                required>
             @error("price")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -45,7 +46,7 @@
         </div>
 
         <div class="form-group">
-            <label for="course">Seleziona la portata</label>
+            <label for="course">Seleziona la portata *</label>
             <select class="form-control form-control-md @error('course_id') is-invalid @enderror" id="course"
                 name="course_id" required>
                 <option value="">Seleziona una portata</option>
@@ -57,6 +58,28 @@
             </select>
             @error('course_id')
             <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+
+        <div class="form-group mb-5">
+            <span class="text-muted d-block">L'immagine non deve pesare più di 4 MB</span>
+            <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
+            <label for="image">Modifica immagine</label>
+            <input class="d-block mt-1" type="file" id="image" name="image" onchange="PreviewImage();">
+
+            <script type="text/javascript">
+                function PreviewImage() {
+                    var oFReader = new FileReader();
+                    oFReader.readAsDataURL(document.getElementById("image").files[0]);
+
+                    oFReader.onload = function (oFREvent) {
+                        document.getElementById("uploadPreview").src = oFREvent.target.result;
+                    };
+                };
+            </script>
+            @error('image')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
         </div>
 

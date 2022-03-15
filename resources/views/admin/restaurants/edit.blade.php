@@ -24,7 +24,7 @@
 
             <div class="form-group">
                 <label for="address">Modifica l'indirizzo *</label>
-                <input type="text" class="form-control @error("phone") is-invalid @enderror" id="address" name="address" placeholder="Scrivi il nuovo indirizzo" value="{{old("address", $restaurant->address)}}">
+                <input type="text" class="form-control @error("address") is-invalid @enderror" id="address" name="address" placeholder="Scrivi il nuovo indirizzo" value="{{old("address", $restaurant->address)}}">
                 @error("address")
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -32,7 +32,7 @@
 
             <div class="form-group mb-4">
                 <label for="delivery_price">Modifica il costo della spedizione *</label>
-                <input type="number" step=".05" class="form-control @error("phone") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi il nuovo costo della spedizione" value="{{old("delivery_price", $restaurant->delivery_price)}}">
+                <input type="number" step=".05" class="form-control @error("delivery_price") is-invalid @enderror" id="delivery_price" name="delivery_price" placeholder="Scrivi il nuovo costo della spedizione" value="{{old("delivery_price", $restaurant->delivery_price)}}">
                 @error("delivery_price")
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -50,24 +50,13 @@
                         <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
                     </div>
                 @endforeach
-            </div>
-                
-                {{-- @foreach ($categories as $category)
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="category[]" value="{{$category->id}}" {{in_array( $category->id, old("category", []) ) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
-                </div>
-                @endforeach
-                @error('category')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror --}}
+            </div>               
 
-            <div class="form-group">
-                {{-- <img id="uploadPreview" width="100" src="{{ asset('storage/'.$restaurant->image) }}"> --}}
-                <span class="text-muted d-block">L'immagine non deve pesare più di 2 MB</span>
+            <div class="form-group">             
+                <img id="uploadPreview" width="100" src="{{ asset('storage/'.$restaurant->image) }}"> 
+                <span class="text-muted d-block">L'immagine non deve pesare più di 4 MB</span>
                 <label for="image">Modifica l'immagine</label>
                 <input class="d-block mt-1" type="file" id="image" name="image" onchange="PreviewImage();">
-
                 <script type="text/javascript">
                     function PreviewImage() {
                         var oFReader = new FileReader();
