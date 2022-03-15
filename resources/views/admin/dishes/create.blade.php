@@ -5,16 +5,16 @@
     <form action="{{route("dishes.store")}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="name">Nome piatto</label>
+            <label for="name">Nome piatto *</label>
             <input type="text" class="form-control @error(" name") is-invalid @enderror" id="name" name="name"
-                placeholder="Scrivi il nome del ristorante" value="{{old("name")}}">
+                placeholder="Scrivi il nome del piatto" value="{{old("name")}}">
         </div>
         @error("name")
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
         <div class="form-group">
-            <label for="price">Prezzo</label>
+            <label for="price">Prezzo *</label>
             <input type="number" step=".05" class="form-control @error(" price") is-invalid @enderror" id="price"
                 name="price" placeholder="Scrivi il prezzo" value="{{old("price")}}">
         </div>
@@ -32,7 +32,7 @@
         @enderror
 
         <div class="form-group mb-4">
-            <label for="ingredients">Ingredienti</label>
+            <label for="ingredients">Ingredienti *</label>
             <input type="text" class="form-control @error("ingredients") is-invalid @enderror" id="ingredients"
                 name="ingredients" placeholder="Inserisci gli ingredienti presenti nel piatto"
                 value="{{old("ingredients")}}">
@@ -65,7 +65,7 @@
             <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror
         </div>
-
+        <h5 class="text-muted">* Campo obbligatorio</h5>
         <button type="submit" class="btn btn-primary px-4 py-2">Crea</button>
     </form>
 </div>
