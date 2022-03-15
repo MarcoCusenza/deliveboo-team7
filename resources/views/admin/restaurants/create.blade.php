@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label for="phone">Numero di telefono *</label>
-        <input type="text" minlength="10" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
+        <input type="text" class="form-control @error("phone") is-invalid @enderror" id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{old("phone")}}">
         @error("phone")
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
