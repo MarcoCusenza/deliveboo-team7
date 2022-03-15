@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="name">Modifica il nome del piatto *</label>
             <input type="text" class="form-control @error(" name") is-invalid @enderror" id="name" name="name"
-                placeholder="Scrivi il nuovo nome del piatto" value="{{old("name", $dish->name)}}">
+                placeholder="Scrivi il nuovo nome del piatto" value="{{old("name", $dish->name)}}" required>
             @error("name")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -18,7 +18,7 @@
         <div class="form-group">
             <label for="price">Modifica il prezzo del piatto *</label>
             <input type="numeric" step=".05" class="form-control @error(" price") is-invalid @enderror" id="price"
-                name="price" placeholder="Scrivi il nuovo numero di telefono" value="{{old("price", $dish->price)}}">
+                name="price" placeholder="Scrivi il nuovo numero di telefono" value="{{old("price", $dish->price)}}" required>
             @error("price")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -38,7 +38,7 @@
             <label for="ingredients">Modifica gli ingredienti *</label>
             <input type="text" class="form-control @error(" phone") is-invalid @enderror" id="ingredients"
                 name="ingredients" placeholder="Scrivi il nuovo costo della spedizione"
-                value="{{old("ingredients", $dish->ingredients)}}">
+                value="{{old("ingredients", $dish->ingredients)}}" required>
             @error("ingredients")
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -46,8 +46,8 @@
 
         <div class="form-group">
             <label for="course">Seleziona la portata</label>
-            <select class="form-control form-control-md @error('course') is-invalid @enderror" id="course"
-                name="course_id">
+            <select class="form-control form-control-md @error('course_id') is-invalid @enderror" id="course"
+                name="course_id" required>
                 <option value="">Seleziona una portata</option>
                 @foreach ($courses as $course)
                 <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
@@ -55,7 +55,7 @@
                 </option>
                 @endforeach
             </select>
-            @error('course')
+            @error('course_id')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

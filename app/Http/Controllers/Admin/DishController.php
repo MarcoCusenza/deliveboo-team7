@@ -19,6 +19,7 @@ class DishController extends Controller
     "description" => "nullable|string|max:150",
     "ingredients" => "required|string|max:150",
     "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+    "course_id" => 'required',
   ];
 
   /**
