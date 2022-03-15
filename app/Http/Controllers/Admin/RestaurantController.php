@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     "restaurant_name" => "required|string|max:150",
     "phone" => "required|regex:/[0-9]{10}/|size:10",
     "address" => "required|string|max:150",
-    "delivery_price" => "required|numeric",
+    "delivery_price" => "required|numeric|max:99",
   ];
   /**
    * Display a listing of the resource.
@@ -57,7 +57,7 @@ class RestaurantController extends Controller
     $request->validate($this->validationRules);
 
     $request->validate([
-      "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
+      "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:4096",
     ]);
     
     $data = $request->all();
