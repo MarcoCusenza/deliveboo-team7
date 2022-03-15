@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Registrati') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} *</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }} *</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" maxlength="100"
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}
+                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}
                                     *</label>
 
                                 <div class="col-md-6">
@@ -45,8 +45,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} *</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}
+                                    *</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" maxlength="150"
@@ -80,7 +80,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} *</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" minlength="8" maxlength="100" type="password"
@@ -91,7 +91,7 @@
 
                             <div class="form-group row">
                                 <label for="VAT_number"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('VAT number') }} *</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('P.IVA / VAT') }} *</label>
 
                                 <div class="col-md-6">
                                     <input id="VAT_number" minlength="11" maxlength="15" type="text"
@@ -105,11 +105,13 @@
                                     @enderror
                                 </div>
                             </div>
+
+
                             <h5 class="text-muted">* Campo obbligatorio</h5>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>

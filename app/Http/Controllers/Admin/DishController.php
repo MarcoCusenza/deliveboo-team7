@@ -77,6 +77,11 @@ class DishController extends Controller
 
     $newDish->slug = $this->getSlug($newDish->name);
 
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $newDish->image = $path_image;
+    }
+
     $newDish->save();
 
     return redirect()->route('dishes.show', $newDish->id);
@@ -141,8 +146,15 @@ class DishController extends Controller
     $dish->price = $data['price'];
     if (isset($data["visible"])) {
       $dish->visible = true;
+    } else {
+      $dish->visible = false;
     }
     $dish->description = $data['description'];
+
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $dish->image = $path_image;
+    }
 
     $dish->save();
 

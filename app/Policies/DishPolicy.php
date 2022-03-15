@@ -45,7 +45,7 @@ class DishPolicy
     $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
     return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
-      : Response::deny("Your restaurant doesn't own the dish you are trying to show.");
+      : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di mostrare.");
   }
 
   //LA POLICY SULLA CREATE NON SERVE, UN UTENTE REGISTRATO PUO' SEMPRE CREARE UN NUOVO PIATTO CHE VERRA' AGGIUNTO AL SUO RISTORANTE
@@ -72,7 +72,7 @@ class DishPolicy
     $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
     return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
-      : Response::deny("Your restaurant doesn't own the dish you are trying to edit.");
+      : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di modificare.");
   }
 
   /**
@@ -87,7 +87,7 @@ class DishPolicy
     $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
     return $myRestaurant[0]->id === $dish->restaurant_id
       ? Response::allow()
-      : Response::deny("Your restaurant doesn't own the dish you are trying to delete.");
+      : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di eliminare.");
   }
 
   // /**

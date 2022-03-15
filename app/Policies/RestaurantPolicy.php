@@ -45,7 +45,7 @@ class RestaurantPolicy
   {
     return $user->id === $restaurant->user_id
       ? Response::allow()
-      : Response::deny("You don't own the restaurant you are trying to show.");
+      : Response::deny("Non possiedi il ristorante che stai cercando di mostrare.");
   }
 
   /**
@@ -59,7 +59,7 @@ class RestaurantPolicy
     $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray();
     return $tot_rest == null
       ? Response::allow()
-      : Response::deny('You already have a Restaurant!');
+      : Response::deny('Hai già un ristorante!');
   }
 
   /**
@@ -73,7 +73,7 @@ class RestaurantPolicy
   {
     return $user->id === $restaurant->user_id
       ? Response::allow()
-      : Response::deny("You don't own the restaurant you are trying to edit.");
+      : Response::deny("Non possiedi il ristorante che stai cercando di modificare.");
   }
 
   /**
@@ -87,6 +87,6 @@ class RestaurantPolicy
   {
     return $user->id === $restaurant->user_id
       ? Response::allow()
-      : Response::deny("You don't own the restaurant you are trying to delete.");
+      : Response::deny("Non possiedi il ristorante che stai cercando di eliminare.");
   }
 }
