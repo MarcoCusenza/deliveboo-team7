@@ -1,8 +1,39 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Outfit');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// //FONT AWESOME
+
+// @import "~font-awesome/scss/font-awesome.scss";
+
+// Admin home
+
+@import 'adminhome';
+
+// HEADER
+
+body {
+    height: 100vh;
+    background-image: url('https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png');
+    background-color: #f8fafc;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 5em;
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+
+        .logo {
+            width: 100px;
+        }
+    }
+}

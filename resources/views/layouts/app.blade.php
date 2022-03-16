@@ -15,48 +15,58 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Outfit" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/admin/home') }}">
-                    {{ config('DeliveBoo', 'DeliveBoo') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
+
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <div class="container-fluid">
+
+                {{-- //LOGO --}}
+                <div class="logo-container">
+                    <a href="{{ url('/admin/home') }}"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png"
+                            alt="deliveroo logo" class="logo" />
+                        {{ config('DeliveBoo') }}
+                    </a>
+                </div>
+                {{-- //HAMBURGER MOBILE --}}
+
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                {{-- //INIT DIV X RESPONSIVE MENU --}}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                        <ul class="navbar-nav ml-auto">
+                            {{-- //LINK AUTENTICAZIONE --}}
+                            @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('register') }}">{{ __('Registrati') }}</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                            </li>
                             @endif
-                        @else
-                        
-                        <a href="{{ route('restaurants.index') }}" class="btn btn-light">Ristorante</a>
-                        <a href="{{ route('dishes.index') }}" class="btn btn-light">Piatti</a>
+                            @else
+
+                            {{-- //LINK MENU --}}
+                            <a href="{{ route('restaurants.index') }}" class="btn btn-light">Ristorante</a>
+                            <a href="{{ route('dishes.index') }}" class="btn btn-light">Piatti</a>
+                            {{-- //LINK UTENTE X LOGOUT --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -70,23 +80,29 @@
                                         {{ __('Esci') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
-                    
+                            @endguest
+                        </ul>
+                        {{-- //FINE ELEMENTI MENU --}}
+                    </div>
                 </div>
-            </div>
+
+                {{-- //FINE DIV X RESPONSIVE MENU --}}
+
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+
+
+
+
     </div>
+    <main>
+        @yield('content')
+    </main>
 </body>
 
 </html>

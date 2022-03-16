@@ -1,0 +1,25 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Outfit');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.card-dashboard {
+    width: 90%;
+    border: none;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    color: #292929;
+
+
+    .btn-dashboard {
+        background-color: #00CCBC;
+        border-radius: 80px;
+        color: white;
+        font-weight: bold;
+        align-self: flex-end;
+    }
+}
