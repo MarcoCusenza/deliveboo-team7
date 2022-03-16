@@ -6,10 +6,9 @@
                     <img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png" alt="deliveroo logo" class="logo" />
                 </div>
                 <div class="col-header col-lg-2 col-6 text-center">
-                    <!-- PROVVISORIE  DA METTERE CON FONT-AWESOME -->
-                   <a class="button-link" href="/admin/home"><img src="https://i.postimg.cc/13GMNwmH/user.png" alt="user logo" class="icon-header"></a>
-                   <a class="button-link" href="#"><img src="https://i.postimg.cc/rwXQmQks/shopping-cart.png" alt="user logo" class="icon-header"></a>
-                   
+                    <a class="button-link mx-2 icon-header" href="/admin/home"><i
+                            class="fa-solid fa-user fa-lg"></i></a>
+                    <a class="button-link mx-2 icon-header" href="#"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
                 </div>
             </div>
         </nav>
@@ -36,8 +35,13 @@
             }
 
             .icon-header {
-                width: 20px;
-                
+                color: #292929;
+                transition: all .2s ease-in-out;
+
+                &:hover {
+                    color: #00CCBC;
+                    transition: all .2s ease-in-out;
+                }
             }
         }
     }

@@ -1,9 +1,7 @@
 <template>
   <div class="app">
     <Header/>
-    <div class="main-bg">
     <Main/>
-    </div>
   </div>
 </template>
 
@@ -23,8 +21,11 @@ export default {
 
 <style lang="scss">
 
-.main-bg {
-  background-image: url('https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png');
-}
+// .main-bg {
+//   background-image: url('https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png');
+//   background-repeat: no-repeat;
+//   background-position-y: -50%;
+//   background-size: 110%;
+// }
 
 </style>
