@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label for="price">Modifica il prezzo del piatto *</label>
-                <input type="numeric" step=".05" max="99999" class="form-control @error(' price') is-invalid @enderror"
+                <input type="number" step=".05" max="99999" class="form-control @error(' price') is-invalid @enderror"
                     id="price" name="price" placeholder="Inserisci il nuovo prezzo"
                     value="{{ old('price', $dish->price) }}" required>
                 @error('price')
