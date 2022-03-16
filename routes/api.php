@@ -19,13 +19,42 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-//CATEGORIES
+// ____CATEGORIES____
+// ___________________
+
+// richiede tutte le categorie nel database
+// http://localhost:8000/api/categories
 Route::get("/categories", "Api\CategoryController@index");
-Route::get("/categories/{slug}", "Api\CategoryController@show");
-// Route::get("/catOfRes", "Api\CategoryController@catOfRes");
+
+// richiede le categorie cercate
+// http://localhost:8000/api/categories/giapponese
+// http://localhost:8000/api/categories/giapponese,italiano
+Route::get("/categories/{slug}", "Api\CategoryController@categories");
+
+// richiede tutte le categorie nel database + tutti i ristoranti appartenenti
+// http://localhost:8000/api/categorest
+Route::get("/categorest", "Api\CategoryController@indexrest");
+
+// richiede le categorie cercate + tutti i ristoranti appartenenti
+// http://localhost:8000/api/categorest/giapponese
+// http://localhost:8000/api/categorest/giapponese,italiano
+Route::get("/categorest/{slug}", "Api\CategoryController@categorest");
 
 
-//RESTAURANTS
+
+// ____RESTAURANTS____
+// ___________________
+
+// richiede tutti i ristoranti nel database
+// http://localhost:8000/api/restaurants
 Route::get("/restaurants", "Api\RestaurantController@index");
-Route::get("/resOfCat/{category_id}", "Api\RestaurantController@resOfCat");
 
+
+// richiede il ristorante cercato
+// http://localhost:8000/api/restaurant/jotaro-sushi
+Route::get("/restaurant/{slug}", "Api\RestaurantController@restaurant");
+
+
+// richiede il ristorante cercato + tutti i suoi piatti
+// http://localhost:8000/api/restdish/jotaro-sushi
+Route::get("/restdish/{slug}", "Api\RestaurantController@restdish");
