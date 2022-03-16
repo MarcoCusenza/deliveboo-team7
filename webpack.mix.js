@@ -17,6 +17,7 @@ mix.js('resources/js/admin.js', 'public/js')
         processCssUrls: false
     });
 
+
 mix.js('resources/js/guest/front.js', 'public/js')
     .sass('resources/sass/front.scss', 'public/css')
     .options({
