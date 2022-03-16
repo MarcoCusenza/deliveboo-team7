@@ -7,13 +7,13 @@ Vue.use(VueRouter);
 // import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
-  mode: "history",
+  // mode: "history",
   // routes: [
   //   {
   //     path: "/",
   //     name: "home",
   //     component: Home
-  //   },
+  //  },
 
   //   //Pagina 404 Not Found
   //   {
@@ -21,7 +21,7 @@ const router = new VueRouter({
   //     name: "page-404",
   //     component: PageNotFound
   //   }
-  // ]
-});
+//   ]
+ });
 
 export default router
