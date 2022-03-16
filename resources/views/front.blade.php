@@ -88,9 +88,7 @@
                 DeliveBoo
             </div>
 
-            <a style="background-color: red; color:antiquewhite; padding: 10px; border-radius: 10px; font-weight:900;"
-                href="{{ route('home') }}">Back
-                Office</a>
+            
 
             {{-- <div class="links">
                 <a href="https://laravel.com/docs">Docs</a>
