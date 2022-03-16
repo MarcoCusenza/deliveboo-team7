@@ -9,6 +9,7 @@
                     <!-- PROVVISORIE  DA METTERE CON FONT-AWESOME -->
                    <a class="button-link" href="/admin/home"><img src="https://i.postimg.cc/13GMNwmH/user.png" alt="user logo" class="icon-header"></a>
                    <a class="button-link" href="#"><img src="https://i.postimg.cc/rwXQmQks/shopping-cart.png" alt="user logo" class="icon-header"></a>
+                   
                 </div>
             </div>
         </nav>
