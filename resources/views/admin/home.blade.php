@@ -36,7 +36,8 @@
                         </ul>
                     </div>
                     {{-- INFO + CREA/GUARDA RISTORANTE --}}
-                    <div class="col-lg-3 col-sm-12 mt-3 d-flex flex-wrap">
+                    <div class="col-lg-3 col-sm-12 mt-3 d-flex flex-column">
+
                         <h5>Info Ristorante:</h5>
 
                         @php
@@ -50,21 +51,22 @@
 
                         {{-- PULSANTE CREA RISTORANTE --}}
                         @if ($tot_rest == null)
-                        <div>
-                            Non hai ancora un ristorante!
-
-                        </div>
-                        <a type="button" class="btn btn-dashboard" href="{{ route('restaurants.create') }}">Crea
+                        
+                            <p style="font-weight: bold">Non hai ancora un ristorante!</p>
+                        
+                        <a type="button" class="btn btn-dashboard ml-auto mt-5" href="{{ route('restaurants.create') }}">Crea
                             Ristorante</a>
                         @endif
 
                         {{-- PULSANTE GUARDA RISTORANTE --}}
                         @if ($tot_rest != null)
-                        <div>
-                            Il tuo ristorante è: {{ $tot_rest[0]['restaurant_name'] }}
 
-                        </div>
-                        <a type="button" class="btn btn-dashboard" href="{{ route('restaurants.index') }}">Visualizza
+                        
+                           <p style="font-weight: bold"> Il tuo ristorante è: {{ $tot_rest[0]['restaurant_name'] }} </p>
+                        
+
+                        <a type="button" class="btn btn-dashboard ml-auto mt-5"
+                            href="{{ route('restaurants.index') }}">Visualizza
                             Ristorante</a>
                         @endif
                         </ul>
