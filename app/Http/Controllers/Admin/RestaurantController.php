@@ -13,10 +13,10 @@ class RestaurantController extends Controller
 {
   protected $validationRules = [
     "restaurant_name" => "required|string|max:150",
-    "phone" => "required|string|max:20",
+    "phone" => "required|regex:/[0-9]/|min:8|max:15", //FIXARE LA REGEX
     "address" => "required|string|max:150",
-    "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
-    "delivery_price" => "required|numeric",
+    "delivery_price" => "required|numeric|max:99",
+    "categories" => "required|min:1"
   ];
   /**
    * Display a listing of the resource.
@@ -57,8 +57,11 @@ class RestaurantController extends Controller
   {
     $request->validate($this->validationRules);
 
-    $data = $request->all();
+    $request->validate([
+      "image" => "required|mimes:jpeg,jpg,jpe,bmp,png|max:4096",
+    ]);
 
+    $data = $request->all();
     $newRestaurant = new Restaurant();
     $newRestaurant->restaurant_name = $data['restaurant_name'];
     $newRestaurant->phone = $data['phone'];
@@ -109,7 +112,7 @@ class RestaurantController extends Controller
 
     $categories = Category::all();
 
-    return view("admin.restaurants.edit", compact("categories"));
+    return view("admin.restaurants.edit", compact("restaurant", "categories"));
   }
 
   /**
@@ -142,6 +145,11 @@ class RestaurantController extends Controller
     $restaurant->address = $data['address'];
     $restaurant->delivery_price = $data['delivery_price'];
 
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $restaurant->image = $path_image;
+    }
+
     $restaurant->save();
 
     if (isset($data["categories"])) {
@@ -159,6 +167,9 @@ class RestaurantController extends Controller
    */
   public function destroy(Restaurant $restaurant)
   {
+    // The current user can delete this restaurant?
+    $this->authorize('delete', $restaurant);
+
     //CANCELLAZIONE IMMAGINE
     // if ($restaurant->image) {
     //     Storage::delete($restaurant->image);

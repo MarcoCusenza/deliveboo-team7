@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Restaurant;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class RestaurantSeeder extends Seeder
   public function run()
   {
     $restaurants = config("restaurants-filler");
+    $pivots = [];
 
     foreach ($restaurants as $restaurant) {
       $newRestaurant = new Restaurant();
@@ -24,8 +26,15 @@ class RestaurantSeeder extends Seeder
       $newRestaurant->image = $restaurant["image"];
       $newRestaurant->delivery_price = $restaurant["delivery_price"];
       $newRestaurant->user_id = $restaurant["user_id"];
+
+      $pivots[] = [
+        "category_id" => $restaurant["category_id"],
+        "restaurant_id" => $restaurant["restaurant_id"]
+      ];
       //
       $newRestaurant->save();
     }
+
+    DB::table("category_restaurant")->insert($pivots);
   }
 }

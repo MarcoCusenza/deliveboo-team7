@@ -7,15 +7,19 @@ use App\Dish;
 use App\Restaurant;
 use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class DishController extends Controller
 {
   protected $validationRules = [
-    "restaurant_name" => "required|string|max:150",
-    "phone" => "required|string|max:20",
-    "address" => "required|string|max:150",
-    "image" => "required|image|mimes:jpeg,jpg,jpe,bmp,png|max:2048",
-    "delivery_price" => "required|numeric",
+    "name" => "required|string|max:150",
+    "price" => "required|numeric|max:99999",
+    "visible" => "sometimes|accepted",
+    "description" => "nullable|string|max:150",
+    "ingredients" => "required|string|max:150",
+    "image" => "nullable|image|mimes:jpeg,jpg,jpe,bmp,png|max:4096",
+    "course_id" => 'required',
   ];
 
   /**
@@ -25,7 +29,8 @@ class DishController extends Controller
    */
   public function index()
   {
-    $dishes = Dish::all(); //ATTENZIONE: BISOGNA MOSTRARE SOLO I PIATTI DI QUEL RISTORANTE!
+    $myRestaurant = Restaurant::first()->where("user_id", auth()->id())->get();
+    $dishes = Dish::all()->where("restaurant_id", $myRestaurant[0]->id);
 
     return view("admin.dishes.index", compact("dishes"));
   }
@@ -37,9 +42,10 @@ class DishController extends Controller
    */
   public function create()
   {
+    // LA POLICY SULLA CREATE NON SERVE, UN UTENTE REGISTRATO PUO' SEMPRE CREARE UN NUOVO PIATTO CHE VERRA' AGGIUNTO AL SUO RISTORANTE
+
     $courses = Course::all();
 
-    //ATTENZIONE: COME FACCIO A SAPERE CHI STA MODIFICANDO?
     return view("admin.dishes.create", compact("courses"));
   }
 
@@ -51,7 +57,34 @@ class DishController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate($this->validationRules);
+
+    $data = $request->all();
+
+    $newDish = new Dish();
+    $newDish->name = $data['name'];
+    $newDish->price = $data['price'];
+    if (isset($data["visible"])) {
+      $newDish->visible = true;
+    }
+    $newDish->description = $data['description'];
+    $newDish->ingredients = $data['ingredients'];
+
+
+    $myRestaurant = Restaurant::first()->where('user_id', auth()->id())->get();
+    $newDish->restaurant_id = $myRestaurant[0]->id;
+    $newDish->course_id = $data['course_id'];
+
+    $newDish->slug = $this->getSlug($newDish->name);
+
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $newDish->image = $path_image;
+    }
+
+    $newDish->save();
+
+    return redirect()->route('dishes.show', $newDish->id);
   }
 
   /**
@@ -62,7 +95,10 @@ class DishController extends Controller
    */
   public function show(Dish $dish)
   {
-    //
+    // The current user can view this dish?
+    $this->authorize('view', $dish);
+
+    return view("admin.dishes.show", compact('dish'));
   }
 
   /**
@@ -73,7 +109,12 @@ class DishController extends Controller
    */
   public function edit(Dish $dish)
   {
-    //
+    // The current user can edit this dish?
+    $this->authorize('update', $dish);
+
+    $courses = Course::all();
+
+    return view("admin.dishes.edit", compact("dish", "courses"));
   }
 
   /**
@@ -85,8 +126,41 @@ class DishController extends Controller
    */
   public function update(Request $request, Dish $dish)
   {
-    //
+    // validazione
+    $request->validate($this->validationRules);
+
+    $data = $request->all();
+
+    //GESTIONE SLUG NEL CASO SIA GIA PRESENTE
+    if ($dish->name != $data['name']) {
+      $dish->name = $data['name'];
+
+      $slug = Str::slug($dish->name, '-');
+
+      if ($slug != $dish->slug) {
+        $dish->slug = $this->getSlug($dish->name);
+      }
+    }
+
+    $dish->name = $data['name'];
+    $dish->price = $data['price'];
+    if (isset($data["visible"])) {
+      $dish->visible = true;
+    } else {
+      $dish->visible = false;
+    }
+    $dish->description = $data['description'];
+
+    if (isset($data["image"])) {
+      $path_image = Storage::put("uploads", $data["image"]);
+      $dish->image = $path_image;
+    }
+
+    $dish->save();
+
+    return redirect()->route('dishes.show', $dish->id);
   }
+
 
   /**
    * Remove the specified resource from storage.
@@ -96,6 +170,28 @@ class DishController extends Controller
    */
   public function destroy(Dish $dish)
   {
-    //
+    // The current user can delete this dish?
+    $this->authorize('delete', $dish);
+
+    //CANCELLAZIONE IMMAGINE
+    // if ($dish->image) {
+    //     Storage::delete($dish->image);
+    // }
+
+    $dish->delete();
+
+    return redirect()->route("dishes.index");
+  }
+
+  private function getSlug($name)
+  {
+    $slug = Str::slug($name, '-');
+    $i = 1;
+
+    while (Dish::where("slug", $slug)->first()) {
+      $slug = Str::slug($name, '-') . "-{$i}";
+      $i++;
+    }
+    return $slug;
   }
 }

@@ -45,7 +45,7 @@ class RestaurantPolicy
   {
     return $user->id === $restaurant->user_id
       ? Response::allow()
-      : Response::deny('You do not own this restaurant.');
+      : Response::deny("Non possiedi il ristorante che stai cercando di mostrare.");
   }
 
   /**
@@ -59,7 +59,7 @@ class RestaurantPolicy
     $tot_rest = Restaurant::all()->where("user_id", $user->id)->toArray();
     return $tot_rest == null
       ? Response::allow()
-      : Response::deny('You already have a Restaurant!');
+      : Response::deny('Hai già un ristorante!');
   }
 
   /**
@@ -73,6 +73,20 @@ class RestaurantPolicy
   {
     return $user->id === $restaurant->user_id
       ? Response::allow()
-      : Response::deny('You do not own this restaurant.');
+      : Response::deny("Non possiedi il ristorante che stai cercando di modificare.");
+  }
+
+  /**
+   * Determine whether the user can delete the model.
+   *
+   * @param  \App\User  $user
+   * @param  \App\Dish  $dish
+   * @return mixed
+   */
+  public function delete(User $user, Restaurant $restaurant)
+  {
+    return $user->id === $restaurant->user_id
+      ? Response::allow()
+      : Response::deny("Non possiedi il ristorante che stai cercando di eliminare.");
   }
 }
