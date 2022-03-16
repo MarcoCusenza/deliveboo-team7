@@ -105,6 +105,7 @@
             </div>
             <h5 class="text-muted">* Campo obbligatorio</h5>
             <button type="submit" class="btn btn-primary px-4 py-2">Modifica</button>
+            <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-danger">Annulla e torna al piatto</a>
         </form>
     </div>
 @endsection

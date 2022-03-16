@@ -27,16 +27,21 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="container p-0 d-flex flex-row mt-3">
+                        <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
+                                class="btn btn-warning mr-3">Modifica</button></a>
+                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
+                        <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <a href="{{ route('restaurants.destroy', $restaurant->id) }}"><button type="submit"
+                                    class="btn btn-danger">Elimina</button></a>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <a href="{{ route('restaurants.edit', $restaurant->id) }}" class="btn btn-primary">Modifica ristorante</a>
-            <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
-            <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
-                @csrf
-                @method("DELETE")
-                <button type="submit" class="btn btn-danger">Elimina ristorante</button>
-            </form>
+            
         @endforeach
     </div>
 @endsection
