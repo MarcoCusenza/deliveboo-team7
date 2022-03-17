@@ -75,7 +75,7 @@ return [
     "slug" => "il-giardino",
     "phone" => "+393409876234",
     "address" => "via Livorno, 54",
-    "image" => "uploads/rest7.jpg",
+    "image" => "https://i.ibb.co/fMhxvzV/rest7.jpg",
     "delivery_price" => 4.50
   ],
   [
@@ -86,7 +86,7 @@ return [
     "slug" => "pizza-pazza",
     "phone" => "+393478903456",
     "address" => "Piazza Italia,23",
-    "image" => "uploads/rest8.jpg",
+    "image" => "https://i.ibb.co/Jd10CQF/restpizza.png",
     "delivery_price" => 4.00
   ],
   [
@@ -97,7 +97,7 @@ return [
     "slug" => "dumpling-restaurant",
     "phone" => "+393356709176",
     "address" => "Largo Ventura,103",
-    "image" => "uploads/rest9.jpg",
+    "image" => "https://i.ibb.co/K20tkB4/restdump.png",
     "delivery_price" => 5.00
   ],
   [
@@ -108,7 +108,7 @@ return [
     "slug" => "grand-dragon",
     "phone" => "+393309843678",
     "address" => "via Della Spina,13",
-    "image" => "uploads/rest10.jpg",
+    "image" => "https://i.ibb.co/3zbbGMC/restgragon.jpg",
     "delivery_price" => 3.50
   ],
   [
@@ -119,7 +119,7 @@ return [
     "slug" => "bodega-sanchez",
     "phone" => "+393376589023",
     "address" => "Largo Cesare,78",
-    "image" => "uploads/rest11.jpg",
+    "image" => "https://i.ibb.co/XJsCtzd/restbodega.png",
     "delivery_price" => 4.90
   ],
   [
@@ -130,7 +130,7 @@ return [
     "slug" => "il-codino",
     "phone" => "+393307690654",
     "address" => "via Firenze, 100",
-    "image" => "uploads/rest12.jpg",
+    "image" => "https://i.ibb.co/X3rS74b/restcodino.jpg",
     "delivery_price" => 5.00
   ],
   [
@@ -141,7 +141,7 @@ return [
     "slug" => "panipizza",
     "phone" => "+393356751234",
     "address" => "via Catanzaro, 89",
-    "image" => "uploads/rest13.jpg",
+    "image" => "https://i.ibb.co/2KYSrR8/restpanipizza.jpg",
     "delivery_price" => 3.00
   ],
   [
@@ -152,7 +152,7 @@ return [
     "slug" => "acqua-pazza",
     "phone" => "+393398765351",
     "address" => "via dell'Olmo, 89",
-    "image" => "uploads/rest14.jpg",
+    "image" => "https://i.ibb.co/Xz6k06Z/restacqau.jpg",
     "delivery_price" => 6.00
   ],
   [
@@ -163,7 +163,7 @@ return [
     "slug" => "roma-bombay",
     "phone" => "+393345609817",
     "address" => "viale Italia, 109",
-    "image" => "uploads/rest15.jpg",
+    "image" => "https://i.ibb.co/Hhdq5yS/restbombay.png",
     "delivery_price" => 3.90
   ],
   [
@@ -174,7 +174,7 @@ return [
     "slug" => "krishna",
     "phone" => "+393349801782",
     "address" => "via Parigi, 69",
-    "image" => "uploads/rest16.jpg",
+    "image" => "https://i.ibb.co/hFf0Dx4/restkrishna.png",
     "delivery_price" => 4.50
   ],
   [
@@ -185,7 +185,7 @@ return [
     "slug" => "da-mimmo",
     "phone" => "+393309817254",
     "address" => "Piazza Domitilla, 89",
-    "image" => "uploads/rest17.jpg",
+    "image" => "https://i.ibb.co/cLRypQy/restita.png",
     "delivery_price" => 2.50
   ],
   [
@@ -196,7 +196,7 @@ return [
     "slug" => "cavolo-e-carota",
     "phone" => "+39334657987",
     "address" => "via Cerveteri, 90",
-    "image" => "uploads/rest18.jpg",
+    "image" => "https://i.ibb.co/61V6wcv/restcarota.png",
     "delivery_price" => 4.50
   ],
   [
@@ -207,18 +207,18 @@ return [
     "slug" => "casa-linetti",
     "phone" => "+393398710923",
     "address" => "via Milazzo, 45",
-    "image" => "uploads/rest19.jpg",
+    "image" => "https://i.ibb.co/dD77fZd/restlinetti.png",
     "delivery_price" => 2.50
   ],
   [
     "user_id" => 20,
     "restaurant_id" => 20,
     "category_id" => [7, 8, 9, 10, 11, 12],
-    "restaurant_name" => "",
-    "slug" => "",
+    "restaurant_name" => "Panino Pub",
+    "slug" => "panino-pub",
     "phone" => "+393360923476",
     "address" => "via Bari, 95",
-    "image" => "uploads/rest20.jpg",
+    "image" => "https://i.ibb.co/jL55ZzZ/restpub.jpg",
     "delivery_price" => 5.50
   ],
 ];
