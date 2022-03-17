@@ -14,6 +14,11 @@ class CategoryController extends Controller
   {
     $categories = Category::all();
 
+    // 404 category slug non trovato
+    if (empty($categories)) {
+      return response()->json(["message" => "There are no categories in the database"], 404);
+    }
+
     return response()->json($categories);
   }
 
@@ -41,6 +46,11 @@ class CategoryController extends Controller
   public function indexrest()
   {
     $categories = Category::with("restaurants")->get();
+
+    // 404 category slug non trovato
+    if (empty($categories)) {
+      return response()->json(["message" => "There are no categories in the database"], 404);
+    }
 
     return response()->json($categories);
   }
