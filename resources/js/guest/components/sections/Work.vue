@@ -1,8 +1,8 @@
 <template>
-    <div class="container-fluid">
+    <div class="container container-work">
         <h2 class="text-center font-weight-bold">Unisciti a noi!</h2>
         <div class="row d-flex align-items-center justify-content-center mt-5">
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <img src="https://i.postimg.cc/j55LNmpb/joshua-lawrence-3-Kdzpr-XR3-Y-unsplash.jpg"
                         class="card-img-top" alt="deliveroo-rider">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-12 py-5">
+            <div class="col-sm-12 col-lg-4 py-5">
                 <div class="card">
                     <img src="https://i.postimg.cc/Xv2DQBzC/jason-leung-e-KZLpj7-U0-E-unsplash.jpg" class="card-img-top"
                         alt="deliveroo-chef">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <img src="https://i.postimg.cc/FsRzBMzk/cherrydeck-Mt-Hi-Q8-NCIo-M-unsplash.jpg"
                         class="card-img-top" alt="deliveroo-office">
@@ -53,60 +53,73 @@
 </script>
 
 <style lang="scss" scoped>
-    .card {
-        border: none;
-        background-color: transparent;
-        transition: all .3s ease-out;
-
-        img {
-            height: 550px;
-            object-fit: cover;
-            position: relative;
-            border-radius: 35px;
-            filter: brightness(50%);
-            //   
-        }
-
-        .overlay-text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            border-radius: 35px;
-            border: none
-        }
-
-        .btn {
-            background: #00CCBC;
-            color: white;
-            border-radius: 57px;
-            padding: 8px 20px;
-
-            &:hover {
-                background: #007067;
-            }
-        }
-    }
-
-    .card:hover {
-        transform: translate(0, -15px);
-    }
-
-@media screen and (max-width: 992px) {
-    .card {
-        img {
-            height: 450px;
-        }
-    }
-}
+    .container {
+            min-width: 10px;
 
 
-    @media screen and (max-width: 600px) {
         .card {
+            border: none;
+            background-color: transparent;
+            transition: all .3s ease-out;
+            max-width: 100%;
+
             img {
-                height: 350px;
+                
+                height: 550px;
+                object-fit: cover;
+                position: relative;
+                border-radius: 35px;
+                filter: brightness(50%);
+                //   
+            }
+
+            .overlay-text {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-radius: 35px;
+                border: none
+            }
+
+            .btn {
+                background: #00CCBC;
+                color: white;
+                border-radius: 57px;
+                padding: 8px 20px;
+
+                &:hover {
+                    background: #007067;
+                }
             }
         }
 
+        .card:hover {
+            transform: translate(0, -15px);
+        }
+    }
 
+    @media screen and (min-width: 610px) {
+        .container {
+
+            .card {
+                img {
+                    height: 450px;
+                }
+            }
+
+        }
+    }
+
+        @media screen and (min-width: 910px) {
+        .container {
+            
+            .card {
+                width: 100%;
+                img {
+                    height: 450px;
+                }
+            }
+
+        }
     }
 </style>
