@@ -126,4 +126,44 @@ return [
     "password" => "MyPassword123",
     "VAT_number" => "12345678915"
   ],
+  //id=16
+  [
+    "name" => "Nicola",
+    "surname" => "Paolini",
+    "email" => "nicolapao@gmail.com",
+    "password" => "MyPassword123",
+    "VAT_number" => "12345678916"
+  ],
+  //id=17
+  [
+    "name" => "Domenico",
+    "surname" => "Piccinini",
+    "email" => "piccio@gmail.com",
+    "password" => "MyPassword123",
+    "VAT_number" => "12345678917"
+  ],
+  //id=18
+  [
+    "name" => "Valeria",
+    "surname" => "Grandi",
+    "email" => "valegrandi@gmail.com",
+    "password" => "MyPassword123",
+    "VAT_number" => "12345678918"
+  ],
+  //id=19
+  [
+    "name" => "Pasquale",
+    "surname" => "Linetti",
+    "email" => "linettipasquale@gmail.com",
+    "password" => "MyPassword123",
+    "VAT_number" => "12345678919"
+  ],
+  //id=20
+  [
+    "name" => "Dario",
+    "surname" => "Lanza",
+    "email" => "lanzad@gmail.com",
+    "password" => "MyPassword123",
+    "VAT_number" => "12345678920"
+  ],
 ];

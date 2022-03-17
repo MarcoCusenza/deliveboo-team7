@@ -158,13 +158,67 @@ return [
   [
     "user_id" => 15,
     "restaurant_id" => 15,
-    "category_id" => [4, 1],
-    "restaurant_name" => "Bombay",
-    "slug" => "bambay",
+    "category_id" => [4, 1, 8, 6, 9, 10],
+    "restaurant_name" => "Da Roma a Bombay",
+    "slug" => "roma-bombay",
     "phone" => "+393345609817",
     "address" => "viale Italia, 109",
     "image" => "uploads/rest15.jpg",
     "delivery_price" => 3.90
   ],
-
+  [
+    "user_id" => 16,
+    "restaurant_id" => 16,
+    "category_id" => [4, 6, 1, 9, 10, 11],
+    "restaurant_name" => "Krishna",
+    "slug" => "krishna",
+    "phone" => "+393349801782",
+    "address" => "via Parigi, 69",
+    "image" => "uploads/rest16.jpg",
+    "delivery_price" => 4.50
+  ],
+  [
+    "user_id" => 17,
+    "restaurant_id" => 17,
+    "category_id" => [1, 6, 7, 8, 9, 10, 12],
+    "restaurant_name" => "Da Mimmo",
+    "slug" => "da-mimmo",
+    "phone" => "+393309817254",
+    "address" => "Piazza Domitilla, 89",
+    "image" => "uploads/rest17.jpg",
+    "delivery_price" => 2.50
+  ],
+  [
+    "user_id" => 18,
+    "restaurant_id" => 18,
+    "category_id" => [1, 6, 7, 11, 12],
+    "restaurant_name" => "Cavolo e carota",
+    "slug" => "cavolo-e-carota",
+    "phone" => "+39334657987",
+    "address" => "via Cerveteri, 90",
+    "image" => "uploads/rest18.jpg",
+    "delivery_price" => 4.50
+  ],
+  [
+    "user_id" => 19,
+    "restaurant_id" => 19,
+    "category_id" => [3, 5, 8, 9, 10],
+    "restaurant_name" => "Casa Linetti",
+    "slug" => "casa-linetti",
+    "phone" => "+393398710923",
+    "address" => "via Milazzo, 45",
+    "image" => "uploads/rest19.jpg",
+    "delivery_price" => 2.50
+  ],
+  [
+    "user_id" => 20,
+    "restaurant_id" => 20,
+    "category_id" => [7, 8, 9, 10, 11, 12],
+    "restaurant_name" => "",
+    "slug" => "",
+    "phone" => "+393360923476",
+    "address" => "via Bari, 95",
+    "image" => "uploads/rest20.jpg",
+    "delivery_price" => 5.50
+  ],
 ];
