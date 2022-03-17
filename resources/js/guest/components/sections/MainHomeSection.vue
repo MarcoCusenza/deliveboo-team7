@@ -1,6 +1,6 @@
 <template>
     <div class="container-mainhome mb-5">
-        <div class="text-area-container text-center">
+        <div class="text-area-container">
             <h1 class="font-weight-bold">
                 Cibo da ristorante, da asporto e generi alimentari.<span style="color: #00ccbc">
                     A casa tua.</span>
@@ -29,6 +29,7 @@
         background-size: contain;
 
         .text-area-container {
+            text-align: center;
             width: 40%;
             z-index: 999;
             position: absolute;
@@ -54,6 +55,36 @@
           img {
             width: 500px;
           }
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .container-mainhome {
+            background-size: 40%;
+            background-position: 0 30%;
+        }
+}
+
+
+    @media screen and (max-width: 600px) {
+        .container-mainhome {
+        background-image: none;
+
+        .text-area-container {
+            width: 60%;
+            text-align: left;
+            left: 0;
+            transform: translate(5%, -50%);
+
+            .btn-home {
+                padding: 8px 40px;
+                font-size: 15px;
+            }
+        }
+
+        .hamburger-container {
+            width: 45%;
+        }
         }
     }
 </style>
