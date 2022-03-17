@@ -4,7 +4,7 @@ return [
   [
     "user_id" => 1,
     "restaurant_id" => 1,
-    "category_id" => 1,
+    "category_id" => [1],
     "restaurant_name" => "Jotaro Sushi",
     "slug" => "jotaro-sushi",
     "phone" => "+393334445566",
@@ -15,7 +15,7 @@ return [
   [
     "user_id" => 2,
     "restaurant_id" => 2,
-    "category_id" => 8,
+    "category_id" => [8],
     "restaurant_name" => "Pizza in teglia da Mario",
     "slug" => "pizza-in-teglia-da-mario",
     "phone" => "+393339998877",
@@ -26,7 +26,7 @@ return [
   [
     "user_id" => 3,
     "restaurant_id" => 3,
-    "category_id" => 6,
+    "category_id" => [6],
     "restaurant_name" => "Al Noor",
     "slug" => "al-noor",
     "phone" => "+393485556677",
@@ -37,7 +37,7 @@ return [
   [
     "user_id" => 4,
     "restaurant_id" => 4,
-    "category_id" => 7,
+    "category_id" => [7],
     "restaurant_name" => "Todo in Todos",
     "slug" => "todo-in-todos",
     "phone" => "+393358882244",
@@ -48,7 +48,7 @@ return [
   [
     "user_id" => 5,
     "restaurant_id" => 5,
-    "category_id" => 4,
+    "category_id" => [4],
     "restaurant_name" => "Calcio Champagne",
     "slug" => "calcio-champagne",
     "phone" => "+393357776655",
@@ -59,7 +59,7 @@ return [
   [
     "user_id" => 6,
     "restaurant_id" => 6,
-    "category_id" => 9,
+    "category_id" => [9],
     "restaurant_name" => "Il Corner",
     "slug" => "il-corner",
     "phone" => "+393351112233",

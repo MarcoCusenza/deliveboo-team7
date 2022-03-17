@@ -27,10 +27,13 @@ class RestaurantSeeder extends Seeder
       $newRestaurant->delivery_price = $restaurant["delivery_price"];
       $newRestaurant->user_id = $restaurant["user_id"];
 
-      $pivots[] = [
-        "category_id" => $restaurant["category_id"],
-        "restaurant_id" => $restaurant["restaurant_id"]
-      ];
+      foreach ($restaurant["category_id"] as $cat) {
+        $pivots[] = [
+          "category_id" => $cat,
+          "restaurant_id" => $restaurant["restaurant_id"]
+        ];
+      }
+
       //
       $newRestaurant->save();
     }
