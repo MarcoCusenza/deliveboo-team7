@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <h2 class="mb-4">Modifica il tuo ristorante: {{ $restaurant->restaurant_name }}</h2>
-        <form action="{{ route('restaurants.update', $restaurant->id) }}" id="isOneSelected" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('restaurants.update', $restaurant->id) }}" id="isOneSelected" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method("PUT")
             <div class="form-group">
@@ -18,7 +19,8 @@
 
             <div class="form-group">
                 <label for="phone">Modifica il numero di telefono *</label>
-                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
+                <input minlength="8" maxlength="15" type="tel" pattern="[0-9]{8,15}" type="text"
+                    class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
                     placeholder="Scrivi il nuovo numero di telefono" value="{{ old('phone', $restaurant->phone) }}"
                     required>
                 @error('phone')
@@ -94,37 +96,37 @@
 
         <script>
             // Validazione lato client: Se nessuna categoria è selezionata -> errore
-            (function () {
-                    const form = document.querySelector('#isOneSelected');
-                    const checkboxes = form.querySelectorAll('input[type=checkbox]');
-                    const checkboxLength = checkboxes.length;
-                    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+            (function() {
+                const form = document.querySelector('#isOneSelected');
+                const checkboxes = form.querySelectorAll('input[type=checkbox]');
+                const checkboxLength = checkboxes.length;
+                const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
 
-                    function init() {
-                        if (firstCheckbox) {
-                            for (let i = 0; i < checkboxLength; i++) {
-                                checkboxes[i].addEventListener('change', checkValidity);
-                            }
-
-                            checkValidity();
-                        }
-                    }
-
-                    function isChecked() {
+                function init() {
+                    if (firstCheckbox) {
                         for (let i = 0; i < checkboxLength; i++) {
-                            if (checkboxes[i].checked) return true;
+                            checkboxes[i].addEventListener('change', checkValidity);
                         }
 
-                        return false;
+                        checkValidity();
+                    }
+                }
+
+                function isChecked() {
+                    for (let i = 0; i < checkboxLength; i++) {
+                        if (checkboxes[i].checked) return true;
                     }
 
-                    function checkValidity() {
-                        const errorMessage = !isChecked() ? 'Devi selezionare almeno una categoria.' : '';
-                        firstCheckbox.setCustomValidity(errorMessage);
-                    }
+                    return false;
+                }
 
-                    init();
-                })();
+                function checkValidity() {
+                    const errorMessage = !isChecked() ? 'Devi selezionare almeno una categoria.' : '';
+                    firstCheckbox.setCustomValidity(errorMessage);
+                }
+
+                init();
+            })();
         </script>
     </div>
 @endsection

@@ -37,8 +37,10 @@
                     <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
                         @csrf
                         @method("DELETE")
-                        <a href="{{ route('restaurants.destroy', $restaurant->id) }}"><button type="submit"
-                                class="btn btn-danger">Elimina</button></a>
+                        <a onclick="return confirm('Confermi di voler eliminare il ristorante?')"
+                            href="{{ route('restaurants.destroy', $restaurant->id) }}">
+                            <button type="submit" class="btn btn-danger">Elimina</button>
+                        </a>
                     </form>
                 </div>
             </div>

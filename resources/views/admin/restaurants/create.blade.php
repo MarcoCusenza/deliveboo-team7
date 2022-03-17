@@ -16,28 +16,14 @@
 
             <div class="form-group">
                 <label for="phone">Numero di telefono *</label>
-                <input type="text" minlength="8" maxlength="15" class="form-control @error('phone') is-invalid @enderror"
-                    id="phone" name="phone" placeholder="Scrivi il numero di telefono" value="{{ old('phone') }}"
-                    required>
+                <input minlength="8" maxlength="15" type="tel" pattern="[0-9]{8,15}"
+                    class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
+                    placeholder="Scrivi il numero di telefono" value="{{ old('phone') }}" required autocomplete="phone"
+                    autofocus>
                 @error('phone')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
-            <script>
-                let phone = document.getElementById("phone");
-
-                function validatePhone() {
-                    let isnum = /^\d+$/.test(phone);
-                    if (!isnum) {
-                        phone.setCustomValidity("Questo campo deve contenere solo numeri!");
-                    } else {
-                        phone.setCustomValidity('');
-                    }
-                }
-
-                phone.onchange = validatePhone;
-            </script>
 
             <div class="form-group">
                 <label for="address">Indirizzo *</label>
