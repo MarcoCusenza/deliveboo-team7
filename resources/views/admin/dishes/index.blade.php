@@ -31,9 +31,9 @@
                                             <td>{{ $dish->price }} euro</td>
                                             <td>
                                                 @if ($dish->visible)
-                                                    Si
+                                                <h3><span class="badge badge-success">Visibile</span></h3>
                                                 @else
-                                                    No
+                                                <h3><span class="badge badge-secondary">Non visibile</span></h3>
                                                 @endif
                                             </td>
                                             <td><a href="{{ route('dishes.show', $dish->id) }}"
