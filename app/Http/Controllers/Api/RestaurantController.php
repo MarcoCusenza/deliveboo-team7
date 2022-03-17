@@ -14,6 +14,11 @@ class RestaurantController extends Controller
   {
     $restaurants = Restaurant::all();
 
+    // 404 restaurant slug non trovato
+    if (empty($restaurants)) {
+      return response()->json(["message" => "There are no restaurants in the database"], 404);
+    }
+
     return response()->json($restaurants);
   }
 
@@ -23,6 +28,11 @@ class RestaurantController extends Controller
   {
     $restaurants = Restaurant::where("slug", $slug)->first();
 
+    // 404 restaurant slug non trovato
+    if (empty($restaurants)) {
+      return response()->json(["message" => "Restaurant not found"], 404);
+    }
+
     return response()->json($restaurants);
   }
 
@@ -31,6 +41,11 @@ class RestaurantController extends Controller
   public function restdish($slug)
   {
     $restaurants = Restaurant::where("slug", $slug)->with("dishes")->first();
+
+    // 404 restaurant slug non trovato
+    if (empty($restaurants)) {
+      return response()->json(["message" => "Restaurant not found"], 404);
+    }
 
     return response()->json($restaurants);
   }
