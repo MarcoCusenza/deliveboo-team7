@@ -27,9 +27,9 @@
                         </li>
                         <li class="list-group-item">Visibile al pubblico:
                             @if ($dish->visible)
-                                Si
+                            <h3><span class="badge badge-success">Visibile</span></h3>
                             @else
-                                No
+                            <h3><span class="badge badge-secondary">Non visibile</span></h3>
                             @endif
                         </li>
                         </li>

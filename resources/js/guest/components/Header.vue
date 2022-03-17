@@ -23,7 +23,6 @@
 
 <style lang="scss" scoped>
     .container-header {
-        width: 90%;
         height: 60px;
 
         .row {

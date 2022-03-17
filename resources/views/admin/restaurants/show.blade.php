@@ -3,8 +3,13 @@
 @section('content')
     <div class="container mx-auto">
         <div class="card mb-3">
-            <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
-                alt="{{ $restaurant->restaurant_name }}">
+            @if (Storage::exists($restaurant->image))
+                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
+                    alt="{{ $restaurant->name }}">
+            @else
+                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ $restaurant->image }}"
+                    alt="{{ $restaurant->name }}">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">Nome ristorante: <span
                         class="font-weight-bold">{{ $restaurant->restaurant_name }}</span></h5>
@@ -32,8 +37,10 @@
                     <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
                         @csrf
                         @method("DELETE")
-                        <a href="{{ route('restaurants.destroy', $restaurant->id) }}"><button type="submit"
-                                class="btn btn-danger">Elimina</button></a>
+                        <a onclick="return confirm('Confermi di voler eliminare il ristorante?')"
+                            href="{{ route('restaurants.destroy', $restaurant->id) }}">
+                            <button type="submit" class="btn btn-danger">Elimina</button>
+                        </a>
                     </form>
                 </div>
             </div>

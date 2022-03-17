@@ -89,12 +89,29 @@
                                 </div>
                             </div>
 
+                            {{-- verifica che la password ripetuta sia uguale alla prima --}}
+                            <script>
+                                let password = document.getElementById("password");
+                                let confirm_password = document.getElementById("password-confirm");
+
+                                function validatePassword() {
+                                    if (password.value != confirm_password.value) {
+                                        confirm_password.setCustomValidity("Le Password non corrispondono");
+                                    } else {
+                                        confirm_password.setCustomValidity('');
+                                    }
+                                }
+
+                                password.onchange = validatePassword;
+                                confirm_password.onkeyup = validatePassword;
+                            </script>
+
                             <div class="form-group row">
                                 <label for="VAT_number"
                                     class="col-md-4 col-form-label text-md-right">{{ __('P.IVA / VAT') }} *</label>
 
                                 <div class="col-md-6">
-                                    <input id="VAT_number" minlength="11" maxlength="15" type="text"
+                                    <input id="VAT_number" minlength="11" maxlength="15" type="tel" pattern="[0-9]{11,15}"
                                         class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number"
                                         value="{{ old('VAT_number') }}" required autocomplete="VAT_number" autofocus>
 
@@ -105,7 +122,6 @@
                                     @enderror
                                 </div>
                             </div>
-
 
                             <h5 class="text-muted">* Campo obbligatorio</h5>
                             <div class="form-group row mb-0">
