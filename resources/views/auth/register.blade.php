@@ -90,8 +90,8 @@
                             </div>
 
                             <script>
-                                let password = document.getElementById("password"),
-                                    confirm_password = document.getElementById("password-confirm");
+                                let password = document.getElementById("password");
+                                let confirm_password = document.getElementById("password-confirm");
 
                                 function validatePassword() {
                                     if (password.value != confirm_password.value) {
@@ -121,6 +121,21 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <script>
+                                let vat = document.getElementById("VAT_number");
+
+                                function validateVAT() {
+                                    let isnum = /^\d+$/.test(vat);
+                                    if (!isnum) {
+                                        vat.setCustomValidity("Questo campo deve contenere solo numeri!");
+                                    } else {
+                                        vat.setCustomValidity('');
+                                    }
+                                }
+
+                                vat.onchange = validateVAT;
+                            </script>
 
 
                             <h5 class="text-muted">* Campo obbligatorio</h5>
