@@ -89,6 +89,22 @@
                                 </div>
                             </div>
 
+                            <script>
+                                let password = document.getElementById("password"),
+                                    confirm_password = document.getElementById("password-confirm");
+
+                                function validatePassword() {
+                                    if (password.value != confirm_password.value) {
+                                        confirm_password.setCustomValidity("Le Password non corrispondono");
+                                    } else {
+                                        confirm_password.setCustomValidity('');
+                                    }
+                                }
+
+                                password.onchange = validatePassword;
+                                confirm_password.onkeyup = validatePassword;
+                            </script>
+
                             <div class="form-group row">
                                 <label for="VAT_number"
                                     class="col-md-4 col-form-label text-md-right">{{ __('P.IVA / VAT') }} *</label>
