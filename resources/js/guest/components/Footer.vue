@@ -1,11 +1,11 @@
 <template>
     <footer>
-        <div class="footer-top container-fluid text-white ">
-            <div class="row mt-5 py-2">
-                <div class="col-sm-12 col-lg-4 d-flex align-items-center justify-content-center">
+        <div class="footer-top container-fluid text-white">
+            <div class="row mt-5 py-2 d-flex justify-content-center">
+                <div class="col-sm-12 col-lg-3 d-flex align-items-center justify-content-center">
                     <img src="https://i.postimg.cc/mgJ2VbP8/Deliveroo-Logo-PNG1.png" alt="deliveroo-logo-footer" />
                 </div>
-                <div class="col-sm-6 col-lg-2 d-flex align-items-center py-sm-5">
+                <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
                     <ul>
                         <li>Link1</li>
                         <li>Link2</li>
@@ -13,7 +13,7 @@
                         <li>Link4</li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-lg-2 d-flex align-items-center py-sm-5">
+                <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
                     <ul>
                         <li>Link1</li>
                         <li>Link2</li>
@@ -21,7 +21,7 @@
                         <li>Link4</li>
                     </ul>
                 </div>
-                <div class="col-sm-12 col-lg-4 d-flex justify-content-center align-items-sm-center flex-column">
+                <div class="col-sm-12 col-lg-3 d-flex justify-content-center align-items-sm-center flex-column">
 
                     <form>
                         <div class="form-group">
@@ -58,14 +58,22 @@
         width: 100%;
 
         .footer-top {
-            border-bottom: 1px solid #00CCBC;
+
 
             img {
                 width: 200px;
             }
 
+            ul {
+                list-style: none;
+
+                li {
+                    line-height: 30px;
+                }
+            }
+
             form {
-                width: 50%;
+                width: 70%;
 
 
                 .btn-home {
@@ -81,6 +89,7 @@
         }
 
         .footer-bottom {
+            border-top: 1px solid #00CCBC;
 
             p {
                 margin: 0
