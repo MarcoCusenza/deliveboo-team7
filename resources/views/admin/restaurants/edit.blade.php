@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2 class="mb-4">Modifica il tuo ristorante: {{ $restaurant->restaurant_name }}</h2>
-        <form action="{{ route('restaurants.update', $restaurant->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('restaurants.update', $restaurant->id) }}" id="isOneSelected" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")
             <div class="form-group">
@@ -91,5 +91,40 @@
             <a href="{{ route('restaurants.index') }}" class="btn btn-danger">Annulla e torna indietro</a>
 
         </form>
+
+        <script>
+            // Validazione lato client: Se nessuna categoria è selezionata -> errore
+            (function () {
+                    const form = document.querySelector('#isOneSelected');
+                    const checkboxes = form.querySelectorAll('input[type=checkbox]');
+                    const checkboxLength = checkboxes.length;
+                    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+                    function init() {
+                        if (firstCheckbox) {
+                            for (let i = 0; i < checkboxLength; i++) {
+                                checkboxes[i].addEventListener('change', checkValidity);
+                            }
+
+                            checkValidity();
+                        }
+                    }
+
+                    function isChecked() {
+                        for (let i = 0; i < checkboxLength; i++) {
+                            if (checkboxes[i].checked) return true;
+                        }
+
+                        return false;
+                    }
+
+                    function checkValidity() {
+                        const errorMessage = !isChecked() ? 'Devi selezionare almeno una categoria.' : '';
+                        firstCheckbox.setCustomValidity(errorMessage);
+                    }
+
+                    init();
+                })();
+        </script>
     </div>
 @endsection
