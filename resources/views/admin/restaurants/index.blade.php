@@ -4,8 +4,13 @@
     <div class="container mx-auto">
         @foreach ($restaurants as $restaurant)
             <div class="card mb-3">
-                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
-                    alt="{{ $restaurant->restaurant_name }}">
+                @if (Storage::exists($restaurant->image))
+                    <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
+                        alt="{{ $restaurant->name }}">
+                @else
+                    <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ $restaurant->image }}"
+                        alt="{{ $restaurant->name }}">
+                @endif
                 <div class="card-body">
                     <h5 class="card-title">Nome ristorante: <span
                             class="font-weight-bold">{{ $restaurant->restaurant_name }}</span></h5>
@@ -30,7 +35,8 @@
                     <div class="container p-0 d-flex flex-row mt-3">
                         <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
                                 class="btn btn-warning mr-3">Modifica</button></a>
-                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
+                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza
+                            menu</a>
                         <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
@@ -40,8 +46,6 @@
                     </div>
                 </div>
             </div>
-
-            
         @endforeach
     </div>
 @endsection

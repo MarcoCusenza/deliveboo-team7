@@ -3,8 +3,13 @@
 @section('content')
     <div class="container mx-auto">
         <div class="card mb-3">
-            <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
-                alt="{{ $restaurant->restaurant_name }}">
+            @if (Storage::exists($restaurant->image))
+                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
+                    alt="{{ $restaurant->name }}">
+            @else
+                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ $restaurant->image }}"
+                    alt="{{ $restaurant->name }}">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">Nome ristorante: <span
                         class="font-weight-bold">{{ $restaurant->restaurant_name }}</span></h5>
