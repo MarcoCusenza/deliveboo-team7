@@ -59,19 +59,19 @@ return [
   [
     "name" => "Vegetariano",
     "slug" => "vegetariano",
-    "image" => ""
+    "image" => "https://i.imgur.com/yCArlpj.png"
   ],
   // id=11
   [
     "name" => "Vegano",
     "slug" => "vegano",
-    "image" => ""
+    "image" => "https://i.imgur.com/FIOVvXv.png"
   ],
   // id=12
   [
     "name" => "Per celiaci",
     "slug" => "celiaci",
-    "image" => ""
+    "image" => "https://i.imgur.com/n55SN5r.png"
   ],
 
 ];
