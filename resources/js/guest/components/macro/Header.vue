@@ -8,7 +8,7 @@
                 <div class="col-header col-lg-2 col-6 text-center">
                     <a class="button-link mx-2 icon-header" href="/admin/home"><i
                             class="fa-solid fa-user fa-lg"></i></a>
-                    <a class="button-link mx-2 icon-header" href="#"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+                    <a class="button-link mx-2 icon-header" href="/cart"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
                 </div>
             </div>
         </nav>
