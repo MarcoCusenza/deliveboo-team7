@@ -55,6 +55,10 @@ Route::get("/restaurants", "Api\RestaurantController@index");
 Route::get("/restaurant/{slug}", "Api\RestaurantController@restaurant");
 
 
-// richiede il ristorante cercato + tutti i suoi piatti
-// http://localhost:8000/api/restdish/jotaro-sushi
-Route::get("/restdish/{slug}", "Api\RestaurantController@restdish");
+
+// ____DISHES____
+// ______________
+
+// richiede tutti i piatti VISIBILI di un dato ristorante
+// http://localhost:8000/api/dishes/jotaro-sushi
+Route::get("/dishes/{slug}", "Api\DishController@dishes");
