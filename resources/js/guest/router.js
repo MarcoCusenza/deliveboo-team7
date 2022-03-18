@@ -9,40 +9,35 @@ import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
-    mode: "history",
-    routes: [
-      //HOMEPAGE
-        {
-            path: "/",
-            name: "home",
-            component: Home
-        },
-        {
-            path: "/home",
-            name: "home",
-            component: Home
-        },
+  mode: "history",
+  routes: [
+    //HOMEPAGE
+    {
+      path: "/",
+      name: "home",
+      component: Home
+    },
 
-        //
-        {
-            path: "/restaurant/:slug",
-            name: "restaurant",
-            component: Restaurant
-        },
-        {
-            path: "/cart",
-            name: "cart",
-            component: Cart
-        },
+    //
+    {
+      path: "/restaurant/:slug",
+      name: "restaurant",
+      component: Restaurant
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: Cart
+    },
 
-        //Pagina 404 Not Found
-        {
-            path: "*",
-            name: "page-404",
-            component: PageNotFound
-        },
+    //Pagina 404 Not Found
+    {
+      path: "*",
+      name: "page-404",
+      component: PageNotFound
+    },
 
-    ]
+  ]
 });
 
 export default router
