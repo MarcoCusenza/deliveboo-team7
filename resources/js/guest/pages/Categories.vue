@@ -5,8 +5,9 @@
             <div class="dropdown-checkbox form-group">
                 <label class="label-title">Seleziona le tue categorie</label>
                 <ul>
-                    <li v-for="(category, index) in categories" :key="index">
-                        <label><input type="checkbox" :value="category.slug" v-model="checkedCategories" :name="category.name">{{category.name}}</label>
+                    <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
+                    <li v-for="(categorest, index) in categorests" :key="index">
+                        <label><input type="checkbox" :value="categorest" v-model="checkedCategories" :name="categorest.name">{{categorest.name}}</label>
                     </li>
                 </ul>
             </div>
@@ -14,14 +15,33 @@
             <button type="button" class="btn btn-primary ml-2" @click="showCat = !showCat">Cerca per categorie</button>
             <div v-show="showCat">
                 <ul>
-                    <li v-for="(checkedCategory, index) in checkedCategories" :key="index">
-                        <span>{{checkedCategory}}</span>
+                    <!-- Bisogna stampare i ristoranti delle checkedCategories -->
+                    <li v-for="(checkedCategory, id) in checkedCategories" :key="id" :load="log(checkedCategory)">
+                    <!-- <li v-for="checkedCategory in checkedCategories" :key="checkedCategory.id" :load="log(checkedCategory)"> -->
+                        <!-- <span style="color: green">{{checkedCategory}}</span> -->
+                        <ul>
+                            <li v-for="(restaurants, id) in checkedCategory" :key="id" :load="logg(restaurants)">
+                                <!-- <span style="color: red;">{{restaurants}}</span> -->
+                                <ul>
+                                    <li v-for="(restaurant, id) in restaurants" :key="id" :load="loggg(restaurant)">
+                                        <!-- <span>{{restaurant}}</span> -->
+                                        <ul>
+                                            <li v-for="(rest, id) in restaurant" :key="id">
+                                                <span style="color: orange">{{rest}}</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li v-for="(restaurant, id) in restaurants[6]" :key="id">
+                                        <span>{{restaurant}}</span>
+                                    </li> -->
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
-    <!-- ${this.$route.params.slug} -->
 </template>
 
 <script>
@@ -30,22 +50,35 @@
         data() {
             return {
                 showCat: false,
-                categories: {},
+                categorests: {},
                 checkedCategories: [],
             };
         },
+        // Salviamo i dati delle api nella variabile categorest
         created() {
-            axios
-                .get(`/api/categorest`)
-                .then((response) => {
-                    this.categories = response.data;
-                })
-                .catch((error) => {
-                    this.$router.push({
-                        name: "page-404"
-                    });
+            axios.get(`/api/categorest`)
+            .then((response) => {
+                this.categorests = response.data;
+                console.log(this.categorests)
+            })
+            .catch((error) => {
+                this.$router.push({
+                    name: "page-404"
                 });
+            });
         },
+        methods: {
+            log(item) {
+                console.log("checkedCategory: ", item)
+            },
+            logg(item) {
+                console.log("restaurants: ", item)
+            },
+            loggg(item) {
+                console.log("XXXXXXXXXXXXXXXX: ", item)
+            },
+
+        }
     }
 </script>
 
