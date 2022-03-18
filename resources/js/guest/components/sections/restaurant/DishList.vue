@@ -1,7 +1,6 @@
 <template>
   <div class="dish-list">
     <div class="container">
-      <h1 class="restaurant-name">{{ restaurant.restaurant_name }}</h1>
       <ul>
         <li class="dish" v-for="dish in dishes" :key="dish.id">
           <img :src="dish.image" :alt="dish.name" />
@@ -21,20 +20,10 @@ export default {
   name: "DishList",
   data() {
     return {
-      restaurant: {},
       dishes: {},
     };
   },
   created() {
-    axios
-      .get(`/api/restaurant/${this.$route.params.slug}`)
-      .then((response) => {
-        this.restaurant = response.data;
-      })
-      .catch((error) => {
-        this.$router.push({ name: "page-404" });
-      });
-
     axios
       .get(`/api/dishes/${this.$route.params.slug}`)
       .then((response) => {

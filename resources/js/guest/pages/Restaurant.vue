@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="container">
+    <img :src="'../storage/' + restaurant.image" :alt="restaurant.name" />
+    <h1 class="restaurant-name">{{ restaurant.restaurant_name }}</h1>
+
+    <!-- Lista dei piatti -->
     <DishList />
   </div>
 </template>
@@ -12,8 +16,26 @@ export default {
   components: {
     DishList,
   },
+  data() {
+    return {
+      restaurant: {},
+    };
+  },
+  created() {
+    axios
+      .get(`/api/restaurant/${this.$route.params.slug}`)
+      .then((response) => {
+        this.restaurant = response.data;
+      })
+      .catch((error) => {
+        this.$router.push({ name: "page-404" });
+      });
+  },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+img {
+  max-width: 300px;
+}
 </style>
