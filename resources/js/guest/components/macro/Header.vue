@@ -3,7 +3,7 @@
         <nav class="container-fluid container-header">
             <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-header col-lg-2 col-6 text-center">
-                    <a href="/home"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png" alt="deliveroo logo" class="logo" /></a>
+                    <a href="/"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png" alt="deliveroo logo" class="logo" /></a>
                 </div>
                 <div class="col-header col-lg-2 col-6 text-center">
                     <a class="button-link mx-2 icon-header" href="/admin/home"><i
