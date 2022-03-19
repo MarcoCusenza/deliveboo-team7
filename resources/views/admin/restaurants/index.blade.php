@@ -1,41 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
+<div class="container">
+    <div class="mx-auto">
         @foreach ($restaurants as $restaurant)
-            <div class="card mb-3">
+        <div class="card card-dashboard-dishes mb-3 p-3">
+            <h2 class="row d-flex justify-content-around m-3">{{ $restaurant->restaurant_name }}</span></h2>
+
+            <div class="container_img mx-auto">
                 @if (Storage::exists($restaurant->image))
-                    <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
-                        alt="{{ $restaurant->name }}">
+                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ asset("storage/{$restaurant->image}") }}"
+                    alt="{{ $restaurant->name }}">
                 @else
-                    <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ $restaurant->image }}"
-                        alt="{{ $restaurant->name }}">
+                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ $restaurant->image }}"
+                    alt="{{ $restaurant->name }}">
                 @endif
-                <div class="card-body">
-                    <h5 class="card-title">Nome ristorante: <span
-                            class="font-weight-bold">{{ $restaurant->restaurant_name }}</span></h5>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-header">
-                            Info:
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Numero di telefono: {{ $restaurant->phone }}</li>
-                            <li class="list-group-item">Indirizzo: {{ $restaurant->address }}</li>
-                            <li class="list-group-item">Prezzo per la consegna: {{ $restaurant->delivery_price }} euro
-                            </li>
-                            <li class="list-group-item">Categorie:
-                                <ul>
-                                    @foreach ($restaurant->categories as $category)
-                                        <li>{{ $category->name }}</li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="container p-0 d-flex flex-row mt-3">
+            </div>
+            <div class="row d-flex justify-content-around">
+                <div class="col-lg-12 col-sm-12 mt-3">
+                    <ul class="list-group list-group-flush border-bottom border-0">
+                        <li class="list-group-item">Numero di telefono: {{ $restaurant->phone }}</li>
+                        <li class="list-group-item">Indirizzo: {{ $restaurant->address }}</li>
+                        <li class="list-group-item">Prezzo per la consegna: {{ $restaurant->delivery_price }} euro
+                        </li>
+                        <li class="list-group-item">Categorie:
+                            <ul class="list-group list-group-flush">
+                                @foreach ($restaurant->categories as $category)
+                                <li class="list-group-item">{{ $category->name }}</li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-3 row d-flex justify-content-around">
                         <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
                                 class="btn btn-warning mr-3">Modifica</button></a>
-                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza
+                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-dashboard">Visualizza
                             menu</a>
                         <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
                             @csrf
@@ -46,6 +45,10 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        </div>
     </div>
+    @endforeach
+</div>
+
+</div>
 @endsection

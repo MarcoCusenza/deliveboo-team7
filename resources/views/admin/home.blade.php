@@ -12,7 +12,7 @@
                 @endif
                 <h2 class="font-weight-bold"> Benvenuto <span style="color: #00CCBC">{{ Auth::user()->name }}! </span>
                 </h2>
-                <div class="row">
+                <div class="row d-flex justify-content-around">
                     {{-- INFO UTENTE --}}
                     <div class="col-lg-3 col-sm-12 mt-3">
                         <h5>Info Utente:</h5>

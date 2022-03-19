@@ -3,25 +3,48 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-// import Home from "./pages/Home";
-// import PageNotFound from "./pages/PageNotFound";
+import Home from "./pages/Home";
+import Categories from "./pages/Categories";
+import Restaurant from "./pages/Restaurant";
+import Checkout from "./pages/Checkout";
+import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
-  // mode: "history",
-  // routes: [
-  //   {
-  //     path: "/",
-  //     name: "home",
-  //     component: Home
-  //  },
+  mode: "history",
+  routes: [
+    //HOMEPAGE
+    {
+      path: "/",
+      name: "home",
+      component: Home
+    },
 
-  //   //Pagina 404 Not Found
-  //   {
-  //     path: "*",
-  //     name: "page-404",
-  //     component: PageNotFound
-  //   }
-//   ]
- });
+    {
+      path: "/categories",
+      name: "categories",
+      component: Categories
+    },
+
+    //
+    {
+      path: "/restaurant/:slug",
+      name: "restaurant",
+      component: Restaurant
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component: Checkout
+    },
+
+    //Pagina 404 Not Found
+    {
+      path: "*",
+      name: "page-404",
+      component: PageNotFound
+    },
+
+  ]
+});
 
 export default router

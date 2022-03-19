@@ -33,7 +33,7 @@ Route::get("/categories/{slug}", "Api\CategoryController@categories");
 
 // richiede tutte le categorie nel database + tutti i ristoranti appartenenti
 // http://localhost:8000/api/categorest
-Route::get("/categorest", "Api\CategoryController@indexrest");
+Route::get("/indexrest", "Api\CategoryController@indexrest");
 
 // richiede le categorie cercate + tutti i ristoranti appartenenti
 // http://localhost:8000/api/categorest/giapponese
@@ -55,6 +55,10 @@ Route::get("/restaurants", "Api\RestaurantController@index");
 Route::get("/restaurant/{slug}", "Api\RestaurantController@restaurant");
 
 
-// richiede il ristorante cercato + tutti i suoi piatti
-// http://localhost:8000/api/restdish/jotaro-sushi
-Route::get("/restdish/{slug}", "Api\RestaurantController@restdish");
+
+// ____DISHES____
+// ______________
+
+// richiede tutti i piatti VISIBILI di un dato ristorante
+// http://localhost:8000/api/dishes/jotaro-sushi
+Route::get("/dishes/{slug}", "Api\DishController@dishes");
