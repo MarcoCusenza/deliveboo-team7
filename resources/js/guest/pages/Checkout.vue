@@ -14,83 +14,35 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Pizza Margherita</td>
-                <td>10</td>
-                <td>
+              <tr v-for="(dish, i) in cart" :key="i">
+                <td class="dish-name">{{ dish[0].name }}</td>
+                <td class="dish-price">{{ dish[0].price }}€</td>
+                <td class="dish-quantity">
                   <div class="counter">
                     <div
                       class="value-button"
                       id="decrease"
-                      @click="decreaseValue()"
+                      @click="decreaseQuantity(dish)"
                       value="Decrease Value"
                     >
                       -
                     </div>
-                    <input type="number" id="number" value="0" />
+                    <input type="number" id="number" :value="dish[1]" />
                     <div
                       class="value-button"
                       id="increase"
-                      @click="increaseValue()"
+                      @click="increaseQuantity(dish)"
                       value="Increase Value"
                     >
                       +
                     </div>
                   </div>
                 </td>
-                <td><i class="fa-solid fa-trash-can delete"></i></td>
-              </tr>
-              <tr>
-                <td>Pizza Capricciosa</td>
-                <td>12</td>
                 <td>
-                  <div class="counter">
-                    <div
-                      class="value-button"
-                      id="decrease"
-                      @click="decreaseValue()"
-                      value="Decrease Value"
-                    >
-                      -
-                    </div>
-                    <input type="number" id="number" value="0" />
-                    <div
-                      class="value-button"
-                      id="increase"
-                      @click="increaseValue()"
-                      value="Increase Value"
-                    >
-                      +
-                    </div>
-                  </div>
+                  <button @click="removeDish(dish)">
+                    <i class="fa-solid fa-trash-can delete"></i>
+                  </button>
                 </td>
-                <td><i class="fa-solid fa-trash-can delete"></i></td>
-              </tr>
-              <tr>
-                <td>Pizza bianca</td>
-                <td>8</td>
-                <td>
-                  <div class="counter">
-                    <div
-                      class="value-button"
-                      id="decrease"
-                      @click="decreaseValue()"
-                      value="Decrease Value"
-                    >
-                      -
-                    </div>
-                    <input type="number" id="number" value="0" />
-                    <div
-                      class="value-button"
-                      id="increase"
-                      @click="increaseValue()"
-                      value="Increase Value"
-                    >
-                      +
-                    </div>
-                  </div>
-                </td>
-                <td><i class="fa-solid fa-trash-can delete"></i></td>
               </tr>
             </tbody>
           </table>
@@ -107,31 +59,106 @@
 </template>
 
 <script>
+import Cart from "../components/sections/Cart.vue";
+
 export default {
   name: "Checkout",
-
-  data() {
-    return {};
+  components: {
+    Cart,
   },
-
-  methods: {
-    increaseValue() {
-      var value = parseInt(document.getElementById("number").value, 10);
-      value = isNaN(value) ? 0 : value;
-      value++;
-      document.getElementById("number").value = value;
+  data() {
+    return {
+      cart: [],
+    };
+  },
+  mounted() {
+    if (localStorage.cart) {
+      this.cart = JSON.parse(localStorage.cart);
+    }
+  },
+  watch: {
+    cart: {
+      handler(newCart) {
+        localStorage.cart = JSON.stringify(newCart);
+      },
+      deep: true,
     },
+  },
+  methods: {
+    increaseQuantity(dish) {
+      // var value = parseInt(document.getElementById("number").value, 10);
+      // value = isNaN(value) ? 0 : value;
+      // value++;
+      // document.getElementById("number").value = value;
 
-    decreaseValue() {
-      var value = parseInt(document.getElementById("number").value, 10);
-      value = isNaN(value) ? 0 : value;
-      value < 1 ? (value = 1) : "";
-      value--;
-      document.getElementById("number").value = value;
+      let newDish = dish;
+      newDish[1] = dish[1] + 1;
+      let ind = this.cart.indexOf(dish);
+      this.cart.splice(ind, 1, newDish);
+      // const actualCart = this.getActualCartArray();
+      // let index = -1;
+      // actualCart.forEach((item, ind) => {
+      //   if (item[0].id == dish[0].id) {
+      //     index = ind;
+      //   }
+      // });
+      // if (index > -1) {
+      //   this.cart[index][1]++;
+      //   this.cart.push(this.cart[index]);
+      // }
+    },
+    decreaseQuantity(dish) {
+      // var value = parseInt(document.getElementById("number").value, 10);
+      // value = isNaN(value) ? 0 : value;
+      // value < 1 ? (value = 1) : "";
+      // value--;
+      // document.getElementById("number").value = value;
+
+      let newDish = dish;
+      newDish[1] = dish[1] - 1;
+      let ind = this.cart.indexOf(dish);
+      if (newDish[1] > 0) {
+        this.cart.splice(ind, 1, newDish);
+      } else {
+        this.cart.splice(ind, 1);
+      }
+    },
+    removeDish(dish) {
+      const actualCart = this.getActualCartArray();
+      let index = -1;
+      actualCart.forEach((item, ind) => {
+        if (item[0].id == dish[0].id) {
+          index = ind;
+        }
+      });
+      if (index > -1) {
+        this.cart.splice(index, 1);
+      }
+    },
+    getActualCartArray() {
+      // console.log("actual array:", JSON.parse(localStorage.getItem("cart")));
+      return JSON.parse(localStorage.getItem("cart"));
     },
   },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style lang="scss" scoped>
 .container-bg {
