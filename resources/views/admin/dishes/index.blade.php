@@ -11,7 +11,7 @@
                         @if ($dishes->isEmpty())
                             Questo ristorante attualmente non ha piatti
                         @else
-                            <table class="table table-striped">
+                            <table class="table table-striped table-responsive col-md-6 col-lg-12">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nome</th>
@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{ $dish->name }}</td>
                                             <td>{{ $dish->slug }}</td>
-                                            <td>{{ $dish->price }} euro</td>
+                                            <td>{{ $dish->price }} &euro;</td>
                                             <td>
                                                 @if ($dish->visible)
                                                 <h3><span class="badge badge-success">Visibile</span></h3>
