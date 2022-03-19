@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="card card-dashboard p-3">
+        <div class="card card-dashboard-dishes p-3">
             <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

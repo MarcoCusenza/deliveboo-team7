@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Lista Piatti</div>
-                    <a href="{{ route('dishes.create') }}" class="btn btn-warning">Aggiungi piatto</a>
+                <div class="card card-dashboard-dishes p-3">
+                    <div class="card-header"><h2>Lista Piatti</h2></div>
+                    <a href="{{ route('dishes.create') }}" class="btn btn-warning m-3">Aggiungi piatto</a>
                     <div class="card-body">
                         @if ($dishes->isEmpty())
-                            Questo ristorante attualmente non ha piatti
+                            <span>Questo ristorante attualmente non ha piatti</span>
                         @else
                             <table class="table table-striped table-responsive col-md-6 col-lg-12">
                                 <thead>
@@ -37,7 +37,7 @@
                                                 @endif
                                             </td>
                                             <td><a href="{{ route('dishes.show', $dish->id) }}"
-                                                    class="btn btn-warning">Visualizza
+                                                    class="btn btn-dashboard">Visualizza
                                                     piatto</a></td>
                                             <td><a href="{{ route('dishes.edit', $dish->id) }}"
                                                     class="btn btn-warning">Modifica

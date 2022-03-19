@@ -2,8 +2,14 @@
 
 @section('content')
     <div class="container">
-        
-        <div class="card card-dashboard p-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ route('dishes.index', $dish->id) }}">Lista piatti</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('dishes.show', $dish->id) }}">{{ $dish->name }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Modifica</li>
+            </ol>
+        </nav>
+        <div class="card card-dashboard-dishes mb-3 p-3">
             <h2 class="mb-4">Modifica il tuo piatto: {{ $dish->name }}</h2>
             <form action="{{ route('dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -106,8 +112,12 @@
                     @enderror
                 </div>
                 <h5 class="text-muted">* Campo obbligatorio</h5>
-                <button type="submit" class="btn btn-primary px-4 py-2">Modifica</button>
-                <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-danger">Annulla e torna al piatto</a>
+                
+                <div class="mt-3 row d-flex justify-content-around">
+                    <button type="submit" class="btn btn-warning">Modifica piatto</button>
+                    <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-dashboard">Annulla e torna al piatto</a>                
+                </div>
+
             </form>
         </div>
     </div>
