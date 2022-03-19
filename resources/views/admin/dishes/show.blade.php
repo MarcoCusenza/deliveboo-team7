@@ -23,7 +23,7 @@
 
             <div class="row d-flex justify-content-around ">
                 <div class="col-lg-12 col-sm-12 mt-3">
-                    <ul class="list-group list-group-flush border-bottom">
+                    <ul class="list-group list-group-flush border-bottom border-0">
                         <li class="list-group-item">Prezzo: {{ $dish->price }} &euro;
                         @if ($dish->description)
                             <li class="list-group-item">Descrizione: {{ $dish->description }}</li>

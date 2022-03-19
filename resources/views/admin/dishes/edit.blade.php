@@ -115,6 +115,7 @@
                 
                 <div class="mt-3 row d-flex justify-content-around">
                     <button type="submit" class="btn btn-warning">Modifica piatto</button>
+                    
                     <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-dashboard">Annulla e torna al piatto</a>                
                 </div>
 

@@ -1,50 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container mx-auto">
-        <div class="card mb-3">
-            @if (Storage::exists($restaurant->image))
-                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ asset("storage/{$restaurant->image}") }}"
+        {{-- navbar --}}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">{{ $restaurant->restaurant_name }}</li>
+            </ol>
+        </nav>
+        <div class="card card-dashboard-dishes mb-3 p-3">
+            <h2 class="row d-flex justify-content-around m-3">{{ $restaurant->restaurant_name }}</span></h2>
+
+            <div class="container_img mx-auto">
+                @if (Storage::exists($restaurant->image))
+                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ asset("storage/{$restaurant->image}") }}"
                     alt="{{ $restaurant->name }}">
-            @else
-                <img width="400" class="rounded mt-3 mx-auto d-block" src="{{ $restaurant->image }}"
+                @else
+                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ $restaurant->image }}"
                     alt="{{ $restaurant->name }}">
-            @endif
-            <div class="card-body">
-                <h5 class="card-title">Nome ristorante: <span
-                        class="font-weight-bold">{{ $restaurant->restaurant_name }}</span></h5>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        Info:
-                    </div>
-                    <ul class="list-group list-group-flush">
+                @endif
+            </div>
+            <div class="row d-flex justify-content-around">
+                <div class="col-lg-12 col-sm-12 mt-3">
+                    <ul class="list-group list-group-flush border-bottom border-0">
                         <li class="list-group-item">Numero di telefono: {{ $restaurant->phone }}</li>
                         <li class="list-group-item">Indirizzo: {{ $restaurant->address }}</li>
-                        <li class="list-group-item">Prezzo per la consegna: {{ $restaurant->delivery_price }} euro</li>
+                        <li class="list-group-item">Prezzo per la consegna: {{ $restaurant->delivery_price }} euro
+                        </li>
                         <li class="list-group-item">Categorie:
-                            <ul>
+                            <ul class="list-group list-group-flush">
                                 @foreach ($restaurant->categories as $category)
-                                    <li>{{ $category->name }}</li>
+                                <li class="list-group-item">{{ $category->name }}</li>
                                 @endforeach
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <div class="container p-0 d-flex flex-row mt-3">
-                    <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
-                            class="btn btn-warning mr-3">Modifica</button></a>
-                    <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-warning">Visualizza menu</a>
-                    <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <a onclick="return confirm('Confermi di voler eliminare il ristorante?')"
-                            href="{{ route('restaurants.destroy', $restaurant->id) }}">
-                            <button type="submit" class="btn btn-danger">Elimina</button>
-                        </a>
-                    </form>
+                    <div class="mt-3 row d-flex justify-content-around">
+                        <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
+                                class="btn btn-warning mr-3">Modifica</button></a>
+                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-dashboard">Visualizza
+                            menu</a>
+                        <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <a href="{{ route('restaurants.destroy', $restaurant->id) }}"><button type="submit"
+                                    class="btn btn-danger">Elimina</button></a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 @endsection
