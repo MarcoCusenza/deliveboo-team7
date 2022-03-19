@@ -12,7 +12,7 @@ class CategoryController extends Controller
   //url esempio: http://localhost:8000/api/categories
   public function index()
   {
-    $categories = Category::select("*")->paginate(3);
+    $categories = Category::select("*")->get();
 
     // 404 category slug non trovato
     if (empty($categories)) {
@@ -29,7 +29,7 @@ class CategoryController extends Controller
   public function categories($categories)
   {
     $cat_array = explode(',', $categories);
-    $cat_final = Category::whereIn("slug", $cat_array)->paginate(3);
+    $cat_final = Category::whereIn("slug", $cat_array)->get();
 
     // 404 category slug non trovato
     if (empty($cat_final)) {
@@ -45,14 +45,19 @@ class CategoryController extends Controller
   //url esempio: http://localhost:8000/api/categorest
   public function indexrest()
   {
-    $categories = Category::with("restaurants")->paginate(3);
-
+    $cat_temp = Category::with("restaurants")->get();
+    $cat_final = [];
+    foreach ($cat_temp as $item) {
+      if(count($item["restaurants"]) != 0) {
+        array_push($cat_final, $item);
+      }
+    }
     // 404 category slug non trovato
-    if (empty($categories)) {
+    if (empty($cat_final)) {
       return response()->json(["message" => "There are no categories in the database"], 404);
     }
 
-    return response()->json($categories);
+    return response()->json($cat_final);
   }
 
 
@@ -62,7 +67,13 @@ class CategoryController extends Controller
   public function categorest($cat)
   {
     $cat_array = explode(',', $cat);
-    $cat_final = Category::with("restaurants")->whereIn("slug", $cat_array)->paginate(3);
+    $cat_temp = Category::with("restaurants")->whereIn("slug", $cat_array)->get();
+    $cat_final = [];
+    foreach ($cat_temp as $item) {
+      if(count($item["restaurants"]) != 0) {
+        array_push($cat_final, $item);
+      }
+    }
 
     // 404 category slug non trovato
     if (empty($cat_final)) {
