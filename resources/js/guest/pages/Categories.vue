@@ -1,24 +1,24 @@
 <template>
     <section>
         <div class="container multi-select">
-            <h2>Seleziona le tue categorie preferite</h2>
+            <h2>Seleziona le tue categorie preferite disponibili</h2>
             <div class="dropdown-checkbox form-group">
                 <label class="label-title">Seleziona le tue categorie</label>
                 <ul>
                     <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
-                    <li v-for="(categorest, index) in categorests" :key="index">
-                        <label><input type="checkbox" :value="categorest" v-model="checkedCategories"
-                                :name="categorest.name">{{categorest.name}}</label>
+                    <li v-for="(indexrest, index) in indexrests" :key="index">
+                        <label><input type="checkbox" :value="indexrest" v-model="checkedCategories"
+                                :name="indexrest.name" :load="log(indexrest)">{{indexrest.name}}</label>
                     </li>
                 </ul>
             </div>
 
-            <button type="button" class="btn btn-primary ml-2" @click="showCat = !showCat">Cerca per categorie</button>
-            
-            <div v-show="showCat">
+            <button type="button" class="btn btn-primary ml-2" @click="showRest = !showRest">Cerca per categorie</button>
+
+            <div v-if="showRest">
                 <!-- Bisogna stampare i ristoranti delle checkedCategories -->
-                <div v-for="(checkedCategory, id) in checkedCategories" :key="id" :load="log(checkedCategory)">
-                    <div v-for="(restaurants, id) in checkedCategory.restaurants" :key="id" :load="logg(restaurants)">
+                <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
+                    <div v-for="(restaurants, id) in checkedCategory.restaurants" :key="id">
                         <span>{{restaurants.restaurant_name}}</span>
                     </div>
                 </div>
@@ -32,17 +32,16 @@
         name: "Categories",
         data() {
             return {
-                showCat: false,
-                categorests: {},
+                showRest: false,
+                indexrests: {},
                 checkedCategories: [],
             };
         },
         // Salviamo i dati delle api nella variabile categorest
         created() {
-            axios.get(`/api/categorest`)
+            axios.get(`/api/indexrest`)
                 .then((response) => {
-                    this.categorests = response.data;
-                    console.log(this.categorests)
+                    this.indexrests = response.data;
                 })
                 .catch((error) => {
                     this.$router.push({
@@ -51,16 +50,9 @@
                 });
         },
         methods: {
-            log(item) {
-                console.log("checkedCategory: ", item)
-            },
-            logg(item) {
-                console.log("restaurants: ", item)
-            },
-            loggg(item) {
-                console.log("XXXXXXXXXXXXXXXX: ", item)
-            },
-
+            log(item){
+                console.log(item)
+            }
         }
     }
 </script>

@@ -33,7 +33,7 @@ Route::get("/categories/{slug}", "Api\CategoryController@categories");
 
 // richiede tutte le categorie nel database + tutti i ristoranti appartenenti
 // http://localhost:8000/api/categorest
-Route::get("/categorest", "Api\CategoryController@indexrest");
+Route::get("/indexrest", "Api\CategoryController@indexrest");
 
 // richiede le categorie cercate + tutti i ristoranti appartenenti
 // http://localhost:8000/api/categorest/giapponese
