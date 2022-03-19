@@ -8,17 +8,18 @@
                     <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
                     <li v-for="(indexrest, index) in indexrests" :key="index">
                         <label><input type="checkbox" :value="indexrest" v-model="checkedCategories"
-                                :name="indexrest.name" :load="log(indexrest)">{{indexrest.name}}</label>
+                                :name="indexrest.name">{{indexrest.name}}</label>
                     </li>
                 </ul>
             </div>
 
-            <button type="button" class="btn btn-primary ml-2" @click="showRest = !showRest">Cerca per categorie</button>
+            <button type="button" class="btn btn-primary ml-2" @click="showRest = !showRest">Cerca per
+                categorie</button>
 
             <div v-if="showRest">
                 <!-- Bisogna stampare i ristoranti delle checkedCategories -->
                 <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
-                    <div v-for="(restaurants, id) in checkedCategory.restaurants" :key="id">
+                    <div v-for="(restaurants, id) in checkedCategory.restaurants" :key="id" :value="duplicato(restaurants.id)">
                         <span>{{restaurants.restaurant_name}}</span>
                     </div>
                 </div>
@@ -32,10 +33,29 @@
         name: "Categories",
         data() {
             return {
-                showRest: false,
+                showRest: true,
                 indexrests: {},
                 checkedCategories: [],
+                selectedCategory: [],
+                duplicati: [],
             };
+        },
+        mounted() {
+            if (localStorage.selectedCategory) {
+                this.selectedCategory = JSON.parse(localStorage.selectedCategory);
+                this.checkedCategories[0] = this.selectedCategory[0];
+
+            }
+            // console.log(this.selectedCategory)
+        },
+
+        watch: {
+            selectedCategory: {
+                handler(newSC) {
+                    localStorage.selectedCategory = JSON.stringify(newSC);
+                },
+                deep: true,
+            },
         },
         // Salviamo i dati delle api nella variabile categorest
         created() {
@@ -50,8 +70,9 @@
                 });
         },
         methods: {
-            log(item){
-                console.log(item)
+            duplicato(item) {
+                this.duplicati.push(item)
+                console.log(this.duplicati);
             }
         }
     }
