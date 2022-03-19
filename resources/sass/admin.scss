@@ -1,11 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Outfit');
+@import url("https://fonts.googleapis.com/css?family=Outfit");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // //FONT AWESOME
 
@@ -13,13 +13,21 @@
 
 // Admin home
 
-@import 'adminhome';
+@import "adminhome";
+
+// Admin restaurants
+
+@import "restaurants";
+
+// Admin dishes
+
+@import "dishes";
 
 // HEADER
 
 body {
     height: 100vh;
-    background-image: url('https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png');
+    background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
     background-color: #f8fafc;
     background-repeat: no-repeat;
     background-attachment: fixed;

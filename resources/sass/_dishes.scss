@@ -7,17 +7,20 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-.card-dashboard {
-    width: 70%;
+.card-dashboard-dishes {
+    width: 100%;
     border: none;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     color: #292929;
 
     .btn-dashboard {
         background-color: #00ccbc;
-        border-radius: 80px;
+        border-radius: 3px;
         color: white;
         font-weight: bold;
         align-self: flex-end;
     }
+}
+.container_img {
+    width: 50%;
 }

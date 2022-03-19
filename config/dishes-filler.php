@@ -2007,7 +2007,7 @@ return [
         "restaurant_id" => 18,
         "course_id" => 1,
         "name" => "Carpacco di seitan",
-        "slug" => "",
+        "slug" => "carpaccio-di-seitan",
         "price" => 8.50,
         "visible" => 1,
         "description" => "",
