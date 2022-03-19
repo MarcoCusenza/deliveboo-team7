@@ -9,7 +9,7 @@
                     Cibo da ristorante, da asporto e generi alimentari.<span style="color: #00ccbc">
                         A casa tua.</span>
                 </h1>
-                <button class="btn-home mt-5">Vai alle categorie</button>
+                <a href="/categories"><button class="btn-home mt-5">Vai alle categorie</button></a>
             </div>
 
         </div>
