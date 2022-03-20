@@ -30,7 +30,7 @@
 
                 {{-- //LOGO --}}
                 <div class="logo-container">
-                    <a href="{{ url('/admin/home') }}"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png"
+                    <a href="{{ url('/') }}"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png"
                             alt="deliveroo logo" class="logo" />
                         {{ config('DeliveBoo') }}
                     </a>

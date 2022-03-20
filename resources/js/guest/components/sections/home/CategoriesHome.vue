@@ -1,5 +1,5 @@
 <template>
-  <div class="container container-categories mb-5">
+  <div class="container container-categories mb-5 pt-5" id="best-categories">
     <h2 class="text-center font-weight-bold">Le nostre migliori categorie:</h2>
     <div class="row mt-5">
       <div
