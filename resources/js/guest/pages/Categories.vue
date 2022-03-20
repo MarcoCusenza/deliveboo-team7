@@ -2,31 +2,45 @@
     <section>
         <div class="container multi-select">
             <h2>Seleziona le tue categorie preferite disponibili</h2>
-            <div class="dropdown-checkbox form-group">
-                <label class="label-title">Seleziona le tue categorie</label>
-                <ul>
-                    <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
-                    <li v-for="(category, index) in indexrests" :key="index">
-                        <!-- aggiungere una categoria a localStorage NON FUNZIONA -->
-                        <label :name="category.name" @click="addCat(category)">
-                            <input type="checkbox" :value="category" v-model="checkedCategories"
-                                :name="category.name" />
-                            {{ category.name }}
-                        </label>
-                    </li>
-                </ul>
-            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-3">
+                    
+                    <div class="form-group">
+                        <label class="label-title">Seleziona le tue categorie</label>
+                        <ul class="list-group">
+                            <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
+                            <li class="list-group-item" v-for="(category, index) in indexrests" :key="index">
+                                <!-- aggiungere una categoria a localStorage NON FUNZIONA -->
+                                <label :name="category.name" @click="addCat(category)">
+                                    <input type="checkbox" :value="category" v-model="checkedCategories"
+                                        :name="category.name" />
+                                    {{ category.name }}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
 
-            <div v-if="checkedCategories.length > 0">
-                <!-- Bisogna stampare i ristoranti delle checkedCategories -->
-                <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
-                    <h3>{{ checkedCategory.name }}</h3>
-                    <div v-for="(restaurant, id) in checkedCategory.restaurants" :key="id">
-                        <div class="mb-3">
-                            <span>{{ restaurant.restaurant_name }}</span>
-                            <a :href="'/restaurant/'+restaurant.slug" class="btn btn-primary">Menù</a>
+           
+                <div class="col-sm-12 col-lg-9">
+                    <div v-if="checkedCategories.length > 0">
+                        <!-- Bisogna stampare i ristoranti delle checkedCategories -->
+                        <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
+                            <h2>{{ checkedCategory.name }}</h2>
+                            <div class="card-grid">
+                                <div class="card-rest shadow-sm bg-white" v-for="(restaurant, id) in checkedCategory.restaurants" :key="id">
+                                <div class="p-3 center">
+                                    <h4>{{ restaurant.restaurant_name }}</h4>
+                                    <p>{{ restaurant.address }}</p>
+                                    <p>{{ restaurant.phone }}</p>
+                                    <a :href="'/restaurant/'+restaurant.slug" class="btn btn-home">Menù</a>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -122,5 +136,48 @@
 
     .dropdown-checkbox:hover ul {
         display: block;
+    }
+    .card-grid{
+        
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+        justify-content: center;gap: 20px;
+                        margin-bottom: 2em;
+
+
+
+    }
+    .btn-home {
+        background-color: #00ccbc;
+        color: white;
+        font-weight: bold;
+
+        }
+
+    @media screen and (min-width: 610px) {
+        .container {
+
+            .card-grid{
+            display: grid;
+            grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+            
+
+    }
+
+        }
+    }
+
+        @media screen and (min-width: 910px) {
+        .container {            
+            .card-grid{
+                
+                display: grid;
+                grid-template: repeat(1, 1fr) / repeat(3, 1fr);
+         
+                    
+
+    }
+
+        }
     }
 </style>

@@ -14,7 +14,7 @@
               <p class="card-text">Prezzo: {{ dish.price }} &euro;</p>
               <p class="card-text">Ingredienti: {{ dish.ingredients }}</p>
               <p class="card-text">Ingredienti: Descrizione: {{ dish.description }}</p>
-              <button class="btn btn-primary" @click="addDish(dish)">Aggiungi</button>
+              <button class="btn btn-home" @click="addDish(dish)">Aggiungi</button>
             </div>
           </div>       
         </li>
@@ -133,6 +133,12 @@ export default {
 
 
 <style lang="scss" scoped>
+.btn-home {
+  background-color: #00ccbc;
+  color: white;
+  font-weight: bold;
+
+}
 .image {
   height: 300px;
   min-width: 300px;
