@@ -39,6 +39,11 @@
                     </ul>
                     <div class="mt-3 row d-flex justify-content-around">
                         <a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-warning">Modifica piatto</a>
+                        <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button onclick="return confirm ('Confermi di voler eliminare?')" type="submit" class="btn btn-danger">Elimina piatto</button>
+                        </form>
                         <a href="{{ route('dishes.index', $dish->id) }}" class="btn btn-dashboard">Torna ai piatti</a>
                     </div>
                 </div>

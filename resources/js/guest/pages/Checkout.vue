@@ -39,7 +39,7 @@
                   </div>
                 </td>
                 <td>
-                  <button @click="removeDish(dish)">
+                  <button class="btn btn-home" @click="removeDish(dish)">
                     <i class="fa-solid fa-trash-can delete"></i>
                   </button>
                 </td>
@@ -233,6 +233,11 @@ export default {
     .delete {
       cursor: pointer;
     }
+    .btn-home {
+      background-color: #00ccbc;
+      color: white;
+      font-weight: bold;
+      }
   }
 }
 
