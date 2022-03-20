@@ -86,11 +86,6 @@ export default {
   },
   methods: {
     increaseQuantity(dish) {
-      // var value = parseInt(document.getElementById("number").value, 10);
-      // value = isNaN(value) ? 0 : value;
-      // value++;
-      // document.getElementById("number").value = value;
-
       let newDish = dish;
       newDish[1] = dish[1] + 1;
       let ind = this.cart.indexOf(dish);
@@ -108,12 +103,6 @@ export default {
       // }
     },
     decreaseQuantity(dish) {
-      // var value = parseInt(document.getElementById("number").value, 10);
-      // value = isNaN(value) ? 0 : value;
-      // value < 1 ? (value = 1) : "";
-      // value--;
-      // document.getElementById("number").value = value;
-
       let newDish = dish;
       newDish[1] = dish[1] - 1;
       let ind = this.cart.indexOf(dish);

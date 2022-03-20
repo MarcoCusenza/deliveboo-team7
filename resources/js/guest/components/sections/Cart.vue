@@ -13,39 +13,6 @@
 <script>
 export default {
   name: "Cart",
-  data() {
-    return {
-      cart: [],
-    };
-  },
-  created() {
-    console.log("CART CART:");
-    console.log(this.cart);
-  },
-  mounted() {
-    if (localStorage.cart) {
-      this.cart = JSON.parse(localStorage.cart);
-    }
-  },
-  watch: {
-    cart: {
-      handler(newDish) {
-        localStorage.cart = JSON.stringify(newDish);
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    addDish(dish) {
-      this.cart.push(dish);
-    },
-    removeDish(dish) {
-      const index = this.cart.indexOf(dish);
-      if (index > -1) {
-        this.cart.splice(index, 1);
-      }
-    },
-  },
 };
 </script>
 
