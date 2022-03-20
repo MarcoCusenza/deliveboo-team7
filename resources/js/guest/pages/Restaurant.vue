@@ -24,7 +24,6 @@
         },
         methods: {
             isFirstLetterH(item) {
-                console.log(item)
                 return item[0] == 'h'
             },
         },
