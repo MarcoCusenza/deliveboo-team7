@@ -45,7 +45,11 @@
                 </td>
               </tr>
             </tbody>
+            <div class="final-price">
+              <h4>Totale = {{ finalPrice() }}€</h4>
+            </div>
           </table>
+
           <div v-else>Il tuo carrello è vuoto</div>
         </div>
         <div class="col-sm-12 col-lg-5 col-checkout p-5 mt-5">
@@ -81,23 +85,14 @@ export default {
     },
   },
   methods: {
+    // aumenta la quantità di piatti nel carrello
     increaseQuantity(dish) {
       let newDish = dish;
       newDish[1] = dish[1] + 1;
       let ind = this.cart.indexOf(dish);
       this.cart.splice(ind, 1, newDish);
-      // const actualCart = this.getActualCartArray();
-      // let index = -1;
-      // actualCart.forEach((item, ind) => {
-      //   if (item[0].id == dish[0].id) {
-      //     index = ind;
-      //   }
-      // });
-      // if (index > -1) {
-      //   this.cart[index][1]++;
-      //   this.cart.push(this.cart[index]);
-      // }
     },
+    // diminuisce la quantità di piatti nel carrello, se è 0 rimuove il piatto dal carrello
     decreaseQuantity(dish) {
       let newDish = dish;
       newDish[1] = dish[1] - 1;
@@ -108,10 +103,11 @@ export default {
         this.cart.splice(ind, 1);
       }
     },
+    //rimuove piatto dal carrello
     removeDish(dish) {
-      const actualCart = this.getActualCartArray();
+      // const actualCart = this.getActualCartArray();
       let index = -1;
-      actualCart.forEach((item, ind) => {
+      this.cart.forEach((item, ind) => {
         if (item[0].id == dish[0].id) {
           index = ind;
         }
@@ -120,30 +116,23 @@ export default {
         this.cart.splice(index, 1);
       }
     },
-    getActualCartArray() {
-      // console.log("actual array:", JSON.parse(localStorage.getItem("cart")));
-      return JSON.parse(localStorage.getItem("cart"));
+    //restituisce il carrello in localstorage
+    // getActualCartArray() {
+    //   return JSON.parse(localStorage.getItem("cart"));
+    // },
+    //calcola il prezzo finale del carrello
+    finalPrice() {
+      let finalPrice = 0;
+
+      this.cart.forEach((item) => {
+        finalPrice += item[0].price * item[1];
+      });
+
+      return finalPrice;
     },
   },
 };
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <style lang="scss" scoped>
 .container-bg {
@@ -158,6 +147,16 @@ export default {
     background: white;
     border-radius: 30px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+    .table {
+      .final-price {
+        margin: 20px 0 0 10px;
+        padding: 10px;
+        width: 160px;
+        border-radius: 10px;
+        background-color: rgb(240, 240, 240);
+      }
+    }
 
     .counter {
       margin: auto;
