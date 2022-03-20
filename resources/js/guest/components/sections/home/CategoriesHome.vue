@@ -108,13 +108,14 @@ export default {
 .card-category {
   height: 350px;
   border-radius: 57px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 25px 100px 0px;
+  box-shadow: rgba(17, 12, 46, 0.15) 10px 30px 30px 10px;
 
   .img-container {
     border-top-left-radius: 57px;
     border-top-right-radius: 57px;
     height: 70%;
-    background: #f3f3f3;
+    background-image: linear-gradient(#f3f3f3, #f8fafc);
+    // background: #f3f3f3;
 
     img {
       width: 150px;
