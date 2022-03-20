@@ -75,12 +75,16 @@
             </td>
           </tr>
         </tbody>
+      </table>
+      <div v-else>Il tuo carrello è vuoto</div>
+      <div class="cart-bottom">
         <div class="final-price">
           <h4>Totale = {{ finalPrice() }}€</h4>
         </div>
-      </table>
-
-      <div v-else>Il tuo carrello è vuoto</div>
+        <a class="button-link mx-2 icon-header" href="/checkout">
+          Vai al checkout
+        </a>
+      </div>
     </section>
   </div>
 </template>
@@ -270,16 +274,6 @@ export default {
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   padding: 40px;
 
-  .table {
-    .final-price {
-      margin: 20px 0 0 10px;
-      padding: 10px;
-      width: 160px;
-      border-radius: 10px;
-      background-color: rgb(240, 240, 240);
-    }
-  }
-
   .counter {
     margin: auto;
     display: flex;
@@ -338,6 +332,35 @@ export default {
 
   .delete {
     cursor: pointer;
+  }
+
+  .cart-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .final-price {
+      padding: 10px 20px;
+      width: 160px;
+      border-radius: 10px;
+      background-color: rgb(240, 240, 240);
+    }
+
+    a {
+      background-color: #00ccbc;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #00ac9d;
+        font-style: none;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+    }
   }
 }
 

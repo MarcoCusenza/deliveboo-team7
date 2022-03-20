@@ -35,4 +35,21 @@ class RestaurantController extends Controller
 
     return response()->json($restaurants);
   }
+
+  // richiede tutti i ristoranti di una data categoria
+  // localhost:8000/api/restaucat/italiano
+  public function restaucat($slug)
+  {
+    //whereHas mi permette di prendere restaurants ma dare una clausola sulla tabella categories
+    $restaurants = Restaurant::whereHas("categories", function ($query) use ($slug) {
+      $query->where("slug", $slug);
+    })->paginate(6);
+
+    // 404 restaurant slug non trovato
+    if (empty($restaurants)) {
+      return response()->json(["message" => "Restaurant not found"], 404);
+    }
+
+    return response()->json($restaurants);
+  }
 }
