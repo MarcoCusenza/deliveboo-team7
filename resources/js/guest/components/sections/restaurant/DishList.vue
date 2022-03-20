@@ -258,6 +258,7 @@ export default {
   justify-content: center;
   gap: 20px;
   margin-bottom: 3em;
+
   .card-rest {
     border-radius: 2em;
   }
@@ -340,7 +341,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 610px) {
+@media screen and (min-width: 768px) {
   .container {
     .card-grid {
       display: grid;
@@ -349,11 +350,29 @@ export default {
   }
 }
 
-@media screen and (min-width: 910px) {
+@media screen and (min-width: 992px) {
+  .container {
+    .card-grid {
+      display: grid;
+      grid-template: repeat(1, 1fr) / repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
   .container {
     .card-grid {
       display: grid;
       grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+    }
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .container {
+    .card-grid {
+      display: grid;
+      grid-template: repeat(1, 1fr) / repeat(5, 1fr);
     }
   }
 }
