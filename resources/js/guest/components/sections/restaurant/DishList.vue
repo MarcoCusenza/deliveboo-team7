@@ -12,7 +12,7 @@
               <h5 class="card-title">{{ dish.name }}</h5>
               <p class="card-text">Prezzo: {{ dish.price }} &euro;</p>
               <p class="card-text">Ingredienti: {{ dish.ingredients }}</p>
-              <p class="card-text">Ingredienti: Descrizione: {{ dish.description }}</p>
+              <p class="card-text">Descrizione: {{ dish.description }}</p>
               <button class="btn btn-home" @click="addDish(dish)">Aggiungi</button>
             </div>
         </div>       
