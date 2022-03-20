@@ -1,30 +1,41 @@
 <template>
   <div class="dish-list">
     <div class="container">
-      <ul>
-        <li class="dish" v-for="dish in dishes" :key="dish.id">
-          <img :src="dish.image" :alt="dish.name" />
-          <div class="dish-name">{{ dish.name }}</div>
-          <div class="dish-price">Prezzo: {{ dish.price }}</div>
-          <div class="dish-ingedients">Ingredienti: {{ dish.ingredients }}</div>
-          <div class="dish-description">
-            Descrizione: {{ dish.description }}
-          </div>
-          <button @click="addDish(dish)">Aggiungi</button>
+      <ul class="list-group mb-3 border-0">
+        <li class="list-group-item border-0 bg-transparent " v-for="dish in dishes" :key="dish.id">
+
+          <div class="card border-0 d-flexd-flex flex-row shadow mb-5 bg-white" style="border-radius:2rem;">
+            <!-- <div class="image" :style="{ 'background-image': url(dish.image) }"></div>  -->
+            <div class="image"  >
+              <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ dish.name }}</h5>
+              <p class="card-text">Prezzo: {{ dish.price }} &euro;</p>
+              <p class="card-text">Ingredienti: {{ dish.ingredients }}</p>
+              <p class="card-text">Ingredienti: Descrizione: {{ dish.description }}</p>
+              <button class="btn btn-primary" @click="addDish(dish)">Aggiungi</button>
+            </div>
+          </div>       
         </li>
       </ul>
     </div>
 
     <!-- CARRELLO -->
     <section class="cart">
-      <h3>Carrello</h3>
-      <ul>
-        <li v-for="(dish, i) in cart" :key="i">
-          <span class="dish-name">{{ dish[0].name }}</span>
-          <span class="dish-price">{{ dish[0].price }}€</span>
-          <span class="dish-quantity">x{{ dish[1] }}</span>
-        </li>
-      </ul>
+      <div class="card border-0 shadow p-3 mb-5 " style="border-radius:2rem;" >
+        <div class="card-body" >
+          <h3>Carrello</h3>
+          <ul>
+            <li v-for="(dish, i) in cart" :key="i">
+              <span class="dish-name">{{ dish[0].name }}</span>
+              <span class="dish-price">{{ dish[0].price }}€</span>
+              <span class="dish-quantity">x{{ dish[1] }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
     </section>
 
     <!-- ALTERNATIVA -->
@@ -122,7 +133,19 @@ export default {
 
 
 <style lang="scss" scoped>
-img {
-  max-width: 200px;
+.image {
+  height: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  color: grey;
+  text-align: center;
+  
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2em 0 0 2em;
+  }
+  
 }
 </style>
