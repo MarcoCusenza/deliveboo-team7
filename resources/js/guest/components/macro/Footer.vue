@@ -25,11 +25,10 @@
 
                     <form>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">
+                            <label>
                                 <h3> Inserisci qui la tua mail per maggiori novità!</h3>
                             </label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Inserisci qui la tua mail" />
+                            <input type="email" class="form-control" placeholder="Inserisci qui la tua mail" />
                             <button class="btn-home mt-3 float-right" type="submit">Invia</button>
 
                         </div>
@@ -62,6 +61,33 @@
 
             img {
                 width: 200px;
+
+                &:hover {
+                    animation: shake 0.5s;
+                    animation-iteration-count: infinite;
+                }
+
+                @keyframes shake {
+                    0% {
+                        transform: translate(0px, 0px) rotate(-10deg);
+                    }
+
+                    25% {
+                        transform: translate(0px, 0px) rotate(10deg);
+                    }
+
+                    50% {
+                        transform: translate(0px, 0px) rotate(-10deg);
+                    }
+
+                    75% {
+                        transform: translate(0px, 0px) rotate(10deg);
+                    }
+
+                    100% {
+                        transform: translate(0px, 0px) rotate(-10deg);
+                    }
+                }
             }
 
             ul {
@@ -75,6 +101,13 @@
             form {
                 width: 70%;
 
+                .form-control {
+                    transition: opacity 0.3s;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
 
                 .btn-home {
                     padding: 5px 20px;
@@ -84,6 +117,11 @@
                     border-radius: 57px;
                     border: none;
                     font-size: 15px;
+                    transition: background 0.3s;
+
+                    &:hover {
+                        background: #007067;
+                    }
                 }
             }
         }
