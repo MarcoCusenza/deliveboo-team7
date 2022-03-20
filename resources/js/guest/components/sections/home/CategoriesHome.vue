@@ -23,7 +23,7 @@
           <a
             href="/categories"
             :value="category"
-            @click="saveCategory(category)"
+            @click="addCat(category)"
             class="btn font-weight-bold"
             >Visualizza</a
           >
@@ -33,7 +33,7 @@
     <div class="btn-container">
       <a href="/categories"
         ><button class="btn-home mt-5" @click="clearCat()">
-          Guarda tutte le categorie
+          Scegli tra tutte le categorie
         </button></a
       >
     </div>
@@ -47,27 +47,28 @@ export default {
   data() {
     return {
       categories: [],
-      selectedCategory: [],
+      selectedCategories: [],
     };
   },
   methods: {
-    saveCategory(item) {
-      this.selectedCategory.splice(0, 1, item);
+    addCat(item) {
+      this.clearCat();
+      this.selectedCategories.push(item);
     },
     clearCat() {
-      this.selectedCategory = [];
+      this.selectedCategories = [];
     },
   },
   mounted() {
-    if (localStorage.selectedCategory) {
-      this.selectedCategory = JSON.parse(localStorage.selectedCategory);
+    if (localStorage.selectedCategories) {
+      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
     }
   },
 
   watch: {
-    selectedCategory: {
+    selectedCategories: {
       handler(newSC) {
-        localStorage.selectedCategory = JSON.stringify(newSC);
+        localStorage.selectedCategories = JSON.stringify(newSC);
       },
       deep: true,
     },
