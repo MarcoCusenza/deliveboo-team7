@@ -44,7 +44,7 @@
                             <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button type="submit" class="btn btn-danger">Elimina piatto</button>
+                                <button onclick="return confirm ('Confermi di voler eliminare?')" type="submit" class="btn btn-danger">Elimina piatto</button>
                             </form>
                         </td>
                     </tr>
