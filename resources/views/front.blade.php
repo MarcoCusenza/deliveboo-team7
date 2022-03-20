@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>DeliveBoo</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Outfit" rel="stylesheet">
 
-    {{-- link css  --}}
+    {{-- link css --}}
     <link rel="stylesheet" href="{{ asset('css/front.css') }}">
 
 </head>
@@ -31,7 +31,7 @@
             </div>
         @endif --}}
 
-            {{-- <a style="background-color: red; color:antiquewhite; padding: 10px; border-radius: 10px; font-weight:900;"
+    {{-- <a style="background-color: red; color:antiquewhite; padding: 10px; border-radius: 10px; font-weight:900;"
                 href="{{ route('home') }}">Back
                 Office</a> --}}
 
