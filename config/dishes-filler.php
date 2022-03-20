@@ -5,10 +5,10 @@ return [
         "restaurant_id" => 1,
         "course_id" => 7,
         "name" => "Nigiri Salmone",
-        "slug" => "nigiri-con-salmon",
+        "slug" => "nigiri-salmone",
         "price" => 4.00,
         "visible" => 1,
-        "description" => "Nigiri con salmone",
+        "description" => "Nigiri con salmone nostrano",
         "ingredients" => "riso, salmone",
         "image" => "https://images.unsplash.com/photo-1611810175440-aec1ef36d8c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     ],
@@ -16,7 +16,7 @@ return [
         "restaurant_id" => 1,
         "course_id" => 7,
         "name" => "Nigiri Tonno",
-        "slug" => "nigiri-con-tonno",
+        "slug" => "nigiri-tonno",
         "price" => 4.00,
         "visible" => 1,
         "description" => "Nigiri con tonno nostrano",
@@ -379,7 +379,7 @@ return [
         "restaurant_id" => 5,
         "course_id" => 2,
         "name" => "Spaghetti al pomodoro",
-        "slug" => "spaghetti-al-pomodoro-2",
+        "slug" => "spaghetti-al-pomodoro",
         "price" => 8.00,
         "visible" => 1,
         "description" => "Un piatto simbolo della cucina italiana",
@@ -467,7 +467,7 @@ return [
         "restaurant_id" => 5,
         "course_id" => 6,
         "name" => "Acqua naturale",
-        "slug" => "acqua-naturale-22",
+        "slug" => "acqua-naturale",
         "price" => 1.00,
         "visible" => 1,
         "description" => null,
@@ -787,7 +787,7 @@ return [
         "restaurant_id" => 7,
         "course_id" => 7,
         "name" => "Pizza marinara",
-        "slug" => "pizza-marinara-3",
+        "slug" => "pizza-marinara",
         "price" => 5.00,
         "visible" => 1,
         "description" => "Pizza marinara",
@@ -798,7 +798,7 @@ return [
         "restaurant_id" => 8,
         "course_id" => 7,
         "name" => "Pizza quattro stagioni",
-        "slug" => "pizza-quattro-stagioni-2",
+        "slug" => "pizza-quattro-stagioni",
         "price" => 7.00,
         "visible" => 1,
         "description" => "Pizza quattro stagioni",
@@ -831,7 +831,7 @@ return [
         "restaurant_id" => 8,
         "course_id" => 7,
         "name" => "Pizza alla diavola",
-        "slug" => "pizza-diavola-2",
+        "slug" => "pizza-diavola",
         "price" => 7.50,
         "visible" => 1,
         "description" => "Pizza alla diavola",
@@ -920,7 +920,7 @@ return [
         "restaurant_id" => 9,
         "course_id" => 1,
         "name" => "Involtini primavera",
-        "slug" => "involtini-primavera-3",
+        "slug" => "involtini-primavera",
         "price" => 3.50,
         "visible" => 1,
         "description" => "Involtini primavera porzione da 2 pezzi",
@@ -1041,7 +1041,7 @@ return [
         "restaurant_id" => 10,
         "course_id" => 1,
         "name" => "Involtini primavera",
-        "slug" => "involtini-primavera",
+        "slug" => "involtini-primavera-2",
         "price" => 3.50,
         "visible" => 1,
         "description" => "Involtini primavera porzione da 2 pezzi, salsa agrodolce inclusa",
@@ -1074,7 +1074,7 @@ return [
         "restaurant_id" => 10,
         "course_id" => 2,
         "name" => "Spaghetti al pomodoro",
-        "slug" => "spaghetti-al-pomodoro",
+        "slug" => "spaghetti-al-pomodoro-2",
         "price" => 5.00,
         "visible" => 1,
         "description" => "Spaghetti al pomodoro, con pomodorini freschi",
@@ -1112,7 +1112,7 @@ return [
         "visible" => 1,
         "description" => "Fritella croccante di farina, coriandolo, insalata iceberg, porro, uovo, pollo fritto e salsa crêpe artigianale",
         "ingredients" => "insalata iceberg, porro, uovo, pollo fritto",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 10,
@@ -1233,7 +1233,7 @@ return [
         "visible" => 1,
         "description" => "Pollo sfilacciato in salsa chipotle, pomodoro, cipolla e spezie, guarnito con lattuga e avocado",
         "ingredients" => "Pollo, pomodoro, cipolla, avocado",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 11,
@@ -1244,7 +1244,7 @@ return [
         "visible" => 1,
         "description" => "Mix di carne di manzo tagliata a striscioline e chorizo, guarnito con lattuga, cipolla e peperoncino jalapeno soffritto",
         "ingredients" => "Carne di manzo, chorizo,jalapeno",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 11,
@@ -1273,7 +1273,7 @@ return [
         "restaurant_id" => 12,
         "course_id" => 1,
         "name" => "Involtini primavera",
-        "slug" => "involtini-primavera-2",
+        "slug" => "involtini-primavera-3",
         "price" => 3.50,
         "visible" => 1,
         "description" => "Involtini primavera porzione da 2 pezzi, salsa agrodolce inclusa",
@@ -1339,7 +1339,7 @@ return [
         "restaurant_id" => 12,
         "course_id" => 6,
         "name" => "Peroni",
-        "slug" => "peroni-13",
+        "slug" => "peroni-4",
         "price" => 4.50,
         "visible" => 1,
         "description" => "Birra Peroni da 33cl",
@@ -1350,7 +1350,7 @@ return [
         "restaurant_id" => 12,
         "course_id" => 6,
         "name" => "Acqua naturale",
-        "slug" => "acqua-naturale-13",
+        "slug" => "acqua-naturale-4",
         "price" => 2.00,
         "visible" => 1,
         "description" => null,
@@ -1400,7 +1400,7 @@ return [
         "visible" => 1,
         "description" => "Hamburger Americano con salse a scelta",
         "ingredients" => "carne di manzo,pomodoro, formaggio sottiletta",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 13,
@@ -1411,7 +1411,7 @@ return [
         "visible" => 1,
         "description" => "Hamburger Vegetariano con salse a scelta",
         "ingredients" => "hamburger vegetariano,pomodoro, formaggio sottiletta, insalata iceberg",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 13,
@@ -1422,7 +1422,7 @@ return [
         "visible" => 1,
         "description" => "Hamburger di pesce con salse a scelta",
         "ingredients" => "merluzzo ,pomodoro, formaggio sottiletta, insalata iceberg",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 13,
@@ -1433,7 +1433,7 @@ return [
         "visible" => 1,
         "description" => "Hamburger di pollo con salse a scelta",
         "ingredients" => "pollo ,pomodoro, formaggio sottiletta, insalata iceberg",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 13,
@@ -1623,7 +1623,7 @@ return [
         "visible" => 1,
         "description" => "Misto delle verdure coperto con farina di ceci",
         "ingredients" => "farina di ceci, carote, piselli, cipolla",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 15,
@@ -1634,7 +1634,7 @@ return [
         "visible" => 1,
         "description" => "Pezzi di pollo coperti con farina di ceci",
         "ingredients" => "pollo, farina di ceci",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 15,
@@ -1656,7 +1656,7 @@ return [
         "visible" => 1,
         "description" => "Salmone marinato in erbe fresche orientali e grigliato in tandoori",
         "ingredients" => "salmone, erbe",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 15,
@@ -1667,7 +1667,7 @@ return [
         "visible" => 1,
         "description" => "Patate e cavolfiori cucinati in stile indiano",
         "ingredients" => "patate, cavolfiore",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 15,
@@ -1678,7 +1678,7 @@ return [
         "visible" => 1,
         "description" => "Gelato tipico indiano con pistacchio",
         "ingredients" => "gelato al pistacchio",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 15,
@@ -1695,12 +1695,12 @@ return [
         "restaurant_id" => 15,
         "course_id" => 5,
         "name" => "Acqua naturale",
-        "slug" => "acqua-naturale",
+        "slug" => "acqua-naturale-5",
         "price" => 2.00,
         "visible" => 1,
         "description" => "Acqua naturale 50cl",
         "ingredients" => "acqua",
-        "image" => ""
+        "image" => null,
     ],
 
     [
@@ -1723,7 +1723,7 @@ return [
         "visible" => 1,
         "description" => "Farina di lenticchie e spezie indiane",
         "ingredients" => "Farina di lenticchie e spezie indiane",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1734,7 +1734,7 @@ return [
         "visible" => 1,
         "description" => "Involtino di patate e piselli",
         "ingredients" => "patate, piselli",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1756,7 +1756,7 @@ return [
         "visible" => 1,
         "description" => "Pezzi di gamberi fritti",
         "ingredients" => "gamberi",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1767,7 +1767,7 @@ return [
         "visible" => 1,
         "description" => "Melanzane affumicate stile indiano",
         "ingredients" => "melanzane",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1778,7 +1778,7 @@ return [
         "visible" => 1,
         "description" => "Pesce al curry",
         "ingredients" => "merluzzo, spezie",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1789,7 +1789,7 @@ return [
         "visible" => 1,
         "description" => "Gamberi cucinati con spezie fresche",
         "ingredients" => "gamberi, spezie",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1800,7 +1800,7 @@ return [
         "visible" => 1,
         "description" => "Riso con gamberi e salsa varie",
         "ingredients" => "riso basmati, gamberi, salsa",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1811,7 +1811,7 @@ return [
         "visible" => 1,
         "description" => "Riso basmati con verdure miste frutta secca",
         "ingredients" => "riso basmati, verdure miste, frutta secca",
-        "image" => ""
+        "image" => null,
     ],
     [
         "restaurant_id" => 16,
@@ -1856,7 +1856,7 @@ return [
         "visible" => 1,
         "description" => "Fiori di zucca ripieni di mozzarella e alici, 2 pezzi",
         "ingredients" => "fiori di zucca, mozzarella, alici",
-        "image" => ""
+        "image" => "https://i.ibb.co/k5WjQ0y/fiori-di-zucca-farciti.jpg",
     ],
     [
         "restaurant_id" => 17,
@@ -1884,7 +1884,7 @@ return [
         "restaurant_id" => 17,
         "course_id" => 7,
         "name" => "Pizza quattro stagioni",
-        "slug" => "pizza-quattro-stagioni",
+        "slug" => "pizza-quattro-stagioni-2",
         "price" => 7.00,
         "visible" => 1,
         "description" => "Pizza quattro stagioni",
@@ -1895,7 +1895,7 @@ return [
         "restaurant_id" => 17,
         "course_id" => 7,
         "name" => "Pizza Margherita",
-        "slug" => "pizza-margherita-17",
+        "slug" => "pizza-margherita-8",
         "price" => 5.50,
         "visible" => 1,
         "description" => "Pizza margherita",
@@ -1906,7 +1906,7 @@ return [
         "restaurant_id" => 17,
         "course_id" => 7,
         "name" => "Pizza alla diavola",
-        "slug" => "pizza-diavola",
+        "slug" => "pizza-diavola-2",
         "price" => 8.50,
         "visible" => 1,
         "description" => "Pizza alla diavola",
@@ -1917,7 +1917,7 @@ return [
         "restaurant_id" => 17,
         "course_id" => 7,
         "name" => "Pizza quattro formaggi",
-        "slug" => "pizza-quattro-formaggi-22",
+        "slug" => "pizza-quattro-formaggi-3",
         "price" => 7.50,
         "visible" => 1,
         "description" => "",
@@ -1928,7 +1928,7 @@ return [
         "restaurant_id" => 17,
         "course_id" => 7,
         "name" => "Pizza marinara",
-        "slug" => "pizza-marinara",
+        "slug" => "pizza-marinara-3",
         "price" => 6.00,
         "visible" => 1,
         "description" => "Pizza marinara",
@@ -2037,6 +2037,17 @@ return [
         "image" => null,
     ],
     [
+        "restaurant_id" => 18,
+        "course_id" => 7,
+        "name" => "Pizza marinara",
+        "slug" => "pizza-marinara-4",
+        "price" => 6.50,
+        "visible" => 1,
+        "description" => "Pizza marinara, a richiesta con farina di farro",
+        "ingredients" => "Pomodoro, aglio, origano, olio",
+        "image" => "https://i.ibb.co/jTDCcGs/pizza-marinara.jpg",
+    ],
+    [
         "restaurant_id" => 5,
         "course_id" => 6,
         "name" => "Coca-cola",
@@ -2047,6 +2058,7 @@ return [
         "ingredients" => "Coca-cola",
         "image" => null,
     ],
+
 
     [
         "restaurant_id" => 20,
@@ -2074,7 +2086,7 @@ return [
         "restaurant_id" => 19,
         "course_id" => 7,
         "name" => "Uramaki Salmone Avocado",
-        "slug" => "uramaki-salmone-avocado-7",
+        "slug" => "uramaki-salmone-avocado-2",
         "price" => 8.00,
         "visible" => 1,
         "description" => "Uramaki classico",
@@ -2245,7 +2257,7 @@ return [
         "visible" => 1,
         "description" => "Hamburger Vegetariano con salse a scelta",
         "ingredients" => "hamburger vegetariano,pomodoro, formaggio sottiletta, insalata iceberg",
-        "image" => "",
+        "image" => null,
     ],
     [
         "restaurant_id" => 20,
@@ -2278,6 +2290,6 @@ return [
         "visible" => 1,
         "description" => "Hamburger di pollo con salse a scelta",
         "ingredients" => "pollo ,pomodoro, formaggio sottiletta, insalata iceberg",
-        "image" => "",
+        "image" => null,
     ],
 ];
