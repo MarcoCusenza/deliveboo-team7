@@ -4,7 +4,7 @@
       <h2 class="my-5">Checkout</h2>
       <div class="row">
         <div class="col-12 col-checkout p-5">
-          <table class="table table-borderless">
+          <table class="cart table table-borderless" v-if="cart.length > 0">
             <thead>
               <tr>
                 <th scope="col">Nome piatto</th>
@@ -46,6 +46,7 @@
               </tr>
             </tbody>
           </table>
+          <div v-else>Il tuo carrello è vuoto</div>
         </div>
         <div class="col-sm-12 col-lg-5 col-checkout p-5 mt-5">
           qui ci va il pagamento
@@ -59,13 +60,8 @@
 </template>
 
 <script>
-import Cart from "../components/sections/Cart.vue";
-
 export default {
   name: "Checkout",
-  components: {
-    Cart,
-  },
   data() {
     return {
       cart: [],
@@ -226,7 +222,7 @@ export default {
       background-color: #00ccbc;
       color: white;
       font-weight: bold;
-      }
+    }
   }
 }
 
