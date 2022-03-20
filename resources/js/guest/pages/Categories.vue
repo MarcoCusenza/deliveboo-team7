@@ -7,21 +7,18 @@
           <div class="form-group">
             <label class="label-title">Seleziona le tue categorie</label>
             <ul class="list-group">
-              <!-- Salvo i dati delle categorest selezionate nella variabile checkedCategories -->
+              <!-- Salvo i dati delle categorest selezionate nella variabile selectedCategories -->
               <li
                 class="list-group-item"
                 v-for="(category, index) in indexrests"
                 :key="index"
-                @click="
-                  isChecked(category) ? removeCat(category) : addCat(category)
-                "
               >
                 <!-- una categoria a localStorage NON FUNZIONA provare a dare al figlio -->
-                <label :name="category.name">
+                <label>
                   <input
                     type="checkbox"
                     :value="category"
-                    v-model="checkedCategories"
+                    v-model="selectedCategories"
                     :name="category.name"
                   />
                   {{ category.name }}
@@ -31,14 +28,14 @@
           </div>
         </div>
 
-        <div class="col-sm-12 col-lg-9" v-if="checkedCategories.length > 0">
-          <!-- Bisogna stampare i ristoranti delle checkedCategories -->
-          <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
-            <h2>{{ checkedCategory.name }}</h2>
+        <div class="col-sm-12 col-lg-9" v-if="selectedCategories.length > 0">
+          <!-- Bisogna stampare i ristoranti delle selectedCategories -->
+          <div v-for="(selCat, id) in selectedCategories" :key="id">
+            <h2>{{ selCat.name }}</h2>
             <div class="card-grid">
               <div
                 class="card-rest shadow-sm bg-white"
-                v-for="(restaurant, id) in checkedCategory.restaurants"
+                v-for="(restaurant, id) in selCat.restaurants"
                 :key="id"
               >
                 <div class="p-3 center">
@@ -66,39 +63,20 @@ export default {
   data() {
     return {
       indexrests: {},
-      checkedCategories: [],
       selectedCategories: [],
     };
   },
-  methods: {
-    //aggiungere una categoria a localStorage NON FUNZIONA + controllare se c'è già
-    addCat(category) {
-      this.selectedCategories.push(category);
-      console.log(this.selectedCategories);
-    },
-    removeCat(category) {
-      let index = this.selectedCategories.indexOf(category);
-      console.log("INDEX", index);
-      this.selectedCategories.splice(index, 1);
-    },
-    isChecked(category) {
-      if (this.checkedCategories) {
-        console.log("isChecked???", this.checkedCategories.includes(category));
-        return this.checkedCategories.includes(category);
-      } else {
-        return false;
-      }
-    },
-  },
   mounted() {
-    console.log(JSON.parse(localStorage.selectedCategories).length);
-    if (JSON.parse(localStorage.selectedCategories).length > 0) {
+    if (localStorage.selectedCategories) {
+      console.log(
+        "MOUNTED localStorage SELCAT",
+        JSON.parse(localStorage.selectedCategories)
+      );
       this.selectedCategories = JSON.parse(localStorage.selectedCategories);
-      this.checkedCategories = this.selectedCategories;
     }
   },
   watch: {
-    selectedCategory: {
+    selectedCategories: {
       handler(newSC) {
         localStorage.selectedCategories = JSON.stringify(newSC);
       },
@@ -122,48 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .dropdown-checkbox {
-//   position: relative;
-//   display: inline-block;
-// }
-
-// .dropdown-checkbox .label-title {
-//   font-size: 13px;
-// }
-
-// .dropdown-checkbox ul {
-//   position: absolute;
-//   background: #f8fafc;
-//   list-style: none;
-//   min-width: 180px;
-//   margin: 0px;
-//   padding: 0px;
-//   left: 0px;
-//   display: none;
-//   z-index: 1;
-//   border: 1px solid #9c9c9c;
-// }
-
-// .dropdown-checkbox ul li {
-//   font-size: 15px;
-//   padding: 10px;
-//   border-bottom: 1px solid #a5a5a5;
-//   margin: 0px;
-
-//   label {
-//     width: 100%;
-//     cursor: pointer;
-//   }
-// }
-
-// .dropdown-checkbox ul li input {
-//   margin-right: 10px;
-// }
-
-// .dropdown-checkbox:hover ul {
-//   display: block;
-// }
-
 .card-grid {
   display: grid;
   grid-template: repeat(1, 1fr) / repeat(1, 1fr);
