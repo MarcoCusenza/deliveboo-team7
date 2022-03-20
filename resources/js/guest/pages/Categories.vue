@@ -4,7 +4,7 @@
             <h2>Seleziona le tue categorie preferite disponibili</h2>
             <div class="row">
                 <div class="col-sm-12 col-lg-3">
-                    
+
                     <div class="form-group">
                         <label class="label-title">Seleziona le tue categorie</label>
                         <ul class="list-group">
@@ -20,27 +20,28 @@
                         </ul>
                     </div>
                 </div>
-            
 
-           
+
+
                 <div class="col-sm-12 col-lg-9">
                     <div v-if="checkedCategories.length > 0">
                         <!-- Bisogna stampare i ristoranti delle checkedCategories -->
                         <div v-for="(checkedCategory, id) in checkedCategories" :key="id">
                             <h2>{{ checkedCategory.name }}</h2>
                             <div class="card-grid">
-                                <div class="card-rest shadow-sm bg-white" v-for="(restaurant, id) in checkedCategory.restaurants" :key="id">
-                                <div class="p-3 center">
-                                    <h4>{{ restaurant.restaurant_name }}</h4>
-                                    <p>{{ restaurant.address }}</p>
-                                    <p>{{ restaurant.phone }}</p>
-                                    <a :href="'/restaurant/'+restaurant.slug" class="btn btn-home">Menù</a>
+                                <div class="card-rest shadow-sm bg-white"
+                                    v-for="(restaurant, id) in checkedCategory.restaurants" :key="id">
+                                    <div class="p-3 center">
+                                        <h4>{{ restaurant.restaurant_name }}</h4>
+                                        <p>{{ restaurant.address }}</p>
+                                        <p>{{ restaurant.phone }}</p>
+                                        <a :href="'/restaurant/'+restaurant.slug" class="btn btn-home">Menù</a>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -137,46 +138,41 @@
     .dropdown-checkbox:hover ul {
         display: block;
     }
-    .card-grid{
-        
+
+    .card-grid {
+
         display: grid;
         grid-template: repeat(1, 1fr) / repeat(1, 1fr);
-        justify-content: center;gap: 20px;
-                        margin-bottom: 2em;
-
-
-
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 2em;
     }
+
     .btn-home {
         background-color: #00ccbc;
         color: white;
         font-weight: bold;
 
-        }
+    }
 
     @media screen and (min-width: 610px) {
         .container {
 
-            .card-grid{
-            display: grid;
-            grid-template: repeat(1, 1fr) / repeat(2, 1fr);
-            
-
-    }
+            .card-grid {
+                display: grid;
+                grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+            }
 
         }
     }
 
-        @media screen and (min-width: 910px) {
-        .container {            
-            .card-grid{
-                
+    @media screen and (min-width: 910px) {
+        .container {
+            .card-grid {
+
                 display: grid;
                 grid-template: repeat(1, 1fr) / repeat(3, 1fr);
-         
-                    
-
-    }
+            }
 
         }
     }
