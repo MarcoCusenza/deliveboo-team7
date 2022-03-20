@@ -32,34 +32,63 @@
     </div>
 
     <!-- CARRELLO -->
-    <section class="cart">
-      <div class="card border-0 shadow p-3 mb-5" style="border-radius: 2rem">
-        <div class="card-body">
-          <h3>Carrello</h3>
-          <ul>
-            <li v-for="(dish, i) in cart" :key="i">
-              <span class="dish-name">{{ dish[0].name }}</span>
-              <span class="dish-price">{{ dish[0].price }}€</span>
-              <span class="dish-quantity">x{{ dish[1] }}</span>
-            </li>
-          </ul>
+    <section class="cart-box">
+      <h3>Carrello</h3>
+      <table class="cart table table-borderless" v-if="cart.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">Nome piatto</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col">Quantità</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(dish, i) in cart" :key="i">
+            <td class="dish-name">{{ dish[0].name }}</td>
+            <td class="dish-price">{{ dish[0].price }}€</td>
+            <td class="dish-quantity">
+              <div class="counter">
+                <div
+                  class="value-button"
+                  id="decrease"
+                  @click="decreaseQuantity(dish)"
+                  value="Decrease Value"
+                >
+                  -
+                </div>
+                <input type="number" id="number" :value="dish[1]" />
+                <div
+                  class="value-button"
+                  id="increase"
+                  @click="increaseQuantity(dish)"
+                  value="Increase Value"
+                >
+                  +
+                </div>
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-home" @click="removeDish(dish)">
+                <i class="fa-solid fa-trash-can delete"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <div class="final-price">
+          <h4>Totale = {{ finalPrice() }}€</h4>
         </div>
-      </div>
+      </table>
+
+      <div v-else>Il tuo carrello è vuoto</div>
     </section>
   </div>
-  <!-- ALTERNATIVA -->
-  <!-- <Cart /> -->
 </template>
 
 
 <script>
-// import Cart from "../Cart.vue";
-
 export default {
   name: "DishList",
-  // components: {
-  //   Cart,
-  // },
   data() {
     return {
       dishes: {},
@@ -152,6 +181,51 @@ export default {
     alertRest() {
       alert("Puoi ordinare da un solo ristorante alla volta!");
     },
+    // aumenta la quantità di piatti nel carrello
+    increaseQuantity(dish) {
+      let newDish = dish;
+      newDish[1] = dish[1] + 1;
+      let ind = this.cart.indexOf(dish);
+      this.cart.splice(ind, 1, newDish);
+    },
+    // diminuisce la quantità di piatti nel carrello, se è 0 rimuove il piatto dal carrello
+    decreaseQuantity(dish) {
+      let newDish = dish;
+      newDish[1] = dish[1] - 1;
+      let ind = this.cart.indexOf(dish);
+      if (newDish[1] > 0) {
+        this.cart.splice(ind, 1, newDish);
+      } else {
+        this.cart.splice(ind, 1);
+      }
+    },
+    //rimuove piatto dal carrello
+    removeDish(dish) {
+      // const actualCart = this.getActualCartArray();
+      let index = -1;
+      this.cart.forEach((item, ind) => {
+        if (item[0].id == dish[0].id) {
+          index = ind;
+        }
+      });
+      if (index > -1) {
+        this.cart.splice(index, 1);
+      }
+    },
+    //restituisce il carrello in localstorage
+    // getActualCartArray() {
+    //   return JSON.parse(localStorage.getItem("cart"));
+    // },
+    //calcola il prezzo finale del carrello
+    finalPrice() {
+      let finalPrice = 0;
+
+      this.cart.forEach((item) => {
+        finalPrice += item[0].price * item[1];
+      });
+
+      return finalPrice;
+    },
   },
 };
 </script>
@@ -186,6 +260,83 @@ export default {
   margin-bottom: 3em;
   .card-rest {
     border-radius: 2em;
+  }
+}
+
+.cart-box {
+  background: white;
+  border-radius: 30px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  padding: 40px;
+
+  .table {
+    .final-price {
+      margin: 20px 0 0 10px;
+      padding: 10px;
+      width: 160px;
+      border-radius: 10px;
+      background-color: rgb(240, 240, 240);
+    }
+  }
+
+  .counter {
+    margin: auto;
+    display: flex;
+
+    .value-button {
+      display: inline-block;
+      border: 1px solid #ddd;
+      margin: 0px;
+      width: 40px;
+      height: 30px;
+      text-align: center;
+      background: #eee;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .value-button:hover {
+      cursor: pointer;
+    }
+
+    #decrease {
+      border-radius: 8px 0 0 8px;
+    }
+
+    #increase {
+      border-radius: 0 8px 8px 0;
+    }
+
+    input#number {
+      text-align: center;
+      border: none;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      margin: 0px;
+      width: 40px;
+      height: 30px;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  .delete {
+    cursor: pointer;
   }
 }
 
