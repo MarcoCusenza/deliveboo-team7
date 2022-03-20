@@ -23,7 +23,7 @@
           <a
             href="/categories"
             :value="category"
-            @click="saveCategory(category)"
+            @click="addCat(category)"
             class="btn font-weight-bold"
             >Visualizza</a
           >
@@ -47,27 +47,28 @@ export default {
   data() {
     return {
       categories: [],
-      selectedCategory: [],
+      selectedCategories: [],
     };
   },
   methods: {
-    saveCategory(item) {
-      this.selectedCategory.splice(0, 1, item);
+    addCat(item) {
+      this.clearCat();
+      this.selectedCategories.push(item);
     },
     clearCat() {
-      this.selectedCategory = [];
+      this.selectedCategories = [];
     },
   },
   mounted() {
-    if (localStorage.selectedCategory) {
-      this.selectedCategory = JSON.parse(localStorage.selectedCategory);
+    if (localStorage.selectedCategories) {
+      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
     }
   },
 
   watch: {
-    selectedCategory: {
+    selectedCategories: {
       handler(newSC) {
-        localStorage.selectedCategory = JSON.stringify(newSC);
+        localStorage.selectedCategories = JSON.stringify(newSC);
       },
       deep: true,
     },
@@ -108,13 +109,13 @@ export default {
 .card-category {
   height: 350px;
   border-radius: 57px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 25px 100px 0px;
+  box-shadow: rgba(17, 12, 46, 0.15) 10px 30px 30px 10px;
 
   .img-container {
     border-top-left-radius: 57px;
     border-top-right-radius: 57px;
     height: 70%;
-    background: #f3f3f3;
+    background-image: linear-gradient(#f3f3f3, #f8fafc);
 
     img {
       width: 150px;
