@@ -12,7 +12,7 @@ class RestaurantController extends Controller
   // http://localhost:8000/api/restaurants
   public function index()
   {
-    $restaurants = Restaurant::select("*")->paginate(3);
+    $restaurants = Restaurant::select("*")->paginate(6);
 
     // 404 restaurant slug non trovato
     if (empty($restaurants)) {
