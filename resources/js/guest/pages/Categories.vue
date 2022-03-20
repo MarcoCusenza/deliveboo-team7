@@ -12,12 +12,9 @@
                 class="list-group-item"
                 v-for="(category, index) in indexrests"
                 :key="index"
-                @click="
-                  isChecked(category) ? removeCat(category) : addCat(category) //provare a spostarlo nel figlio
-                "
               >
                 <!-- aggiungere una categoria a localStorage NON FUNZIONA -->
-                <label :name="category.name">
+                <label :name="category.name" @click="addCat(category)">
                   <input
                     type="checkbox"
                     :value="category"
@@ -69,47 +66,32 @@ export default {
     return {
       indexrests: {},
       checkedCategories: [],
-      selectedCategories: [],
+      selectedCategory: [],
     };
   },
   methods: {
-    //aggiungere una categoria a localStorage NON FUNZIONA
+    //aggiungere una categoria a localStorage NON FUNZIONA + controllare se c'è già
     addCat(category) {
-      this.selectedCategories.push(category);
-      this.checkedCategories.push(category);
-      console.log("SELECTEDCAT!", this.selectedCategories);
-      console.log("LOCALSTORE!", localStorage.selectedCategories);
-    },
-    removeCat(category) {
-      let index = this.selectedCategories.indexOf(category);
-      console.log("INDEX", index);
-      this.selectedCategories.splice(index, 1);
-    },
-    isChecked(category) {
-      if (this.checkedCategories) {
-        console.log("isChecked???", this.checkedCategories.includes(category));
-        return this.checkedCategories.includes(category);
-      } else {
-        return false;
-      }
+      this.selectedCategory.push(category);
+      console.log(this.selectedCategory);
     },
   },
   mounted() {
-    if (localStorage.selectedCategories) {
-      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
-      this.checkedCategories = this.selectedCategories;
-      console.log("CHECKED", this.checkedCategories);
+    console.log(JSON.parse(localStorage.selectedCategory).length);
+    if (JSON.parse(localStorage.selectedCategory).length > 0) {
+      this.selectedCategory = JSON.parse(localStorage.selectedCategory);
+      this.checkedCategories[0] = this.selectedCategory[0];
     }
   },
   watch: {
     selectedCategory: {
       handler(newSC) {
-        localStorage.selectedCategories = JSON.stringify(newSC);
+        localStorage.selectedCategory = JSON.stringify(newSC);
       },
       deep: true,
     },
   },
-  // Salviamo i dati delle api nella variabile indexrests
+  // Salviamo i dati delle api nella variabile categorest
   created() {
     axios
       .get(`/api/indexrest`)
@@ -153,15 +135,15 @@ export default {
   padding: 10px;
   border-bottom: 1px solid #a5a5a5;
   margin: 0px;
-  cursor: pointer;
 
   label {
+    width: 100%;
     cursor: pointer;
-
-    input {
-      cursor: pointer;
-    }
   }
+}
+
+.dropdown-checkbox ul li input {
+  margin-right: 10px;
 }
 
 .dropdown-checkbox:hover ul {

@@ -1,10 +1,15 @@
 <template>
-    <div class="container container-categories mb-5 pt-5">
-        <h2 class="text-center font-weight-bold">Le nostre migliori categorie:</h2>
-        <div class="row mt-5">
-            <div v-for="category in categories.slice(0, 8)" :key="category.id" class="col-lg-3 col-sm-6 mt-5">
-                <div class="card-category text-center p-4">
-                    <div class="
+  <div class="container container-categories mb-5 pt-5" id="best-categories">
+    <h2 class="text-center font-weight-bold">Le nostre migliori categorie:</h2>
+    <div class="row mt-5">
+      <div
+        v-for="category in categories.slice(0, 8)"
+        :key="category.id"
+        class="col-lg-3 col-sm-6 mt-5"
+      >
+        <div class="card-category text-center p-4">
+          <div
+            class="
               img-container
               mb-3
               d-flex
@@ -18,7 +23,7 @@
           <a
             href="/categories"
             :value="category"
-            @click="addCat(category)"
+            @click="saveCategory(category)"
             class="btn font-weight-bold"
             >Visualizza</a
           >
@@ -28,10 +33,11 @@
     <div class="btn-container">
       <a href="/categories"
         ><button class="btn-home mt-5" @click="clearCat()">
-          Scegli tra tutte le categorie
+          Guarda tutte le categorie
         </button></a
       >
     </div>
+  </div>
 </template>
 
 <script>
@@ -41,28 +47,27 @@ export default {
   data() {
     return {
       categories: [],
-      selectedCategories: [],
+      selectedCategory: [],
     };
   },
   methods: {
-    addCat(item) {
-      this.clearCat();
-      this.selectedCategories.push(item);
+    saveCategory(item) {
+      this.selectedCategory.splice(0, 1, item);
     },
     clearCat() {
-      this.selectedCategories = [];
+      this.selectedCategory = [];
     },
   },
   mounted() {
-    if (localStorage.selectedCategories) {
-      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
+    if (localStorage.selectedCategory) {
+      this.selectedCategory = JSON.parse(localStorage.selectedCategory);
     }
   },
 
   watch: {
-    selectedCategories: {
+    selectedCategory: {
       handler(newSC) {
-        localStorage.selectedCategories = JSON.stringify(newSC);
+        localStorage.selectedCategory = JSON.stringify(newSC);
       },
       deep: true,
     },
@@ -89,40 +94,42 @@ export default {
   display: flex;
   justify-content: center;
 
-  .card-category {
-    height: 350px;
+  .btn-home {
+    padding: 10px 50px;
+    background-color: #00ccbc;
+    color: white;
+    font-weight: bold;
     border-radius: 57px;
-    box-shadow: rgba(17, 12, 46, 0.15) 10px 30px 30px 10px;
+    border: none;
+    font-size: 20px;
+  }
+}
 
-    .img-container {
-      border-top-left-radius: 57px;
-      border-top-right-radius: 57px;
-      height: 70%;
-      background-image: linear-gradient(#f3f3f3, #f8fafc);
-      // background: #f3f3f3;
+.card-category {
+  height: 350px;
+  border-radius: 57px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 25px 100px 0px;
 
-      .img-container {
-        border-top-left-radius: 57px;
-        border-top-right-radius: 57px;
-        height: 70%;
-        background: #f3f3f3;
+  .img-container {
+    border-top-left-radius: 57px;
+    border-top-right-radius: 57px;
+    height: 70%;
+    background: #f3f3f3;
 
-        img {
-          width: 150px;
-        }
-      }
+    img {
+      width: 150px;
+    }
+  }
 
-      .btn {
-        width: 90%;
-        background: #00ccbc;
-        color: white;
-        border-radius: 57px;
-        padding: 8px 20px;
-        transition: background 0.3s;
-        &:hover {
-          background: #007067;
-        }
-      }
+  .btn {
+    width: 90%;
+    background: #00ccbc;
+    color: white;
+    border-radius: 57px;
+    padding: 8px 20px;
+
+    &:hover {
+      background: #007067;
     }
   }
 }
