@@ -40,12 +40,38 @@
                                 piatto</a></td>
                         <td><a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-warning">Modifica
                                 piatto</a></td>
-                        <td>
-                            <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button onclick="return confirm ('Confermi di voler eliminare?')" type="submit" class="btn btn-danger">Elimina piatto</button>
-                            </form>
+                        <td> <button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#exampleModal">
+                                Elimina
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Conferma eliminazione</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Sei sicuro di voler eliminare?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Torna indietro</button>
+                                            <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-danger">Elimina piatto</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </td>
                     </tr>
                     @endforeach
