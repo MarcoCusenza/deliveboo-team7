@@ -53,7 +53,16 @@
               <h4>{{ restaurant.restaurant_name }}</h4>
               <p>{{ restaurant.address }}</p>
               <p>{{ restaurant.phone }}</p>
-              <p><span v-for="(cat, i) in restaurant.categories" :key="i"></span></p>
+              <p>
+                <span
+                  class="restaurant-categories"
+                  v-for="(cat, i) in restaurant.categories"
+                  :key="i"
+                >
+                  {{ cat.name
+                  }}<span v-if="i < restaurant.categories.length - 1">, </span>
+                </span>
+              </p>
               <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home"
                 >Menù</a
               >
@@ -164,6 +173,13 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+    }
+
+    .restaurant-info {
+      .restaurant-categories {
+        color: grey;
+        font-style: italic;
       }
     }
   }

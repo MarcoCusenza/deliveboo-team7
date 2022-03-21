@@ -63,7 +63,7 @@
 
         created() {
             axios
-                .get("/api/indexrest")
+                .get("/api/categories")
                 .then((response) => {
                     this.categories = response.data;
                 })
