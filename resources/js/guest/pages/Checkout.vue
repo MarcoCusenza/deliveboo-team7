@@ -52,8 +52,87 @@
 
           <div v-else>Il tuo carrello è vuoto</div>
         </div>
+
+        <!-- FORM CLIENTE -->
         <div class="col-sm-12 col-lg-5 col-checkout p-5 mt-5">
-          qui ci va il pagamento
+          <form action="">
+            <div class="form-group">
+              <label for="client_name">Nome *</label>
+              <input
+                type="text"
+                maxlength="150"
+                class="form-control"
+                id="client_name"
+                name="client_name"
+                placeholder="Inserisci il tuo nome"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client_surname">Cognome *</label>
+              <input
+                type="text"
+                maxlength="150"
+                class="form-control"
+                id="client_surname"
+                name="client_surname"
+                placeholder="Inserisci il tuo cognome"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client_address">Indirizzo di spedizione *</label>
+              <input
+                type="text"
+                maxlength="150"
+                class="form-control"
+                id="client_address"
+                name="client_address"
+                placeholder="Inserisci il tuo indirizzo"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client_email">Email *</label>
+              <input
+                type="email"
+                maxlength="150"
+                class="form-control"
+                id="client_email"
+                name="client_email"
+                placeholder="Inserisci la tua email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client_phone">Telefono *</label>
+              <input
+                minlength="8"
+                maxlength="15"
+                type="tel"
+                pattern="[0-9]{8,15}"
+                class="form-control"
+                id="client_phone"
+                name="client_phone"
+                placeholder="Inserisci il tuo numero di telefono"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="note">Aggiungi una nota per il ristorante</label>
+              <textarea
+                class="form-control"
+                id="client_address"
+                name="client_address"
+                placeholder="Inserisci il tuo indirizzo"
+              />
+            </div>
+          </form>
         </div>
         <div class="col-sm-12 col-lg-5 col-checkout ml-auto p-5 mt-5">
           qui ci va il rider
@@ -116,10 +195,6 @@ export default {
         this.cart.splice(index, 1);
       }
     },
-    //restituisce il carrello in localstorage
-    // getActualCartArray() {
-    //   return JSON.parse(localStorage.getItem("cart"));
-    // },
     //calcola il prezzo finale del carrello
     finalPrice() {
       let finalPrice = 0;
