@@ -7,13 +7,12 @@
           <div class="form-group">
             <label class="label-title">Seleziona le tue categorie</label>
             <ul class="list-group">
-              <!-- Salvo i dati delle categorest selezionate nella variabile selectedCategories -->
+              <!-- Problema SELECTEDCATEGORIES! -->
               <li
                 class="list-group-item"
-                v-for="(category, index) in indexrests"
+                v-for="(category, index) in allCategories"
                 :key="index"
               >
-                <!-- una categoria a localStorage NON FUNZIONA provare a dare al figlio -->
                 <label>
                   <input
                     type="checkbox"
@@ -28,42 +27,40 @@
           </div>
         </div>
 
-        <div class="col-sm-12 col-lg-9" v-if="selectedCategories.length > 0">
-          <!-- Bisogna stampare i ristoranti delle selectedCategories -->
-          <div v-for="(selCat, id) in selectedCategories" :key="id">
-            <h2>{{ selCat.name }}</h2>
-            <div class="card-grid">
-              <div
-                class="card-rest shadow-sm bg-white"
-                v-for="(restaurant, id) in selCat.restaurants"
-                :key="id"
+        <div
+          class="restaurants-container col-sm-12 col-lg-9 card-grid"
+          v-if="restaurants.data"
+        >
+          <!-- Stampare tutti i ristoranti dati dalla ricerca-->
+          <div
+            class="card-rest shadow-sm bg-white"
+            v-for="(restaurant, index) in restaurants.data"
+            :key="index"
+          >
+            <div class="cover-rest">
+              <img
+                v-if="restaurant.image && isFirstLetterH(restaurant.image)"
+                :src="restaurant.image"
+                :alt="restaurant.name"
+              />
+              <img
+                v-else
+                :src="'../storage/' + restaurant.image"
+                :alt="restaurant.name"
+              />
+            </div>
+            <div class="restaurant-info p-3 center">
+              <h4>{{ restaurant.restaurant_name }}</h4>
+              <p>{{ restaurant.address }}</p>
+              <p>{{ restaurant.phone }}</p>
+              <p><span v-for="(cat, i) in restaurant.categories" :key="i"></span></p>
+              <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home"
+                >Menù</a
               >
-                <div class="cover-rest">
-                  <img
-                    v-if="restaurant.image && isFirstLetterH(restaurant.image)"
-                    :src="restaurant.image"
-                    :alt="restaurant.name"
-                  />
-                  <img
-                    v-else
-                    :src="'../storage/' + restaurant.image"
-                    :alt="restaurant.name"
-                  />
-                </div>
-                <div class="restaurant-info p-3 center">
-                  <h4>{{ restaurant.restaurant_name }}</h4>
-                  <p>{{ restaurant.address }}</p>
-                  <p>{{ restaurant.phone }}</p>
-                  <a
-                    :href="'/restaurant/' + restaurant.slug"
-                    class="btn btn-home"
-                    >Menù</a
-                  >
-                </div>
-              </div>
             </div>
           </div>
         </div>
+        <div v-else>Non hai selezionato nessuna categoria</div>
       </div>
     </div>
   </section>
@@ -74,44 +71,76 @@ export default {
   name: "Categories",
   data() {
     return {
-      indexrests: {},
+      allCategories: [],
       selectedCategories: [],
+      restaurants: [],
     };
   },
   methods: {
     isFirstLetterH(item) {
       return item[0] == "h";
     },
-  },
-  mounted() {
-    if (localStorage.selectedCategories) {
+    callRest() {
+      let url_param = "";
+      JSON.parse(localStorage.selectedCategories).forEach((item) => {
+        url_param += item.slug + ",";
+      });
+
+      console.log("url_param", url_param);
       console.log(
-        "MOUNTED localStorage SELCAT",
+        "localStorage.selectedCategories",
         JSON.parse(localStorage.selectedCategories)
       );
-      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
-    }
+
+      if (url_param != "") {
+        axios
+          .get(`/api/restaucat/` + url_param)
+          .then((response) => {
+            this.restaurants = response.data;
+            console.log("this.restaurants.data", this.restaurants.data);
+            // console.log(
+            //   "this.restaurants1.isEmpty?",
+            //   this.restaurants == null
+            // );
+          })
+          .catch((error) => {
+            this.$router.push({
+              name: "page-404",
+            });
+          });
+      }
+
+      // console.log("this.restaurants2", this.restaurants);
+      // console.log("this.restaurants2.length???", this.restaurants.length);
+    },
   },
   watch: {
     selectedCategories: {
       handler(newSC) {
         localStorage.selectedCategories = JSON.stringify(newSC);
+        this.callRest();
       },
       deep: true,
     },
   },
   // Salviamo i dati delle api nella variabile categorest
-  created() {
+  mounted() {
+    if (localStorage.selectedCategories) {
+      this.selectedCategories = JSON.parse(localStorage.selectedCategories);
+    }
+
     axios
-      .get(`/api/indexrest`)
+      .get(`/api/categories`)
       .then((response) => {
-        this.indexrests = response.data;
+        this.allCategories = response.data;
       })
       .catch((error) => {
         this.$router.push({
           name: "page-404",
         });
       });
+
+    // this.callRest();
   },
 };
 </script>
@@ -130,7 +159,7 @@ export default {
     .cover-rest {
       max-width: 100%;
       height: 150px;
-    
+
       img {
         width: 100%;
         height: 100%;
