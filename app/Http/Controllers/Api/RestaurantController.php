@@ -44,8 +44,8 @@ class RestaurantController extends Controller
 
     //whereHas mi permette di prendere restaurants ma dare una clausola sulla tabella categories
     $restaurants = Restaurant::whereHas("categories", function ($query) use ($cat_array) {
-      $query->whereIn("slug", $cat_array)->with("categories");
-    })->paginate(10);
+      $query->whereIn("slug", $cat_array);
+    })->with("categories")->paginate(10);
 
     // 404 restaurant slug non trovato
     if (empty($restaurants)) {
