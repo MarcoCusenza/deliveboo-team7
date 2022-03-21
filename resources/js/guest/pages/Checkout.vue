@@ -133,6 +133,16 @@
               />
             </div>
           </form>
+          <!-- BRAINTREE -->
+          <!-- <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div id="dropin-container"></div>
+                <button id="submit-button">Paga con questa carta</button>
+              </div>
+            </div>
+          </div> -->
+          <!-- BRAINTREE -->
         </div>
         <div class="col-sm-12 col-lg-5 col-checkout ml-auto p-5 mt-5">
           qui ci va il rider
@@ -154,6 +164,30 @@ export default {
     if (localStorage.cart) {
       this.cart = JSON.parse(localStorage.cart);
     }
+
+    var button = document.querySelector("#submit-button");
+    braintree.dropin.create(
+      {
+        authorization: "{{ BraintreeClientToken::generate() }} ",
+        selector: "#dropin-container",
+      },
+      function (createErr, instance) {
+        button.addEventListener("click", function () {
+          instance.requestPaymentMethod(function (err, payload) {
+            //SUBMIT PAYLOAD + NONCE al mio server
+            // $.get('{{ route('payment.make') }}', {
+            //     payload
+            // }, function(response) {
+            //     if (response.success) {
+            //         alert('Payment successfull!');
+            //     } else {
+            //         alert('Payment failed');
+            //     }
+            // }, 'json');
+          });
+        });
+      }
+    );
   },
   watch: {
     cart: {
