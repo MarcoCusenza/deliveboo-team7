@@ -7,7 +7,6 @@
           <div class="form-group">
             <label class="label-title">Seleziona le tue categorie</label>
             <ul class="list-group">
-              <!-- Problema SELECTEDCATEGORIES! -->
               <li
                 class="list-group-item"
                 v-for="(category, index) in allCategories"
@@ -28,44 +27,58 @@
         </div>
 
         <div
-          class="restaurants-container col-sm-12 col-lg-9 card-grid"
+          class="restaurants-container col-sm-12 col-lg-9"
           v-if="restaurants.data"
         >
-          <!-- Stampare tutti i ristoranti dati dalla ricerca-->
-          <div
-            class="card-rest shadow-sm bg-white"
-            v-for="(restaurant, index) in restaurants.data"
-            :key="index"
-          >
-            <div class="cover-rest">
-              <img
-                v-if="restaurant.image && isFirstLetterH(restaurant.image)"
-                :src="restaurant.image"
-                :alt="restaurant.name"
-              />
-              <img
-                v-else
-                :src="'../storage/' + restaurant.image"
-                :alt="restaurant.name"
-              />
-            </div>
-            <div class="restaurant-info p-3 center">
-              <h4>{{ restaurant.restaurant_name }}</h4>
-              <p>{{ restaurant.address }}</p>
-              <p>{{ restaurant.phone }}</p>
-              <p>
-                <span
-                  class="restaurant-categories"
-                  v-for="(cat, i) in restaurant.categories"
-                  :key="i"
+          <div class="card-grid">
+            <!-- Stampare tutti i ristoranti dati dalla ricerca-->
+            <div
+              class="card-rest shadow-sm bg-white"
+              v-for="(restaurant, index) in restaurants.data"
+              :key="index"
+            >
+              <div class="cover-rest">
+                <img
+                  v-if="restaurant.image && isFirstLetterH(restaurant.image)"
+                  :src="restaurant.image"
+                  :alt="restaurant.name"
+                />
+                <img
+                  v-else
+                  :src="'../storage/' + restaurant.image"
+                  :alt="restaurant.name"
+                />
+              </div>
+              <div class="restaurant-info p-3 center">
+                <h4>{{ restaurant.restaurant_name }}</h4>
+                <p>{{ restaurant.address }}</p>
+                <p>{{ restaurant.phone }}</p>
+                <p>
+                  <span
+                    class="restaurant-categories"
+                    v-for="(cat, i) in restaurant.categories"
+                    :key="i"
+                  >
+                    {{ cat.name
+                    }}<span v-if="i < restaurant.categories.length - 1"
+                      >,
+                    </span>
+                  </span>
+                </p>
+                <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home"
+                  >Menù</a
                 >
-                  {{ cat.name
-                  }}<span v-if="i < restaurant.categories.length - 1">, </span>
-                </span>
-              </p>
-              <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home"
-                >Menù</a
+              </div>
+            </div>
+          </div>
+          <div class="paginate-container">
+            <div class="paginate-box">
+              <span class="prev" @click="prevPage()"></span>
+              <span class="num-page"
+                >Pagina {{ restaurants.current_page }} di
+                {{ restaurants.last_page }}</span
               >
+              <span class="next" @click="nextPage()"></span>
             </div>
           </div>
         </div>
@@ -86,9 +99,12 @@ export default {
     };
   },
   methods: {
+    //metodo per verificare se la prima lettera è una H
     isFirstLetterH(item) {
       return item[0] == "h";
     },
+
+    //chiamata all'api restaucat
     callRest() {
       let url_param = "";
       JSON.parse(localStorage.selectedCategories).forEach((item) => {
@@ -106,11 +122,35 @@ export default {
           .get(`/api/restaucat/` + url_param)
           .then((response) => {
             this.restaurants = response.data;
+            console.log("this.restaurants", this.restaurants);
+          })
+          .catch((error) => {
+            this.$router.push({
+              name: "page-404",
+            });
+          });
+      } else {
+        this.restaurants = [];
+      }
+    },
+
+    prevPage() {
+      if (this.restaurants.prev_page_url != null) {
+        let url_param = "";
+        JSON.parse(localStorage.selectedCategories).forEach((item) => {
+          url_param += item.slug + ",";
+        });
+
+        axios
+          .get(
+            `/api/restaucat/` +
+              url_param +
+              "?page=" +
+              (this.restaurants.current_page - 1)
+          )
+          .then((response) => {
+            this.restaurants = response.data;
             console.log("this.restaurants.data", this.restaurants.data);
-            // console.log(
-            //   "this.restaurants1.isEmpty?",
-            //   this.restaurants == null
-            // );
           })
           .catch((error) => {
             this.$router.push({
@@ -118,9 +158,32 @@ export default {
             });
           });
       }
+    },
 
-      // console.log("this.restaurants2", this.restaurants);
-      // console.log("this.restaurants2.length???", this.restaurants.length);
+    nextPage() {
+      if (this.restaurants.next_page_url != null) {
+        let url_param = "";
+        JSON.parse(localStorage.selectedCategories).forEach((item) => {
+          url_param += item.slug + ",";
+        });
+
+        axios
+          .get(
+            `/api/restaucat/` +
+              url_param +
+              "?page=" +
+              (this.restaurants.current_page + 1)
+          )
+          .then((response) => {
+            this.restaurants = response.data;
+            console.log("this.restaurants3", this.restaurants);
+          })
+          .catch((error) => {
+            this.$router.push({
+              name: "page-404",
+            });
+          });
+      }
     },
   },
   watch: {
@@ -180,6 +243,28 @@ export default {
       .restaurant-categories {
         color: grey;
         font-style: italic;
+      }
+    }
+  }
+}
+
+.paginate-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+
+  .paginate-box {
+    .prev {
+      cursor: pointer;
+      &::before {
+        content: "<";
+      }
+    }
+    .next {
+      cursor: pointer;
+      &::before {
+        content: ">";
       }
     }
   }
