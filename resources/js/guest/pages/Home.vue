@@ -55,6 +55,7 @@ export default {
 <style lang="scss" scoped>
 .container-fluid {
   position: relative;
+  padding-right: 0px;
 
   .hamburger-container {
     width: 38%;

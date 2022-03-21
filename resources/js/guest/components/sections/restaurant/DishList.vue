@@ -42,7 +42,8 @@
                 <div v-else>
                     <div
                         class="empty-cart py-2 text-center d-flex flex-column align-items-center justify-content-center">
-                        <i class="fa-solid fa-basket-shopping py-2"></i> <p>Il tuo carrello è vuoto</p>
+                        <i class="fa-solid fa-basket-shopping py-2"></i>
+                        <p>Il tuo carrello è vuoto</p>
                     </div>
                 </div>
                 <div class="cart-bottom">
@@ -300,8 +301,9 @@
         border-radius: 30px;
         box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
         padding: 40px;
+        background: none;
 
-        .empty-cart{
+        .empty-cart {
             font-size: 20px;
             color: grey;
         }
@@ -402,13 +404,11 @@
             .card-grid {
                 display: grid;
                 grid-template: repeat(1, 1fr) / repeat(2, 1fr);
-            }
-        }
 
-        .card-grid {
-            .card-rest {
-                min-height: 150px;
-                max-height: 200px;
+                .card-rest {
+                    min-height: 150px;
+                    max-height: 200px;
+                }
             }
         }
     }
@@ -416,10 +416,19 @@
     @media screen and (min-width: 992px) {
         .card-grid {
             .card-rest {
-                height: 300px !important;
+                height: 250px !important;
             }
         }
+
+        .cart-box {
+            background-image: url('https://i.postimg.cc/bNSGqbSJ/Deliver-Boo-8-2x.png');
+            background-position: top right;
+            background-size: 350px;
+            background-repeat: no-repeat;
+        }
     }
+
+
 
     @media screen and (min-width: 1200px) {
         .container {

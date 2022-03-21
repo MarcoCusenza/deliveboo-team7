@@ -73,6 +73,7 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 text-align: center;
+                font-size: 50px
             }
         }
     }

@@ -246,6 +246,10 @@
                         font-weight: bold;
                         vertical-align: bottom;
                         max-width: 50%;
+
+                        &:hover {
+                            background: #007067;
+                        }
                     }
                 }
             }
@@ -260,6 +264,8 @@
             .paginate-box {
                 .prev {
                     cursor: pointer;
+                    font-weight: bold;
+                    margin-right: 10px;
 
                     &::before {
                         content: "<";
@@ -268,6 +274,9 @@
 
                 .next {
                     cursor: pointer;
+                    font-weight: bold;
+                    margin-left: 10px;
+
 
                     &::before {
                         content: ">";
