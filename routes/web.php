@@ -27,6 +27,8 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
   }
 );
 
+// Route::get("prova", "ProvaController");
+
 // Route::get('/', function () {
 //   return view('front');
 // });
