@@ -2,25 +2,25 @@
   <div class="container">
     <!-- LISTA PIATTI -->
     <div class="card-grid">
+      <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
       <div
         v-for="dish in dishes"
         :key="dish.id"
         class="card-rest shadow-sm bg-white"
       >
         <!-- <div class="image" :style="{ 'background-image': url(dish.image) }"></div>  -->
-        <div class="image">
-          <img
-            :src="dish.image"
-            :alt="'Immagine che rappresenta ' + dish.name"
-          />
-        </div>
+
+        <img
+          :src="dish.image"
+          :alt="'Immagine che rappresenta ' + dish.name"
+          v-if="dish.image"
+        />
+
         <div class="card-body">
           <h5 class="card-title">{{ dish.name }}</h5>
           <p class="card-text">Prezzo: {{ dish.price }} &euro;</p>
           <p class="card-text">Ingredienti: {{ dish.ingredients }}</p>
-          <p class="card-text">
-            Ingredienti: Descrizione: {{ dish.description }}
-          </p>
+          <p class="card-text description">{{ dish.description }}</p>
           <button
             class="btn btn-home"
             @click="sameRestaurant(dish) ? addDish(dish) : alertRest()"
@@ -75,12 +75,16 @@
             </td>
           </tr>
         </tbody>
+      </table>
+      <div v-else>Il tuo carrello è vuoto</div>
+      <div class="cart-bottom">
         <div class="final-price">
           <h4>Totale = {{ finalPrice() }}€</h4>
         </div>
-      </table>
-
-      <div v-else>Il tuo carrello è vuoto</div>
+        <a class="button-link mx-2 icon-header" href="/checkout">
+          Vai al checkout
+        </a>
+      </div>
     </section>
   </div>
 </template>
@@ -238,29 +242,46 @@ export default {
   font-weight: bold;
 }
 
-.image {
-  height: 300px;
-  min-width: 300px;
-  color: grey;
-  text-align: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 2em 2em 0 0;
-  }
-}
-
 .card-grid {
   display: grid;
-  grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+  //grid-template: repeat(1, 1fr) / repeat(1, 1fr);
   justify-content: center;
   gap: 20px;
   margin-bottom: 3em;
 
   .card-rest {
     border-radius: 2em;
+    display: flex;
+    overflow: hidden;
+    min-height: 250px;
+    max-height: 280px;
+
+    img {
+      min-width: 35%;
+      max-width: 35%;
+      min-height: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      position: relative;
+      padding-bottom: 40px;
+      .btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-radius: 10px 0 0 0;
+        padding: 10px 20px;
+      }
+      .card-text {
+        &.description {
+          font-style: italic;
+          color: grey;
+          // text-align: center;
+        }
+      }
+    }
   }
 }
 
@@ -269,16 +290,6 @@ export default {
   border-radius: 30px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   padding: 40px;
-
-  .table {
-    .final-price {
-      margin: 20px 0 0 10px;
-      padding: 10px;
-      width: 160px;
-      border-radius: 10px;
-      background-color: rgb(240, 240, 240);
-    }
-  }
 
   .counter {
     margin: auto;
@@ -339,6 +350,36 @@ export default {
   .delete {
     cursor: pointer;
   }
+
+  .cart-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .final-price {
+      padding: 10px 20px;
+      width: 180px;
+      text-align: center;
+      border-radius: 10px;
+      background-color: rgb(240, 240, 240);
+    }
+
+    a {
+      background-color: #00ccbc;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #00ac9d;
+        font-style: none;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -348,31 +389,27 @@ export default {
       grid-template: repeat(1, 1fr) / repeat(2, 1fr);
     }
   }
+  .card-grid {
+    .card-rest {
+      min-height: 300px;
+      max-height: 350px;
+    }
+  }
 }
 
 @media screen and (min-width: 992px) {
+  .card-grid {
+    .card-rest {
+      min-height: 250px !important;
+      max-height: 280px !important;
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
   .container {
     .card-grid {
       display: grid;
       grid-template: repeat(1, 1fr) / repeat(3, 1fr);
-    }
-  }
-}
-
-@media screen and (min-width: 1500px) {
-  .container {
-    .card-grid {
-      display: grid;
-      grid-template: repeat(1, 1fr) / repeat(4, 1fr);
-    }
-  }
-}
-
-@media screen and (min-width: 2000px) {
-  .container {
-    .card-grid {
-      display: grid;
-      grid-template: repeat(1, 1fr) / repeat(5, 1fr);
     }
   }
 }

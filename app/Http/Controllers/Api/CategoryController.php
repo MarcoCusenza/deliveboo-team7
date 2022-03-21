@@ -28,7 +28,9 @@ class CategoryController extends Controller
   //url esempio ricerca categoria multipla: http://localhost:8000/api/categories/giapponese,italiano
   public function categories($categories)
   {
+    //divido $categories in array
     $cat_array = explode(',', $categories);
+    //verifico se mella colonna slug di category sono presenti TUTTI gli elementi dell'array $cat_array
     $cat_final = Category::whereIn("slug", $cat_array)->get();
 
     // 404 category slug non trovato
@@ -36,7 +38,6 @@ class CategoryController extends Controller
       return response()->json(["message" => "Category not found"], 404);
     }
 
-    //Si potrebbe implementare il controllo se almeno una delle categorie cercate è vuota o inesistente ma è un po' inutile
     return response()->json($cat_final);
   }
 

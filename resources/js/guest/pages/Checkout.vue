@@ -152,7 +152,8 @@ export default {
       .final-price {
         margin: 20px 0 0 10px;
         padding: 10px;
-        width: 160px;
+        width: 180px;
+        text-align: center;
         border-radius: 10px;
         background-color: rgb(240, 240, 240);
       }

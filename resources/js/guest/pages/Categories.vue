@@ -38,7 +38,19 @@
                 v-for="(restaurant, id) in selCat.restaurants"
                 :key="id"
               >
-                <div class="p-3 center">
+                <div class="cover-rest">
+                  <img
+                    v-if="restaurant.image && isFirstLetterH(restaurant.image)"
+                    :src="restaurant.image"
+                    :alt="restaurant.name"
+                  />
+                  <img
+                    v-else
+                    :src="'../storage/' + restaurant.image"
+                    :alt="restaurant.name"
+                  />
+                </div>
+                <div class="restaurant-info p-3 center">
                   <h4>{{ restaurant.restaurant_name }}</h4>
                   <p>{{ restaurant.address }}</p>
                   <p>{{ restaurant.phone }}</p>
@@ -65,6 +77,11 @@ export default {
       indexrests: {},
       selectedCategories: [],
     };
+  },
+  methods: {
+    isFirstLetterH(item) {
+      return item[0] == "h";
+    },
   },
   mounted() {
     if (localStorage.selectedCategories) {
@@ -106,6 +123,21 @@ export default {
   justify-content: center;
   gap: 20px;
   margin-bottom: 2em;
+
+  .card-rest {
+    border-radius: 10px;
+    overflow: hidden;
+    .cover-rest {
+      max-width: 100%;
+      height: 150px;
+    
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
 .btn-home {
