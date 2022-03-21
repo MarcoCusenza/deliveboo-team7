@@ -27,7 +27,8 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
   }
 );
 
-// Route::get("prova", "ProvaController");
+//rotta braintree
+Route::get('/payment/make', 'PaymentsController@make')->name('payment.make');
 
 // Route::get('/', function () {
 //   return view('front');
