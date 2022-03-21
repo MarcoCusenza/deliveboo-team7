@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container multi-select">
-            <h2>Seleziona le tue categorie preferite disponibili</h2>
+            <h2>Seleziona le tue categorie preferite</h2>
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-3">
                     <div class="form-group">
@@ -15,7 +15,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>  
+                </div>
                 <div class="restaurants-container col-sm-12 col-lg-9" v-if="restaurants.data">
                     <div class="card-grid">
                         <!-- Stampare tutti i ristoranti dati dalla ricerca-->
@@ -26,7 +26,7 @@
                                     :alt="restaurant.name" />
                                 <img v-else :src="'../storage/' + restaurant.image" :alt="restaurant.name" />
                             </div>
-                            <div class="restaurant-info p-2 d-flex flex-column justify-content-between">
+                            <div class=" restaurant-info p-3 d-flex flex-column justify-content-between">
                                 <div class="restaurant-info-text">
                                     <h3>{{ restaurant.restaurant_name }}</h3>
                                     <p>
@@ -34,18 +34,20 @@
                                         {{ restaurant.address }}
                                     </p>
                                     <p>
-                                        <i class="fa-solid fa-phone mr-2"></i> {{ restaurant.phone }}
+                                        <i class="fa-solid fa-phone mr-2"></i>
+                                        {{ restaurant.phone }}
                                     </p>
                                     <p>
                                         <i class="fa-solid fa-utensils mr-2"></i><span class="restaurant-categories"
                                             v-for="(cat, i) in restaurant.categories" :key="i">
-                                            {{ cat.name }}<span v-if="i < restaurant.categories.length - 1">,
+                                            {{ cat.name
+                      }}<span v-if="i < restaurant.categories.length - 1">,
                                             </span>
                                         </span>
                                     </p>
                                 </div>
-                                <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home mt-2"> Visualizza
-                                    menù</a>
+                                <a :href="'/restaurant/' + restaurant.slug" class="btn btn-home mt-2">
+                                    Visualizza menù</a>
                             </div>
                         </div>
                     </div>
@@ -194,77 +196,82 @@
 </script>
 
 <style lang="scss" scoped>
-    label,
-    input {
-        cursor: pointer;
-    }
+    section {
+        background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
+        background-color: #f8fafc;
+        background-repeat: no-repeat;
 
-    .card-grid {
-        display: grid;
-        grid-template: repeat(1, 1fr) / repeat(1, 1fr);
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 2em;
+        label,
+        input {
+            cursor: pointer;
+        }
 
+        .card-grid {
+            display: grid;
+            grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 2em;
 
-        .card-rest {
-            border-radius: 10px;
-            overflow: hidden;
+            .card-rest {
+                border-radius: 10px;
+                overflow: hidden;
 
-            .cover-rest {
-                max-width: 100%;
-                height: 150px;
+                .cover-rest {
+                    max-width: 100%;
+                    height: 150px;
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .restaurant-info {
-                height: calc(100% - 150px);
-
-                p {
-                    margin: 5px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
 
-                .restaurant-categories {
-                    color: grey;
-                    font-style: italic;
-                }
+                .restaurant-info {
+                    height: calc(100% - 150px);
 
-                .btn-home {
-                    background-color: #00ccbc;
-                    color: white;
-                    font-weight: bold;
-                    vertical-align: bottom;
-                    max-width: 50%;
+                    p {
+                        margin: 5px;
+                    }
+
+                    .restaurant-categories {
+                        color: grey;
+                        font-style: italic;
+                    }
+
+                    .btn-home {
+                        background-color: #00ccbc;
+                        color: white;
+                        font-weight: bold;
+                        vertical-align: bottom;
+                        max-width: 50%;
+                    }
                 }
             }
         }
-    }
 
-    .paginate-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        font-size: 20px;
+        .paginate-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
 
-        .paginate-box {
-            .prev {
-                cursor: pointer;
+            .paginate-box {
+                .prev {
+                    cursor: pointer;
 
-                &::before {
-                    content: "<";
+                    &::before {
+                        content: "<";
+                    }
                 }
-            }
 
-            .next {
-                cursor: pointer;
+                .next {
+                    cursor: pointer;
 
-                &::before {
-                    content: ">";
+                    &::before {
+                        content: ">";
+                    }
                 }
             }
         }
@@ -283,8 +290,6 @@
                         }
                     }
                 }
-
-
             }
         }
     }
