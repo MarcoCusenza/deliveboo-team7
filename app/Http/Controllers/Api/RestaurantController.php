@@ -38,11 +38,13 @@ class RestaurantController extends Controller
 
   // richiede tutti i ristoranti di una data categoria
   // localhost:8000/api/restaucat/italiano
-  public function restaucat($slug)
+  public function restaucat($cat)
   {
+    $cat_array = explode(',', $cat);
+
     //whereHas mi permette di prendere restaurants ma dare una clausola sulla tabella categories
-    $restaurants = Restaurant::whereHas("categories", function ($query) use ($slug) {
-      $query->where("slug", $slug);
+    $restaurants = Restaurant::whereHas("categories", function ($query) use ($cat_array) {
+      $query->whereIn("slug", $cat_array);
     })->paginate(6);
 
     // 404 restaurant slug non trovato
