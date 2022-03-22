@@ -24,6 +24,13 @@
 </script>
 
 <style lang="scss" scoped>
+header {
+    position: sticky;
+    top: 0;
+    background-color: #f0f3f5;
+    z-index: 10000;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    
     .container-header {
         height: 60px;
 
@@ -33,6 +40,7 @@
             .logo {
                 width: 100px;
                 transition: transform 0.3s;
+
 
                 &:hover {
                     transform: scale(1.2);
@@ -49,4 +57,5 @@
             }
         }
     }
+}
 </style>

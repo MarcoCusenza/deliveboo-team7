@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="cover-rest cover mb-5">
+        <div class="cover-rest cover my-5">
             <img v-if="restaurant.image && isFirstLetterH(restaurant.image)" :src="restaurant.image"
                 :alt="restaurant.name" />
             <img v-else :src="'../storage/' + restaurant.image" :alt="restaurant.name" />
