@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     "restaurant_name" => "required|string|max:150",
     "phone" => "required|regex:/^[0-9]/|min:8|max:15", //FIXARE LA REGEX
     "address" => "required|string|max:150",
-    "delivery_price" => "required|numeric|max:99",
+    "delivery_price" => "required|numeric|min:0|max:99",
     "categories" => "required|min:1"
   ];
   /**

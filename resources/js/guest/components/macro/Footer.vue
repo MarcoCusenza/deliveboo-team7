@@ -3,7 +3,9 @@
         <div class="footer-top container-fluid text-white">
             <div class="row mt-5 py-2 d-flex justify-content-center">
                 <div class="col-sm-12 col-lg-3 d-flex align-items-center justify-content-center">
-                    <img src="https://i.postimg.cc/mgJ2VbP8/Deliveroo-Logo-PNG1.png" alt="deliveroo-logo-footer" />
+                    <div class="image-container">
+                        <img src="https://i.postimg.cc/mgJ2VbP8/Deliveroo-Logo-PNG1.png" alt="deliveroo-logo-footer" />
+                    </div>
                 </div>
                 <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
                     <ul>
@@ -58,35 +60,43 @@
 
         .footer-top {
 
-
-            img {
-                width: 200px;
-
+            .image-container {
+                // height: 200px;
+                max-width: 200px;
                 &:hover {
-                    animation: shake 0.5s;
-                    animation-iteration-count: infinite;
-                }
-
-                @keyframes shake {
-                    0% {
-                        transform: translate(0px, 0px) rotate(-10deg);
+                        animation: shake 0.5s;
+                        animation-iteration-count: infinite;
                     }
 
-                    25% {
-                        transform: translate(0px, 0px) rotate(10deg);
+                    @keyframes shake {
+                        0% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
+
+                        25% {
+                            transform: translate(0px, 0px) rotate(10deg);
+                        }
+
+                        50% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
+
+                        75% {
+                            transform: translate(0px, 0px) rotate(10deg);
+                        }
+
+                        100% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
                     }
 
-                    50% {
-                        transform: translate(0px, 0px) rotate(-10deg);
+                img {
+                    width: 200px;
+                    transition: transform 0.2s;
+                    &:hover {
+                        transform: scale(1.5);
                     }
-
-                    75% {
-                        transform: translate(0px, 0px) rotate(10deg);
-                    }
-
-                    100% {
-                        transform: translate(0px, 0px) rotate(-10deg);
-                    }
+                    
                 }
             }
 
