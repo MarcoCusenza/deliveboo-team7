@@ -84,23 +84,44 @@
             </div>
 
             <!-- LISTA PIATTI -->
-            <div class="card-grid col-lg-12 mt-5">
-                <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
+            <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
+            <!-- <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in dishes" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <!-- <div class="image" :style="{ 'background-image': url(dish.image) }"></div>  -->
-
                     <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
                         <p class="card-text ingredients">{{ dish.ingredients }}</p>
                         <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                        <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
                         <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <section class="primi" v-if="thereArePrimi()">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore commodi, inventore similique aliquid a,
+                culpa facere soluta velit voluptate alias ullam illum, quidem libero ab voluptatibus expedita laudantium
+                provident. Labore.
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in dishes" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <!-- <div class="image" :style="{ 'background-image': url(dish.image) }"></div>  -->
+
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -142,119 +163,131 @@
             },
         },
         methods: {
-            addDish(dish) {
-                const newDish = [dish, 1];
-                const cartArrayBefore = this.getActualCartArray();
-                // console.log("dish", dish);
-                let ind = -1;
-                let temp = false;
-                if (cartArrayBefore != null) {
-                    cartArrayBefore.forEach((oldDish, index) => {
-                        // console.log("comparazione: thisDish", dish);
-                        // console.log("comparazione: dish", oldDish);
-                        if (dish.id == oldDish[0].id) {
-                            newDish[1] = oldDish[1] + 1;
-                            ind = index;
-                            temp = true;
-                            this.cart.splice(ind, 1, newDish);
-                        }
-                    });
+            thereArePrimi() {
+                let i = 0;
+
+                while (i < this.dishes.length) {
+                    if (this.dishes[i].courses.name == "primi") {
+                        return true;
+                    }
+                    i++;
                 }
-                if (temp == false) {
-                    newDish[1] = 1;
-                    this.cart.push(newDish);
-                }
-            },
-            removeDish(dish) {
-                const actualCart = this.getActualCartArray();
-                let index = -1;
-                actualCart.forEach((item, ind) => {
-                    if (item[0].id == dish[0].id) {
-                        index = ind;
+
+                return false;
+            }
+        },
+        addDish(dish) {
+            const newDish = [dish, 1];
+            const cartArrayBefore = this.getActualCartArray();
+            // console.log("dish", dish);
+            let ind = -1;
+            let temp = false;
+            if (cartArrayBefore != null) {
+                cartArrayBefore.forEach((oldDish, index) => {
+                    // console.log("comparazione: thisDish", dish);
+                    // console.log("comparazione: dish", oldDish);
+                    if (dish.id == oldDish[0].id) {
+                        newDish[1] = oldDish[1] + 1;
+                        ind = index;
+                        temp = true;
+                        this.cart.splice(ind, 1, newDish);
                     }
                 });
-                if (index > -1) {
-                    this.cart.splice(index, 1);
+            }
+            if (temp == false) {
+                newDish[1] = 1;
+                this.cart.push(newDish);
+            }
+        },
+        removeDish(dish) {
+            const actualCart = this.getActualCartArray();
+            let index = -1;
+            actualCart.forEach((item, ind) => {
+                if (item[0].id == dish[0].id) {
+                    index = ind;
                 }
-            },
-            getActualCartArray() {
-                // console.log("actual array:", JSON.parse(localStorage.getItem("cart")));
-                return JSON.parse(localStorage.getItem("cart"));
-            },
-            sameRestaurant(dish) {
-                if (this.cart.length <= 0) {
-                    console.log("Il carrello è vuoto, puoi aggiungere piatti");
-                    return true;
-                } else if (dish.restaurant_id == this.cart[0][0].restaurant_id) {
-                    console.log("dish:", dish);
-                    console.log("primo dish in cart:", this.cart[0][0]);
-                    console.log(
-                        "Il ristorante è lo stesso, puoi aggiungere piatti",
-                        dish.restaurant_name,
-                        this.cart[0].restaurant_name
-                    );
-                    return true;
-                } else {
-                    console.log(
-                        "Nel carrello ci sono piatti di altri ristoranti, NON puoi aggiungere piatti"
-                    );
-                    return false;
-                }
-            },
-            alertRest() {
-                this.showModal();
-            },
-            showModal() {
-                return this.haveToShowModal = true;
-            },
-            closeModal() {
-                this.haveToShowModal = false;
-            },
-            // aumenta la quantità di piatti nel carrello
-            increaseQuantity(dish) {
-                let newDish = dish;
-                newDish[1] = dish[1] + 1;
-                let ind = this.cart.indexOf(dish);
+            });
+            if (index > -1) {
+                this.cart.splice(index, 1);
+            }
+        },
+        getActualCartArray() {
+            // console.log("actual array:", JSON.parse(localStorage.getItem("cart")));
+            return JSON.parse(localStorage.getItem("cart"));
+        },
+        sameRestaurant(dish) {
+            if (this.cart.length <= 0) {
+                console.log("Il carrello è vuoto, puoi aggiungere piatti");
+                return true;
+            } else if (dish.restaurant_id == this.cart[0][0].restaurant_id) {
+                console.log("dish:", dish);
+                console.log("primo dish in cart:", this.cart[0][0]);
+                console.log(
+                    "Il ristorante è lo stesso, puoi aggiungere piatti",
+                    dish.restaurant_name,
+                    this.cart[0].restaurant_name
+                );
+                return true;
+            } else {
+                console.log(
+                    "Nel carrello ci sono piatti di altri ristoranti, NON puoi aggiungere piatti"
+                );
+                return false;
+            }
+        },
+        alertRest() {
+            this.showModal();
+        },
+        showModal() {
+            return this.haveToShowModal = true;
+        },
+        closeModal() {
+            this.haveToShowModal = false;
+        },
+        // aumenta la quantità di piatti nel carrello
+        increaseQuantity(dish) {
+            let newDish = dish;
+            newDish[1] = dish[1] + 1;
+            let ind = this.cart.indexOf(dish);
+            this.cart.splice(ind, 1, newDish);
+        },
+        // diminuisce la quantità di piatti nel carrello, se è 0 rimuove il piatto dal carrello
+        decreaseQuantity(dish) {
+            let newDish = dish;
+            newDish[1] = dish[1] - 1;
+            let ind = this.cart.indexOf(dish);
+            if (newDish[1] > 0) {
                 this.cart.splice(ind, 1, newDish);
-            },
-            // diminuisce la quantità di piatti nel carrello, se è 0 rimuove il piatto dal carrello
-            decreaseQuantity(dish) {
-                let newDish = dish;
-                newDish[1] = dish[1] - 1;
-                let ind = this.cart.indexOf(dish);
-                if (newDish[1] > 0) {
-                    this.cart.splice(ind, 1, newDish);
-                } else {
-                    this.cart.splice(ind, 1);
+            } else {
+                this.cart.splice(ind, 1);
+            }
+        },
+        //rimuove piatto dal carrello
+        removeDish(dish) {
+            // const actualCart = this.getActualCartArray();
+            let index = -1;
+            this.cart.forEach((item, ind) => {
+                if (item[0].id == dish[0].id) {
+                    index = ind;
                 }
-            },
-            //rimuove piatto dal carrello
-            removeDish(dish) {
-                // const actualCart = this.getActualCartArray();
-                let index = -1;
-                this.cart.forEach((item, ind) => {
-                    if (item[0].id == dish[0].id) {
-                        index = ind;
-                    }
-                });
-                if (index > -1) {
-                    this.cart.splice(index, 1);
-                }
-            },
-            //restituisce il carrello in localstorage
-            // getActualCartArray() {
-            //   return JSON.parse(localStorage.getItem("cart"));
-            // },
-            //calcola il prezzo finale del carrello
-            finalPrice() {
-                let finalPrice = 0;
+            });
+            if (index > -1) {
+                this.cart.splice(index, 1);
+            }
+        },
+        //restituisce il carrello in localstorage
+        // getActualCartArray() {
+        //   return JSON.parse(localStorage.getItem("cart"));
+        // },
+        //calcola il prezzo finale del carrello
+        finalPrice() {
+            let finalPrice = 0;
 
-                this.cart.forEach((item) => {
-                    finalPrice += item[0].price * item[1];
-                });
+            this.cart.forEach((item) => {
+                finalPrice += item[0].price * item[1];
+            });
 
-                return finalPrice.toFixed(2);
-            },
+            return finalPrice.toFixed(2);
         },
     };
 </script>
