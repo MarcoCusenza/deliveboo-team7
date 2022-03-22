@@ -5,7 +5,10 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-3">
                     <div class="form-group">
-                        <ul class="list-group">
+                        <div class="d-block d-lg-none list-group-item d-flex align-items-center justify-content-between" @click="showDropdown()">
+                            <span>Seleziona una categoria</span> <i class="fa-solid fa-chevron-down ml-auto"></i>
+                        </div>
+                        <ul class="list-group d-lg-block d-none" id="dropdown">
                             <li class="list-group-item" v-for="(category, index) in allCategories" :key="index">
                                 <label>
                                     <input type="checkbox" :value="category" v-model="selectedCategories"
@@ -16,6 +19,19 @@
                         </ul>
                     </div>
                 </div>
+                <!-- <div class="col-sm-12 col-lg-3">
+                    <div class="form-group">
+                        <ul class="list-group">
+                            <li class="list-group-item" v-for="(category, index) in allCategories" :key="index">
+                                <label>
+                                    <input type="checkbox" :value="category" v-model="selectedCategories"
+                                        :name="category.name" />
+                                    {{ category.name }}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
                 <div class="restaurants-container col-sm-12 col-lg-9" v-if="restaurants.data">
                     <div class="card-grid">
                         <!-- Stampare tutti i ristoranti dati dalla ricerca-->
@@ -162,6 +178,20 @@
                             });
                         });
                 }
+            },
+
+            showDropdown() {
+                const dropdown = document.getElementById("dropdown");
+                console.log(dropdown);
+                if (dropdown.classList.contains('d-none')) {
+                    dropdown.classList.add('d-block');
+                    dropdown.classList.remove('d-none');
+                } else {
+                    dropdown.classList.add('d-none');
+                    dropdown.classList.remove('d-block');
+                }
+                //dropdown.classList.remove('d-none');
+                // dropdown.classList.add('d-block');
             },
         },
         watch: {
