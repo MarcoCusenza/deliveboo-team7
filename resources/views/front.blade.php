@@ -17,16 +17,13 @@
 
 <body>
     <div id="app"></div>
+    {{-- BRAINTREE --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
 
-    {{-- <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div id="dropin-container"></div><button id="submit-button">Request payment method</button>
-            </div>
-        </div>
-    </div> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
+
+    {{-- //vecchio --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script> --}}
     {{-- <script>
         var button = document.querySelector('#submit-button');
         braintree.dropin.create({
@@ -49,6 +46,7 @@
             });
         });
     </script> --}}
+    {{-- BRAINTREE --}}
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
 

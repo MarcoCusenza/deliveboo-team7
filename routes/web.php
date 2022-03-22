@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +28,73 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
   }
 );
 
+// Rotta GET per la pagina di checkout
+Route::get('/payment/checkout', function () {
+  $gateway = new Braintree\Gateway([
+    'environment' => config('services.braintree.environment'),
+    'merchantId' => config('services.braintree.merchantId'),
+    'publicKey' => config('services.braintree.publicKey'),
+    'privateKey' => config('services.braintree.privateKey')
+  ]);
+
+
+  $token = $gateway->ClientToken()->generate();
+
+  return view('checkout', [
+    'token' => $token
+  ]);
+})->name("checkout");
+
+
+// Rotta POST per la domanda di conferma pagamento e reindirizzazione a pagina di successo
+Route::post('/checkout', function (Request $request) {
+  $gateway = new Braintree\Gateway([
+    'environment' => config('services.braintree.environment'),
+    'merchantId' => config('services.braintree.merchantId'),
+    'publicKey' => config('services.braintree.publicKey'),
+    'privateKey' => config('services.braintree.privateKey')
+  ]);
+
+  $amount = $request->amount;
+  $nonce = $request->payment_method_nonce;
+
+  $result = $gateway->transaction()->sale([
+    'amount' => $amount,
+    'paymentMethodNonce' => $nonce,
+    'customer' => [
+      'firstName' => 'Tony',
+      'lastName' => 'Stark',
+      'email' => 'tony@avengers.com',
+    ],
+    'options' => [
+      'submitForSettlement' => true
+    ]
+  ]);
+
+  if ($result->success) {
+    $transaction = $result->transaction;
+    // header("Location: transaction.php?id=" . $transaction->id);
+
+    return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+  } else {
+    $errorString = "";
+
+    foreach ($result->errors->deepAll() as $error) {
+      $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+    }
+
+    // $_SESSION["errors"] = $errorString;
+    // header("Location: index.php");
+    return back()->withErrors('An error occurred with the message: ' . $result->message);
+  }
+});
+
 //rotta braintree
-Route::get('/payment/checkout', 'PaymentController@index')->name('checkout');
-Route::get('/payment/make', 'PaymentController@make')->name('payment.make');
+// Route::get('/payment/checkout', 'PaymentController@index')->name('checkout');
+// Route::get('/payment/make', 'PaymentController@make')->name('payment.make');
+
+
+
 
 // Route::get('/', function () {
 //   return view('front');

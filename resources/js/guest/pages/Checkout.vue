@@ -134,16 +134,51 @@
             </div>
           </form>
           <!-- BRAINTREE -->
-          <!-- <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div id="dropin-container"></div>
-                <button id="submit-button">Paga con questa carta</button>
+          <!-- @if (session('success_message'))
+          <div class="alert alert-success">
+            {{ session("success_message") }}
+          </div>
+          @endif @if (count($errors) > 0)
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif -->
+          <form method="post" id="payment-form" action="">
+            <!-- @csrf -->
+            <section>
+              <label for="amount">
+                <span class="input-label">Amount</span>
+                <div class="input-wrapper amount-wrapper">
+                  <input
+                    id="amount"
+                    name="amount"
+                    type="tel"
+                    min="1"
+                    placeholder="Amount"
+                    value="10"
+                  />
+                </div>
+              </label>
+
+              <div class="bt-drop-in-wrapper">
+                <div id="bt-dropin"></div>
               </div>
-            </div>
-          </div> -->
+            </section>
+
+            <input id="nonce" name="payment_method_nonce" type="hidden" />
+            <button class="button" type="submit">
+              <span>Test Transaction</span>
+            </button>
+          </form>
+
+          <!-- <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script> -->
           <!-- BRAINTREE -->
         </div>
+
         <div class="col-sm-12 col-lg-5 col-checkout ml-auto p-5 mt-5">
           qui ci va il rider
         </div>
@@ -165,29 +200,66 @@ export default {
       this.cart = JSON.parse(localStorage.cart);
     }
 
-    var button = document.querySelector("#submit-button");
+    // <!-- BRAINTREE -->
+
+    var form = document.querySelector("#payment-form");
+    var client_token = "{{ $token }}";//bisogna passare il token a questa view
+
     braintree.dropin.create(
       {
-        authorization: "{{ BraintreeClientToken::generate() }} ",
-        selector: "#dropin-container",
+        authorization: client_token,
+        selector: "#bt-dropin",
+        // paypal: {
+        //     flow: 'vault'
+        // }
       },
       function (createErr, instance) {
-        button.addEventListener("click", function () {
+        if (createErr) {
+          console.log("Create Error", createErr);
+          return;
+        }
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
           instance.requestPaymentMethod(function (err, payload) {
-            //SUBMIT PAYLOAD + NONCE al mio server
-            // $.get('{{ route('payment.make') }}', {
-            //     payload
-            // }, function(response) {
-            //     if (response.success) {
-            //         alert('Payment successfull!');
-            //     } else {
-            //         alert('Payment failed');
-            //     }
-            // }, 'json');
+            if (err) {
+              console.log("Request Payment Method Error", err);
+              return;
+            }
+
+            // Add the nonce to the form and submit
+            document.querySelector("#nonce").value = payload.nonce;
+            form.submit();
           });
         });
       }
     );
+
+    //vecchio
+    // var button = document.querySelector("#submit-button");
+    // braintree.dropin.create(
+    //   {
+    //     authorization: "{{ BraintreeClientToken::generate() }} ",
+    //     selector: "#dropin-container",
+    //   },
+    //   function (createErr, instance) {
+    //     button.addEventListener("click", function () {
+    //       instance.requestPaymentMethod(function (err, payload) {
+    //         //SUBMIT PAYLOAD + NONCE al mio server
+    //         // $.get('{{ route('payment.make') }}', {
+    //         //     payload
+    //         // }, function(response) {
+    //         //     if (response.success) {
+    //         //         alert('Payment successfull!');
+    //         //     } else {
+    //         //         alert('Payment failed');
+    //         //     }
+    //         // }, 'json');
+    //       });
+    //     });
+    //   }
+    // );
+    // <!-- BRAINTREE -->
   },
   watch: {
     cart: {
