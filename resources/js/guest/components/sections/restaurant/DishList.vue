@@ -218,7 +218,7 @@
                     finalPrice += item[0].price * item[1];
                 });
 
-                return finalPrice;
+                return finalPrice.toFixed(2);
             },
         },
     };
