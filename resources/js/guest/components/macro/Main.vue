@@ -17,12 +17,6 @@ export default {
 
 <style lang="scss" scoped>
 main {
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
-    overflow-y: scroll; 
-}
-
-main::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
+  margin-top: 60px;
 }
 </style>
