@@ -1,8 +1,9 @@
 <template>
-    <div class="container container-work">
-        <h2 class="text-center font-weight-bold">Unisciti a noi!</h2>
+    <div class="container container-work ">
+        <h2 class="text-center font-weight-bold pt-5">Unisciti a noi!</h2>
+        <h5 class="text-center">Inizia la tua nuova avventura come rider, ristoratore o addirittura nei nostri uffici! </h5>
         <div class="row d-flex align-items-center justify-content-center mt-5">
-            <div class="col-sm-12 col-lg-4">
+            <div class="col-sm-12 col-lg-4 mt-">
                 <div class="card">
                     <img src="https://i.postimg.cc/j55LNmpb/joshua-lawrence-3-Kdzpr-XR3-Y-unsplash.jpg"
                         class="card-img-top" alt="deliveroo-rider">
@@ -65,7 +66,7 @@
 
             img {
                 
-                height: 550px;
+                height: 300px;
                 object-fit: cover;
                 position: relative;
                 border-radius: 35px;
@@ -103,7 +104,7 @@
 
             .card {
                 img {
-                    height: 450px;
+                    height: 350px;
                 }
             }
 
