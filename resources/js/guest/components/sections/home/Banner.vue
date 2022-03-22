@@ -70,6 +70,7 @@
 
     @media screen and (min-width: 1250px) {
         .container-banner {
+            padding-left: 50px;
             .container-text {
                 width: 100%;
                 p {

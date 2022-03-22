@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-12 col-lg-4">
                 <div class="card">
-                    <img src="https://i.postimg.cc/FsRzBMzk/cherrydeck-Mt-Hi-Q8-NCIo-M-unsplash.jpg"
+                    <img src="https://i.postimg.cc/P5SXcwXQ/redd-5-U-28ojjgms-unsplash.jpg"
                         class="card-img-top" alt="deliveroo-office">
                     <div class="overlay-text text-white p-4">
 
