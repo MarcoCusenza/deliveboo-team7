@@ -3,7 +3,7 @@
         <div class="row">
 
             <!-- CARRELLO -->
-            <section class="cart-box col-lg-12">
+            <section class="mb-5 cart-box col-lg-12">
                 <h3>Carrello</h3>
                 <table class="cart table table-borderless" v-if="cart.length > 0">
                     <thead>
@@ -56,7 +56,7 @@
                 </div>
             </section>
 
-            <div v-if="this.haveToShowModal">
+            <div class="mb-5" v-if="this.haveToShowModal">
                 <transition name="modal">
                     <div class="modal-mask">
                         <div class="modal-wrapper">
@@ -84,23 +84,154 @@
             </div>
 
             <!-- LISTA PIATTI -->
-            <div class="card-grid col-lg-12 mt-5">
-                <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
+            <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
+            <!-- <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in dishes" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <!-- <div class="image" :style="{ 'background-image': url(dish.image) }"></div>  -->
-
                     <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
                         <p class="card-text ingredients">{{ dish.ingredients }}</p>
                         <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                        <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
                         <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <section class="antipasti" v-if="antipasti.length > 0">
+                <h2>Antipasti</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in antipasti" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="primi" v-if="primi.length > 0">
+                <h2>Primi</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in primi" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="secondi" v-if="secondi.length > 0">
+                <h2>Secondi</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in secondi" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contorni" v-if="contorni.length > 0">
+                <h2>Contorni</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in contorni" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dessert" v-if="contorni.length > 0">
+                <h2>Dessert</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in dessert" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="drink" v-if="contorni.length > 0">
+                <h2>Drink</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in drink" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="piattiUnici" v-if="piattiUnici.length > 0">
+                <h2>Piatti Unici</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in piattiUnici" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -111,9 +242,16 @@
         name: "DishList",
         data() {
             return {
-                dishes: {},
+                dishes: [], // modificato da -> dishes: {},
                 cart: [],
                 haveToShowModal: false,
+                antipasti: [],
+                primi: [],
+                secondi: [],
+                contorni: [],
+                dessert: [],
+                drink: [],
+                piattiUnici: [],
             };
         },
         created() {
@@ -121,12 +259,39 @@
                 .get(`/api/dishes/${this.$route.params.slug}`)
                 .then((response) => {
                     this.dishes = response.data;
+                    for (let i = 0; i < this.dishes.length; i++) {
+                        switch (this.dishes[i].course.slug) {
+                            case 'antipasti':
+                                this.antipasti.push(this.dishes[i]);
+                                break;
+                            case 'primi':
+                                this.primi.push(this.dishes[i]);
+                                break;
+                            case 'secondi':
+                                this.secondi.push(this.dishes[i]);
+                                break;
+                            case 'contorni':
+                                this.contorni.push(this.dishes[i]);
+                                break;
+                            case 'dessert':
+                                this.dessert.push(this.dishes[i]);
+                                break;
+                            case 'drink':
+                                this.drink.push(this.dishes[i]);
+                                break;
+                            case 'piattiUnici':
+                                this.piattiUnici.push(this.dishes[i]);
+                                break;
+                        }
+                    }
                 })
                 .catch((error) => {
                     this.$router.push({
                         name: "page-404"
                     });
                 });
+
+
         },
         mounted() {
             if (localStorage.cart) {
