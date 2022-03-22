@@ -37,7 +37,7 @@
     
                 <div class="form-group mb-4">
                     <label for="delivery_price">Costo spedizione *</label>
-                    <input type="number" step=".05" max="99" class="form-control @error('delivery_price') is-invalid @enderror"
+                    <input type="number" step=".05" min="0" max="99" class="form-control @error('delivery_price') is-invalid @enderror"
                         id="delivery_price" name="delivery_price" placeholder="Scrivi quanto costa la spedizione"
                         value="{{ old('delivery_price') }}" required>
                     @error('delivery_price')
