@@ -1,7 +1,8 @@
 <template>
     <div class="container container-categories mb-5 pt-5" id="best-categories">
         <h2 class="text-center font-weight-bold">Le nostre migliori categorie:</h2>
-        <div class="row mt-5">
+        <h5 class="text-center">Deliveboo permette una selezione ampia di categorie, dai un occhio alle nostre categorie di punta!</h5>
+        <div class="row mt-4">
             <div v-for="category in categories.slice(0, 8)" :key="category.id" class="col-lg-3 col-sm-6 mt-5">
                 <div class="card-category text-center p-4">
                     <div class="
@@ -19,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="btn-container">
+        <div class="btn-container pb-5">
             <a href="/categories"><button class="btn-home mt-5" @click="clearCat()">
                     Guarda tutte le categorie
                 </button></a>

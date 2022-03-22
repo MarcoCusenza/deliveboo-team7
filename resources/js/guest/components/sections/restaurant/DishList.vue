@@ -3,7 +3,7 @@
         <div class="row">
 
             <!-- CARRELLO -->
-            <section class="cart-box  col-lg-12">
+            <section class="cart-box col-lg-12">
                 <h3>Carrello</h3>
                 <table class="cart table table-borderless" v-if="cart.length > 0">
                     <thead>
@@ -91,7 +91,7 @@
             axios
                 .get(`/api/dishes/${this.$route.params.slug}`)
                 .then((response) => {
-                    this.dishes = response.data;
+                    this.dishes = response.data;  
                 })
                 .catch((error) => {
                     this.$router.push({
@@ -223,7 +223,6 @@
         },
     };
 </script>
-
 
 <style lang="scss" scoped>
     .btn-home {
