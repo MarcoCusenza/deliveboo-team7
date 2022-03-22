@@ -4,7 +4,7 @@
             <div class="row mt-5 py-2 d-flex justify-content-center">
                 <div class="col-sm-12 col-lg-3 d-flex align-items-center justify-content-center">
                     <div class="image-container">
-                        <img src="https://i.postimg.cc/mgJ2VbP8/Deliveroo-Logo-PNG1.png" alt="deliveroo-logo-footer" />
+                        <img src="https://i.postimg.cc/43rpZ7Xr/logo-footer.png" alt="deliveroo-logo-footer" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
@@ -62,7 +62,7 @@
 
             .image-container {
                 // height: 200px;
-                max-width: 200px;
+                max-width: 140px;
                 &:hover {
                         animation: shake 0.5s;
                         animation-iteration-count: infinite;
@@ -91,7 +91,7 @@
                     }
 
                 img {
-                    width: 200px;
+                    width: 140px;
                     transition: transform 0.2s;
                     &:hover {
                         transform: scale(1.5);

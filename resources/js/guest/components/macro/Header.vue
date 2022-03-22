@@ -3,7 +3,7 @@
         <nav class="container-fluid container-header">
             <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-header col-lg-2 col-6 text-xl-center text-lg-left">
-                    <a href="/"><img src="https://i.postimg.cc/4N3pvRP2/deliveroo-logo-4.png" alt="deliveroo logo"
+                    <a href="/"><img src="https://i.postimg.cc/s2WnCRpD/logo.png" alt="deliveroo logo"
                             class="logo" /></a>
                 </div>
                 <div class="col-header col-icon col-lg-2 col-6">
@@ -38,7 +38,7 @@
                 height: 100%;
 
                 .logo {
-                    width: 100px;
+                    width: 120px;
                     transition: transform 0.3s;
 
 
