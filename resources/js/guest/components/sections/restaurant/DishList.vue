@@ -84,162 +84,20 @@
             </div>
 
             <!-- LISTA PIATTI -->
-            <!-- !!! AGGIUNGERE LA PORTATA (COURSES) !!!-->
-            <!-- <div class="card-grid col-lg-12 mt-5">
-                <div v-for="dish in dishes" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ dish.name }}</h5>
-                        <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                        <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                        <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                        <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </div> -->
-
-            <section class="antipasti" v-if="antipasti.length > 0">
-                <h2>Antipasti</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in antipasti" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="primi" v-if="primi.length > 0">
-                <h2>Primi</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in primi" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="secondi" v-if="secondi.length > 0">
-                <h2>Secondi</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in secondi" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="contorni" v-if="contorni.length > 0">
-                <h2>Contorni</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in contorni" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="dessert" v-if="dessert.length > 0">
-                <h2>Dessert</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in dessert" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="drink" v-if="drink.length > 0">
-                <h2>Drink</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in drink" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="piattiUnici" v-if="piattiUnici.length > 0">
-                <h2>Piatti Unici</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in piattiUnici" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <DishCourses @isTheSameRestaurant="checkSameRestaurant" :antipasti="antipasti" :piattiUnici="piattiUnici"
+                :primi="primi" :secondi="secondi" :contorni="contorni" :dessert="dessert" :drink="drink" />
         </div>
     </div>
 </template>
 
 
 <script>
+    import DishCourses from './DishCourses.vue';
     export default {
         name: "DishList",
+        components: {
+            DishCourses,
+        },
         data() {
             return {
                 dishes: [], // modificato da -> dishes: {},
@@ -307,6 +165,10 @@
             },
         },
         methods: {
+            checkSameRestaurant(dish) {
+                this.sameRestaurant(dish) ? this.addDish(dish) : this.alertRest()
+            },
+
             addDish(dish) {
                 const newDish = [dish, 1];
                 const cartArrayBefore = this.getActualCartArray();
@@ -448,70 +310,6 @@
         font-weight: bold;
     }
 
-    .card-grid {
-        display: grid;
-        //grid-template: repeat(1, 1fr) / repeat(1, 1fr);
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 3em;
-
-        .card-rest {
-            border-radius: 2em;
-            display: flex;
-            overflow: hidden;
-            min-height: 100px;
-            max-height: 150px;
-
-            img {
-                min-width: 35%;
-                max-width: 35%;
-                min-height: 100%;
-                max-height: 100%;
-                object-fit: cover;
-            }
-
-            .card-body {
-                position: relative;
-                padding-bottom: 40px;
-
-
-
-                .btn {
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    border-radius: 10px 0 0 0;
-                    padding: 10px 20px;
-                }
-
-                .card-text {
-
-                    &.description {
-                        font-style: italic;
-                        color: grey;
-                        // text-align: center;
-                    }
-                }
-
-                .ingredients {
-                    font-size: 12px;
-                }
-
-                p {
-                    margin: 2px 0;
-
-                    &:last-child {
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                    }
-                }
-            }
-        }
-    }
-
-
-
     .cart-box {
         background: white;
         border-radius: 30px;
@@ -611,46 +409,6 @@
                     transition: 0.3s;
                     text-decoration: none;
                 }
-            }
-        }
-    }
-
-    @media screen and (min-width: 768px) {
-        .container {
-            .card-grid {
-                display: grid;
-                grid-template: repeat(1, 1fr) / repeat(2, 1fr);
-
-                .card-rest {
-                    min-height: 150px;
-                    max-height: 200px;
-                }
-            }
-        }
-    }
-
-    @media screen and (min-width: 992px) {
-        .card-grid {
-            .card-rest {
-                height: 250px !important;
-            }
-        }
-
-        .cart-box {
-            background-image: url('https://i.postimg.cc/bNSGqbSJ/Deliver-Boo-8-2x.png');
-            background-position: top right;
-            background-size: 350px;
-            background-repeat: no-repeat;
-        }
-    }
-
-
-
-    @media screen and (min-width: 1200px) {
-        .container {
-            .card-grid {
-                display: grid;
-                grid-template: repeat(1, 1fr) / repeat(3, 1fr);
             }
         }
     }
