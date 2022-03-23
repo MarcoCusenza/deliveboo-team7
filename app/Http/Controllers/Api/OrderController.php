@@ -90,13 +90,25 @@ class OrderController extends Controller
 
   public function orderNumber()
   {
-    $length = 3;
+    $length = 8;
     $characters = '0123456789';
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
       $randomString .= $characters[rand(0, strlen($characters) - 1)];
     }
-    // dd($randomString);
+
     return $randomString;
+
+    // $od = "";
+    // $idlength = strlen($this->newOrder->id);
+
+    // for ($i = 0; $i < 12 - $idlength; $i++) {
+    //   $od .= "0";
+    // }
+
+    // $od .= strlen($this->newOrder->id);
+
+    // // dd($randomString);
+    // return $od;
   }
 }
