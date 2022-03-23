@@ -68,8 +68,9 @@ Route::get("/restaucat/{slug}", "Api\RestaurantController@restaucat");
 Route::get("/dishes/{slug}", "Api\DishController@dishes");
 
 
+
 // ____ORDERS____
 // ______________
 
 //aggiunge ordine in tabella se va a buon fine
-
+Route::post("/order/create", "Api\OrderController@store");

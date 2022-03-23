@@ -64,6 +64,7 @@
                 class="form-control"
                 id="client_name"
                 name="client_name"
+                v-model="formData.name"
                 placeholder="Inserisci il tuo nome"
                 required
               />
@@ -77,6 +78,7 @@
                 class="form-control"
                 id="client_surname"
                 name="client_surname"
+                v-model="formData.surname"
                 placeholder="Inserisci il tuo cognome"
                 required
               />
@@ -103,6 +105,7 @@
                 class="form-control"
                 id="client_email"
                 name="client_email"
+                v-model="formData.email"
                 placeholder="Inserisci la tua email"
                 required
               />
@@ -135,19 +138,6 @@
           </form>
 
           <!-- BRAINTREE -->
-          <!-- <div
-            class="alert alert-success"
-            v-if="this.$session('success_message')"
-          >
-            {{ session("success_message") }}
-          </div>
-          <div class="alert alert-danger" v-if="count($errors) > 0">
-            <ul>
-              <li v-for="(error, i) in this.$errors->all()" :key="i">
-                {{ error }}
-              </li>
-            </ul>
-          </div> -->
 
           <form id="payment-form">
             <!-- <input type="hidden" :value="window.token" name="_token" /> -->
@@ -180,6 +170,12 @@ export default {
   data() {
     return {
       cart: [],
+      formData: {
+        name: "",
+        surname: "",
+        email: "",
+        // post_id: null,
+      },
     };
   },
   mounted() {
@@ -192,6 +188,7 @@ export default {
     axios.get("/payment/checkout").then((response) => {
       var form = document.querySelector("#payment-form");
 
+      //Si crea il dropin con il token
       braintree.dropin.create(
         {
           authorization: response.data,
@@ -222,15 +219,20 @@ export default {
                 let data = {
                   amount: tot,
                   payment_method_nonce: payload.nonce,
+                  name: this.formData.name,
+                  surname: this.formData.surname,
+                  email: this.formData.email,
                 };
                 axios
                   .post("/payment/checkout", data)
                   .then((response) => {
-                    console.log("AAAAAAA", response);
+                    console.log("SUCCESSO FINALE", response);
+                    //Funzione con CHIAMATA AXIOS CHE SCRIVE NEGLI ORDINI
+                    // addOrder();
                     window.location.href = "/transaction";
                   })
                   .catch((error) => {
-                    console.log("BBBBBBB", error.data);
+                    console.log("ERRORE FINALE", error.data);
                   });
               });
             });
@@ -238,31 +240,6 @@ export default {
         }
       );
     });
-
-    //vecchio
-    // var button = document.querySelector("#submit-button");
-    // braintree.dropin.create(
-    //   {
-    //     authorization: "{{ BraintreeClientToken::generate() }} ",
-    //     selector: "#dropin-container",
-    //   },
-    //   function (createErr, instance) {
-    //     button.addEventListener("click", function () {
-    //       instance.requestPaymentMethod(function (err, payload) {
-    //         //SUBMIT PAYLOAD + NONCE al mio server
-    //         // $.get('{{ route('payment.make') }}', {
-    //         //     payload
-    //         // }, function(response) {
-    //         //     if (response.success) {
-    //         //         alert('Payment successfull!');
-    //         //     } else {
-    //         //         alert('Payment failed');
-    //         //     }
-    //         // }, 'json');
-    //       });
-    //     });
-    //   }
-    // );
     // <!-- BRAINTREE -->
   },
   watch: {
@@ -314,6 +291,19 @@ export default {
       });
 
       return finalPrice;
+    },
+    addOrder() {
+      // /api/orders
+      axios
+        .post("/order/create", this.formData)
+        .then((response) => {
+          //pulisco i campi
+          // this.formData.name = "";
+          // this.formData.content = "";
+        })
+        .catch((error) => {
+          console.log("BBBBBBB", error.data);
+        });
     },
   },
 };

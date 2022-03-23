@@ -76,14 +76,17 @@ Route::post('/payment/checkout', function (Request $request) {
 
   $amount = $request->amount;
   $nonce = $request->payment_method_nonce;
+  $name = $request->name;
+  $surname = $request->surname;
+  $email = $request->email;
 
   $result = $gateway->transaction()->sale([
     'amount' => $amount,
     'paymentMethodNonce' => $nonce,
     'customer' => [
-      'firstName' => 'Tony',
-      'lastName' => 'Stark',
-      'email' => 'tony@avengers.com',
+      'firstName' => $name,
+      'lastName' => $surname,
+      'email' => $email,
     ],
     'options' => [
       'submitForSettlement' => true
@@ -96,14 +99,13 @@ Route::post('/payment/checkout', function (Request $request) {
 
     // return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
     return response()->json($transaction->id);
-
   } else {
     $errorString = "";
 
     foreach ($result->errors->deepAll() as $error) {
       $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
     }
-    
+
     // return back()->withErrors('An error occurred with the message: ' . $result->message);
     return response()->json($result->message);
   }
