@@ -100,7 +100,7 @@
                 </div>
             </div> -->
 
-            <section class="antipasti" v-if="antipasti.length > 0">
+            <section class="antipasti container-fluid" v-if="antipasti.length > 0">
                 <h2>Antipasti</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in antipasti" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -119,7 +119,26 @@
                 </div>
             </section>
 
-            <section class="primi" v-if="primi.length > 0">
+            <section class="piattiUnici container-fluid" v-if="piattiUnici.length > 0">
+                <h2>Piatti Unici</h2>
+                <div class="card-grid col-lg-12 mt-5">
+                    <div v-for="dish in piattiUnici" :key="dish.id" class="card-rest shadow-sm bg-white">
+                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ dish.name }}</h5>
+                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
+                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
+                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
+                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="primi container-fluid" v-if="primi.length > 0">
                 <h2>Primi</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in primi" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -138,7 +157,7 @@
                 </div>
             </section>
 
-            <section class="secondi" v-if="secondi.length > 0">
+            <section class="secondi container-fluid" v-if="secondi.length > 0">
                 <h2>Secondi</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in secondi" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -157,7 +176,8 @@
                 </div>
             </section>
 
-            <section class="contorni" v-if="contorni.length > 0">
+
+            <section class="contorni container-fluid" v-if="contorni.length > 0">
                 <h2>Contorni</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in contorni" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -175,8 +195,9 @@
                     </div>
                 </div>
             </section>
+            
 
-            <section class="dessert" v-if="dessert.length > 0">
+            <section class="dessert container-fluid" v-if="dessert.length > 0">
                 <h2>Dessert</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in dessert" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -195,29 +216,10 @@
                 </div>
             </section>
 
-            <section class="drink" v-if="drink.length > 0">
+            <section class="drink container-fluid" v-if="drink.length > 0">
                 <h2>Drink</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in drink" :key="dish.id" class="card-rest shadow-sm bg-white">
-                        <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text ingredients">{{ dish.ingredients }}</p>
-                            <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
-                            <p class="card-text font-weight-bold">{{ dish.course.name }}</p>
-                            <button class="btn btn-home" @click="sameRestaurant(dish) ? addDish(dish) : alertRest()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="piattiUnici" v-if="piattiUnici.length > 0">
-                <h2>Piatti Unici</h2>
-                <div class="card-grid col-lg-12 mt-5">
-                    <div v-for="dish in piattiUnici" :key="dish.id" class="card-rest shadow-sm bg-white">
                         <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
 
                         <div class="card-body">
@@ -635,13 +637,13 @@
                 height: 250px !important;
             }
         }
-
         .cart-box {
             background-image: url('https://i.postimg.cc/bNSGqbSJ/Deliver-Boo-8-2x.png');
             background-position: top right;
             background-size: 350px;
             background-repeat: no-repeat;
         }
+
     }
 
 
