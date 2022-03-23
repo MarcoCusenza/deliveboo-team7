@@ -195,7 +195,7 @@
                 </div>
             </section>
 
-            <section class="drink" v-if="contorni.length > 0">
+            <section class="drink" v-if="drink.length > 0">
                 <h2>Drink</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in drink" :key="dish.id" class="card-rest shadow-sm bg-white">
@@ -279,7 +279,7 @@
                             case 'drink':
                                 this.drink.push(this.dishes[i]);
                                 break;
-                            case 'piattiUnici':
+                            case 'piatti-unici':
                                 this.piattiUnici.push(this.dishes[i]);
                                 break;
                         }
