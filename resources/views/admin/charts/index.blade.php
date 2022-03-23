@@ -13,13 +13,16 @@
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'bar',
-// The data for our dataset
+
+        // The data for our dataset
         data: {
-            labels:  {!!json_encode($chart->labels)!!} ,
+            labels:  {!!json_encode($chart->labels)!!}, // Pariole sotto la tabella
             datasets: [
                 {
-                    label: 'Count of price',
+                    label: 'Prezzo dei piatti',
                     data:  {!! json_encode($chart->dataset)!!} ,
+                    
+                    // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

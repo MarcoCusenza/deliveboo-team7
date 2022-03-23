@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Dish;
+use App\Dish;  // ********************************
 use App\Chart;
 use DB;
 use Illuminate\Http\Request;
@@ -17,13 +17,15 @@ class ChartController extends Controller
      */
     public function index()
     {
+        // Per selezionare i campi
         $groups = DB::table('dishes')
                   ->select('price', 'name')
                   ->pluck('price', 'name')->all();
 
+        // Crea Oggetto Chart
         $chart = new Chart;
-            $chart->labels = (array_keys($groups));
-            $chart->dataset = (array_values($groups));
+            $chart->labels = (array_keys($groups)); // Salva le parole chiave
+            $chart->dataset = (array_values($groups)); // Salva i valori delle parole chiave
         return view('admin.charts.index', compact('chart'));
     }
 
