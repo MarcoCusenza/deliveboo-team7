@@ -218,14 +218,12 @@ export default {
     addDish(dish) {
       //Oldschool: un'entità piatto è considerata un array [{dish}, quantity]
       const newDish = [dish, 1];
-      const cartArrayBefore = this.getActualCartArray();
+      const actualCartArray = this.getActualCartArray();
       // console.log("dish", dish);
       let ind = -1;
       let temp = false;
-      if (cartArrayBefore != null) {
-        cartArrayBefore.forEach((oldDish, index) => {
-          // console.log("comparazione: thisDish", dish);
-          // console.log("comparazione: dish", oldDish);
+      if (actualCartArray != null) {
+        actualCartArray.forEach((oldDish, index) => {
           if (dish.id == oldDish[0].id) {
             newDish[1] = oldDish[1] + 1;
             ind = index;
@@ -235,7 +233,7 @@ export default {
         });
       }
       if (temp == false) {
-        newDish[1] = 1;
+        newDish[1] = 1;//setta la quantità a 1
         this.cart.push(newDish);
       }
     },
