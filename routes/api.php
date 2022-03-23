@@ -54,6 +54,12 @@ Route::get("/restaurants", "Api\RestaurantController@index");
 // http://localhost:8000/api/restaurant/jotaro-sushi
 Route::get("/restaurant/{slug}", "Api\RestaurantController@restaurant");
 
+
+// richiede il ristorante cercato
+// http://localhost:8000/api/restaurant/1
+Route::get("/restaurantid/{id}", "Api\RestaurantController@restaurantid");
+
+
 // richiede tutti i ristoranti della categoria cercata
 // http://localhost:8000/api/restaurant/jotaro-sushi
 Route::get("/restaucat/{slug}", "Api\RestaurantController@restaucat");

@@ -26,14 +26,28 @@ class RestaurantController extends Controller
   // http://localhost:8000/api/restaurant/jotaro-sushi
   public function restaurant($slug)
   {
-    $restaurants = Restaurant::where("slug", $slug)->first();
+    $restaurant = Restaurant::where("slug", $slug)->first();
 
     // 404 restaurant slug non trovato
-    if (empty($restaurants)) {
+    if (empty($restaurant)) {
       return response()->json(["message" => "Restaurant not found"], 404);
     }
 
-    return response()->json($restaurants);
+    return response()->json($restaurant);
+  }
+
+  // richiede il ristorante cercato
+  // http://localhost:8000/api/restaurant/1
+  public function restaurantid($id)
+  {
+    $restaurant = Restaurant::where("id", $id)->first();
+
+    // 404 restaurant slug non trovato
+    if (empty($restaurant)) {
+      return response()->json(["message" => "Restaurant not found"], 404);
+    }
+
+    return response()->json($restaurant);
   }
 
   // richiede tutti i ristoranti di una data categoria
