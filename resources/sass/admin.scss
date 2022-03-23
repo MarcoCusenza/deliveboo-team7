@@ -33,6 +33,8 @@ body {
     background-attachment: fixed;
     padding-top: 5em;
 
+
+
     .navbar {
         position: fixed;
         top: 0;
@@ -40,8 +42,18 @@ body {
         width: 100%;
         z-index: 1000;
 
-        .logo {
-            width: 100px;
+        .container-fluid {
+            .logo-container {
+                .logo {
+                    width: 120px;
+                    transition: transform 0.3s;
+
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
         }
     }
 }

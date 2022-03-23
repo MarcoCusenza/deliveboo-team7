@@ -3,7 +3,9 @@
         <div class="footer-top container-fluid text-white">
             <div class="row mt-5 py-2 d-flex justify-content-center">
                 <div class="col-sm-12 col-lg-3 d-flex align-items-center justify-content-center">
-                    <img src="https://i.postimg.cc/mgJ2VbP8/Deliveroo-Logo-PNG1.png" alt="deliveroo-logo-footer" />
+                    <div class="image-container">
+                        <img src="https://i.postimg.cc/43rpZ7Xr/logo-footer.png" alt="deliveroo-logo-footer" />
+                    </div>
                 </div>
                 <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
                     <ul>
@@ -25,11 +27,10 @@
 
                     <form>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">
+                            <label>
                                 <h3> Inserisci qui la tua mail per maggiori novità!</h3>
                             </label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Inserisci qui la tua mail" />
+                            <input type="email" class="form-control" placeholder="Inserisci qui la tua mail" />
                             <button class="btn-home mt-3 float-right" type="submit">Invia</button>
 
                         </div>
@@ -59,9 +60,44 @@
 
         .footer-top {
 
+            .image-container {
+                // height: 200px;
+                max-width: 140px;
+                &:hover {
+                        animation: shake 0.5s;
+                        animation-iteration-count: infinite;
+                    }
 
-            img {
-                width: 200px;
+                    @keyframes shake {
+                        0% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
+
+                        25% {
+                            transform: translate(0px, 0px) rotate(10deg);
+                        }
+
+                        50% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
+
+                        75% {
+                            transform: translate(0px, 0px) rotate(10deg);
+                        }
+
+                        100% {
+                            transform: translate(0px, 0px) rotate(-10deg);
+                        }
+                    }
+
+                img {
+                    width: 140px;
+                    transition: transform 0.2s;
+                    &:hover {
+                        transform: scale(1.5);
+                    }
+                    
+                }
             }
 
             ul {
@@ -75,6 +111,13 @@
             form {
                 width: 70%;
 
+                .form-control {
+                    transition: opacity 0.3s;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
 
                 .btn-home {
                     padding: 5px 20px;
@@ -84,6 +127,11 @@
                     border-radius: 57px;
                     border: none;
                     font-size: 15px;
+                    transition: background 0.3s;
+
+                    &:hover {
+                        background: #007067;
+                    }
                 }
             }
         }

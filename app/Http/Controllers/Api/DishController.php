@@ -14,7 +14,7 @@ class DishController extends Controller
   {
     $dishes = Dish::where("visible", 1)->whereHas("restaurant", function ($query) use ($slug) {
       return $query->where("slug", $slug);
-    })->get();
+    })->with('course')->get();
 
     // 404 restaurant slug non trovato
     if (empty($dishes)) {

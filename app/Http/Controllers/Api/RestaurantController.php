@@ -12,7 +12,7 @@ class RestaurantController extends Controller
   // http://localhost:8000/api/restaurants
   public function index()
   {
-    $restaurants = Restaurant::select("*")->paginate(3);
+    $restaurants = Restaurant::select("*")->paginate(6);
 
     // 404 restaurant slug non trovato
     if (empty($restaurants)) {
@@ -27,6 +27,25 @@ class RestaurantController extends Controller
   public function restaurant($slug)
   {
     $restaurants = Restaurant::where("slug", $slug)->first();
+
+    // 404 restaurant slug non trovato
+    if (empty($restaurants)) {
+      return response()->json(["message" => "Restaurant not found"], 404);
+    }
+
+    return response()->json($restaurants);
+  }
+
+  // richiede tutti i ristoranti di una data categoria
+  // localhost:8000/api/restaucat/italiano
+  public function restaucat($cat)
+  {
+    $cat_array = explode(',', $cat);
+
+    //whereHas mi permette di prendere restaurants ma dare una clausola sulla tabella categories
+    $restaurants = Restaurant::whereHas("categories", function ($query) use ($cat_array) {
+      $query->whereIn("slug", $cat_array);
+    })->with("categories")->paginate(9);
 
     // 404 restaurant slug non trovato
     if (empty($restaurants)) {
