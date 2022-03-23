@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \Braintree\Transaction;
+use Braintree;
 
 class PaymentController extends Controller
 {
@@ -32,5 +32,14 @@ class PaymentController extends Controller
   //     ]
   //   ]);
   //   return response()->json($status);
+  // }
+
+  // public function getToken(){
+  //   $gateway = new Braintree\Gateway([
+  //     'environment' => config('services.braintree.environment'),
+  //     'merchantId' => config('services.braintree.merchantId'),
+  //     'publicKey' => config('services.braintree.publicKey'),
+  //     'privateKey' => config('services.braintree.privateKey')
+  //   ]);
   // }
 }

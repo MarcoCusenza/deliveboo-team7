@@ -30,6 +30,7 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
 
 // Rotta GET per la pagina di checkout
 Route::get('/payment/checkout', function () {
+  //genero oggetto gateway con i parametri del mio account Braintree presi da env
   $gateway = new Braintree\Gateway([
     'environment' => config('services.braintree.environment'),
     'merchantId' => config('services.braintree.merchantId'),
@@ -40,20 +41,38 @@ Route::get('/payment/checkout', function () {
 
   $token = $gateway->ClientToken()->generate();
 
-  return view('checkout', [
-    'token' => $token
-  ]);
+  return response()->json($token);
 })->name("checkout");
 
 
-// Rotta POST per la domanda di conferma pagamento e reindirizzazione a pagina di successo
-Route::post('/checkout', function (Request $request) {
+// // PROVA Rotta GET per la pagina di checkout
+// Route::get('/payment/checkout/blade', function () {
+//   $gateway = new Braintree\Gateway([
+//     'environment' => config('services.braintree.environment'),
+//     'merchantId' => config('services.braintree.merchantId'),
+//     'publicKey' => config('services.braintree.publicKey'),
+//     'privateKey' => config('services.braintree.privateKey')
+//   ]);
+
+
+//   $token = $gateway->ClientToken()->generate();
+
+//   return view('checkout', [
+//     'token' => $token
+//   ]);
+// })->name("checkout");
+
+
+// Rotta POST per la domanda di conferma pagamento e reindirizzamento pagina di successo
+Route::post('/payment/checkout', function (Request $request) {
+
   $gateway = new Braintree\Gateway([
     'environment' => config('services.braintree.environment'),
     'merchantId' => config('services.braintree.merchantId'),
     'publicKey' => config('services.braintree.publicKey'),
     'privateKey' => config('services.braintree.privateKey')
   ]);
+
 
   $amount = $request->amount;
   $nonce = $request->payment_method_nonce;
@@ -75,25 +94,24 @@ Route::post('/checkout', function (Request $request) {
     $transaction = $result->transaction;
     // header("Location: transaction.php?id=" . $transaction->id);
 
-    return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+    // return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+    return response()->json($transaction->id);
+
   } else {
     $errorString = "";
 
     foreach ($result->errors->deepAll() as $error) {
       $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
     }
-
-    // $_SESSION["errors"] = $errorString;
-    // header("Location: index.php");
-    return back()->withErrors('An error occurred with the message: ' . $result->message);
+    
+    // return back()->withErrors('An error occurred with the message: ' . $result->message);
+    return response()->json($result->message);
   }
 });
 
 //rotta braintree
 // Route::get('/payment/checkout', 'PaymentController@index')->name('checkout');
 // Route::get('/payment/make', 'PaymentController@make')->name('payment.make');
-
-
 
 
 // Route::get('/', function () {

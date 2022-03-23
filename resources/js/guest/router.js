@@ -8,6 +8,7 @@ import Categories from "./pages/Categories";
 import Restaurant from "./pages/Restaurant";
 import Checkout from "./pages/Checkout";
 import PageNotFound from "./pages/PageNotFound";
+import Transaction from "./pages/Transaction";
 
 const router = new VueRouter({
   mode: "history",
@@ -46,6 +47,14 @@ const router = new VueRouter({
       component: Checkout,
       meta: {
         title: "DeliveBoo: Checkout",
+      }
+    },
+    {
+      path: "/transaction",
+      name: "transaction",
+      component: Transaction,
+      meta: {
+        title: "DeliveBoo: Transaction",
       }
     },
 
