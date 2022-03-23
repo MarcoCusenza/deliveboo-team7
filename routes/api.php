@@ -66,3 +66,10 @@ Route::get("/restaucat/{slug}", "Api\RestaurantController@restaucat");
 // richiede tutti i piatti VISIBILI di un dato ristorante
 // http://localhost:8000/api/dishes/jotaro-sushi
 Route::get("/dishes/{slug}", "Api\DishController@dishes");
+
+
+// ____ORDERS____
+// ______________
+
+//aggiunge ordine in tabella se va a buon fine
+
