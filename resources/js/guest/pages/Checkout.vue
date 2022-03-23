@@ -133,7 +133,39 @@
               />
             </div>
           </form>
+
+          <!-- BRAINTREE -->
+          <!-- <div
+            class="alert alert-success"
+            v-if="this.$session('success_message')"
+          >
+            {{ session("success_message") }}
+          </div>
+          <div class="alert alert-danger" v-if="count($errors) > 0">
+            <ul>
+              <li v-for="(error, i) in this.$errors->all()" :key="i">
+                {{ error }}
+              </li>
+            </ul>
+          </div> -->
+
+          <form id="payment-form">
+            <!-- <input type="hidden" :value="window.token" name="_token" /> -->
+            <section>
+              <div class="bt-drop-in-wrapper">
+                <div id="bt-dropin"></div>
+              </div>
+            </section>
+
+            <input id="nonce" type="hidden" />
+
+            <button class="button" type="submit" ref="submit">
+              <span>Test Transaction</span>
+            </button>
+          </form>
+          <!-- BRAINTREE -->
         </div>
+
         <div class="col-sm-12 col-lg-5 col-checkout ml-auto p-5 mt-5">
           qui ci va il rider
         </div>
@@ -154,6 +186,84 @@ export default {
     if (localStorage.cart) {
       this.cart = JSON.parse(localStorage.cart);
     }
+
+    // <!-- BRAINTREE -->
+    //Ajax chiama la rotta che restituisce il token di autorizzazione nella risposta
+    axios.get("/payment/checkout").then((response) => {
+      var form = document.querySelector("#payment-form");
+
+      braintree.dropin.create(
+        {
+          authorization: response.data,
+          selector: "#bt-dropin",
+          // paypal: {
+          //   flow: "vault",
+          // },
+        },
+        (createErr, instance) => {
+          if (createErr) {
+            console.log("Create Error", createErr);
+          } else {
+            form.addEventListener("submit", (event) => {
+              event.preventDefault();
+
+              instance.requestPaymentMethod((err, payload) => {
+                if (err) {
+                  console.log("Request Payment Method Error", err);
+                  return;
+                }
+
+                // Add the nonce to the form and submit
+                document.getElementById("nonce").value = payload.nonce;
+                console.log("sto per passare amount", this.finalPrice());
+
+                let tot = this.finalPrice();
+
+                let data = {
+                  amount: tot,
+                  payment_method_nonce: payload.nonce,
+                };
+                axios
+                  .post("/payment/checkout", data)
+                  .then((response) => {
+                    console.log("AAAAAAA", response);
+                    window.location.href = "/transaction";
+                  })
+                  .catch((error) => {
+                    console.log("BBBBBBB", error.data);
+                  });
+              });
+            });
+          }
+        }
+      );
+    });
+
+    //vecchio
+    // var button = document.querySelector("#submit-button");
+    // braintree.dropin.create(
+    //   {
+    //     authorization: "{{ BraintreeClientToken::generate() }} ",
+    //     selector: "#dropin-container",
+    //   },
+    //   function (createErr, instance) {
+    //     button.addEventListener("click", function () {
+    //       instance.requestPaymentMethod(function (err, payload) {
+    //         //SUBMIT PAYLOAD + NONCE al mio server
+    //         // $.get('{{ route('payment.make') }}', {
+    //         //     payload
+    //         // }, function(response) {
+    //         //     if (response.success) {
+    //         //         alert('Payment successfull!');
+    //         //     } else {
+    //         //         alert('Payment failed');
+    //         //     }
+    //         // }, 'json');
+    //       });
+    //     });
+    //   }
+    // );
+    // <!-- BRAINTREE -->
   },
   watch: {
     cart: {

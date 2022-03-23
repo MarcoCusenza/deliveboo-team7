@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "braintree-web-drop-in": "^1.33.0",
         "font-awesome": "^4.7.0",
         "vue-router": "^3.5.3"
     }

@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- CSRF Token -->
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        window.token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    </script> --}}
+
     <title>DeliveBoo</title>
 
     <!-- Fonts -->
@@ -16,26 +22,10 @@
 </head>
 
 <body>
-    {{-- <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif --}}
-
-    {{-- <a style="background-color: red; color:antiquewhite; padding: 10px; border-radius: 10px; font-weight:900;"
-                href="{{ route('home') }}">Back
-                Office</a> --}}
-
     <div id="app"></div>
+    {{-- BRAINTREE --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+    {{-- BRAINTREE --}}
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
 
