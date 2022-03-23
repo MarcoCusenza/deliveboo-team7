@@ -1,6 +1,6 @@
 <template>
     <div class="container container-categories mb-5 pt-5" id="best-categories">
-        <h2 class="text-center font-weight-bold">Le nostre migliori <span style="color: #00ccbc"> categorie</span>:</h2>
+        <h2 class="text-center font-weight-bold mt-5">Le nostre migliori <span style="color: #00ccbc"> categorie</span>:</h2>
         <h5 class="text-center">Deliveboo permette una selezione ampia di categorie, dai un occhio alle nostre categorie di punta!</h5>
         <div class="row mt-4">
             <div v-for="category in categories.slice(0, 8)" :key="category.id" class="col-lg-3 col-sm-6 mt-5">
