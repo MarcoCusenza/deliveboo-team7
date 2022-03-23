@@ -22,6 +22,7 @@
         </div>
       </div>
     </div>
+    <Carousel/>
     <CategoriesHome id="best-categories" />
     <Banner/>
     <Work />
@@ -30,6 +31,7 @@
 
 <script>
 // import MainHomeSection from "../components/sections/home/MainHomeSection.vue";
+import Carousel from "../components/sections/home/Carousel.vue";
 import CategoriesHome from "../components/sections/home/CategoriesHome.vue";
 import Banner from "../components/sections/home/Banner.vue";
 import Work from "../components/sections/home/Work.vue";
@@ -38,6 +40,7 @@ export default {
   name: "Main",
   components: {
     // MainHomeSection,
+    Carousel,
     CategoriesHome,
     Banner,
     Work,
