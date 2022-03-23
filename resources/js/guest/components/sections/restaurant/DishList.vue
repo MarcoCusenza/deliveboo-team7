@@ -176,7 +176,7 @@
                 </div>
             </section>
 
-            <section class="dessert" v-if="contorni.length > 0">
+            <section class="dessert" v-if="dessert.length > 0">
                 <h2>Dessert</h2>
                 <div class="card-grid col-lg-12 mt-5">
                     <div v-for="dish in dessert" :key="dish.id" class="card-rest shadow-sm bg-white">
