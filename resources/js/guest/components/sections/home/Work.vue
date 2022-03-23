@@ -1,6 +1,6 @@
 <template>
     <div class="container container-work ">
-        <h2 class="text-center font-weight-bold pt-5">Unisciti a noi!</h2>
+        <h2 class="text-center font-weight-bold pt-5">Unisciti a  <span style="color: #00ccbc"> noi!</span></h2>
         <h5 class="text-center">Inizia la tua nuova avventura come rider, ristoratore o addirittura nei nostri uffici! </h5>
         <div class="row d-flex align-items-center justify-content-center mt-5">
             <div class="col-sm-12 col-lg-4 mt-">
