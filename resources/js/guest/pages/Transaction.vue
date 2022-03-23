@@ -69,18 +69,18 @@
                     min-height: 300px;
                     min-width: 95%;
                     object-fit: cover;
-                    border-radius: 57px;
+                    border-radius: 30px;
                 }
             }
         }
     }
 
-    @media screen and (min-width: 910px) {
-        .col-checkout:first-child {
-            background-image: url('https://i.postimg.cc/PJsJ5Nv6/Pngtree-burrito-gift-cute-7266110.png');
-            background-size: 150px;
-            background-repeat: no-repeat;
-            background-position: 100% 100%;
-        }
-    }
+    // @media screen and (min-width: 910px) {
+    //     .col-checkout:first-child {
+    //         background-image: url('https://i.postimg.cc/PJsJ5Nv6/Pngtree-burrito-gift-cute-7266110.png');
+    //         background-size: 150px;
+    //         background-repeat: no-repeat;
+    //         background-position: 100% 100%;
+    //     }
+    // }
 </style>
