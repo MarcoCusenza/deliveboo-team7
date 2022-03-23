@@ -63,18 +63,18 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Modal title</h5>
+                                        <img src="https://i.postimg.cc/908J98s0/Pngtree-angry-burrito-kawaii-7266107.png" height="80px">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true" @click="showModal = false">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Modal body text goes here.</p>
+                                        <p>Nel carrello sono presenti dei piatti del locale <strong>{{rightRestaurant.restaurant_name}}</strong>.<br>Non puoi aggiungere dei piatti da locali diversi</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            @click="closeModal()">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                            @click="closeModal()">Chiudi</button>
+                                        <a :href="'/restaurant/'+rightRestaurant.slug" class="btn btn-primary">Torna da {{rightRestaurant.restaurant_name}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -101,6 +101,10 @@
         data() {
             return {
                 dishes: [], // modificato da -> dishes: {},
+                restaurants: [],
+                rightRestaurant: null,
+                // howManyPages: null,
+                // j: 1,
                 cart: [],
                 haveToShowModal: false,
                 antipasti: [],
@@ -113,6 +117,77 @@
             };
         },
         created() {
+            axios
+                .get(`/api/restaurants?page=` + 1)
+                .then((response) => {
+                    this.restaurants.push(response.data.data);
+                })
+                .catch((error) => {
+                    this.$router.push({
+                        name: "page-404"
+                    });
+                });
+
+            axios
+                .get(`/api/restaurants?page=` + 2)
+                .then((response) => {
+                    this.restaurants.push(response.data.data);
+                })
+                .catch((error) => {
+                    this.$router.push({
+                        name: "page-404"
+                    });
+                });
+
+            axios
+                .get(`/api/restaurants?page=` + 3)
+                .then((response) => {
+                    this.restaurants.push(response.data.data);
+                })
+                .catch((error) => {
+                    this.$router.push({
+                        name: "page-404"
+                    });
+                });
+
+            axios
+                .get(`/api/restaurants?page=` + 4)
+                .then((response) => {
+                    this.restaurants.push(response.data.data);
+                })
+                .catch((error) => {
+                    this.$router.push({
+                        name: "page-404"
+                    });
+                });
+
+            // axios
+            //     .get(`/api/restaurants` + "?page=1")
+            //     .then((response) => {
+            //         this.howManyPages = response.data.last_page;
+            //         console.log(this.howManyPages)
+            //     })
+            //     .catch((error) => {
+            //         this.$router.push({
+            //             name: "page-404"
+            //         });
+            //     });
+
+            // for (; this.j <= this.howManyPages; this.j++) {
+            // axios
+            // .get(`/api/restaurants?page=` + this.j)
+            // .then((response) => {
+            // this.restaurants.push(response.data.data);
+            // console.log(this.restaurants)
+            // })
+            // .catch((error) => {
+            // this.$router.push({
+            // name: "page-404"
+            // });
+            // });
+            // }
+
+
             axios
                 .get(`/api/dishes/${this.$route.params.slug}`)
                 .then((response) => {
@@ -148,8 +223,6 @@
                         name: "page-404"
                     });
                 });
-
-
         },
         mounted() {
             if (localStorage.cart) {
@@ -232,7 +305,16 @@
                 this.showModal();
             },
             showModal() {
-                return this.haveToShowModal = true;
+                this.haveToShowModal = true;
+
+                // Cicla su ogni ristorante per trovare un'uguaglianza this.cart[0][0].restaurant_id == this.restaurants[i][j].id
+                for(let i = 0; i < this.restaurants.length; i++){
+                    for(let j = 0; j < this.restaurants[i].length; j++){
+                        if(this.cart[0][0].restaurant_id == this.restaurants[i][j].id){
+                            return this.rightRestaurant = this.restaurants[i][j]
+                        }
+                    }
+                }
             },
             closeModal() {
                 this.haveToShowModal = false;
