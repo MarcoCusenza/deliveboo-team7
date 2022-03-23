@@ -11,8 +11,8 @@ class Order extends Model
     return $this->belongsTo("App\Restaurant");
   }
 
-  public function dishes()
+  public function purchase()
   {
-    return $this->belongsToMany("App\Dish");
+    return $this->belongsTo("App\Purchase");
   }
 }

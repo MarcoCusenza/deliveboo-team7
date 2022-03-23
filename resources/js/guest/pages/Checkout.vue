@@ -55,7 +55,7 @@
 
         <!-- FORM CLIENTE -->
         <div class="col-sm-12 col-lg-5 col-checkout p-5 mt-5">
-          <form action="">
+          <form id="payment-form">
             <div class="form-group">
               <label for="client_name">Nome *</label>
               <input
@@ -63,8 +63,7 @@
                 maxlength="150"
                 class="form-control"
                 id="client_name"
-                name="client_name"
-                v-model="formData.name"
+                v-model="formData.client_name"
                 placeholder="Inserisci il tuo nome"
                 required
               />
@@ -77,22 +76,34 @@
                 maxlength="150"
                 class="form-control"
                 id="client_surname"
-                name="client_surname"
-                v-model="formData.surname"
+                v-model="formData.client_surname"
                 placeholder="Inserisci il tuo cognome"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="client_address">Indirizzo di spedizione *</label>
+              <label for="client_address">Indirizzo di fatturazione *</label>
               <input
                 type="text"
                 maxlength="150"
                 class="form-control"
                 id="client_address"
-                name="client_address"
-                placeholder="Inserisci il tuo indirizzo"
+                v-model="formData.client_address"
+                placeholder="Inserisci il tuo indirizzo di fatturazione"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="client_delivAddress">Indirizzo di spedizione *</label>
+              <input
+                type="text"
+                maxlength="150"
+                class="form-control"
+                id="client_delivAddress"
+                v-model="formData.delivery_address"
+                placeholder="Inserisci il tuo indirizzo di spedizione"
                 required
               />
             </div>
@@ -104,8 +115,7 @@
                 maxlength="150"
                 class="form-control"
                 id="client_email"
-                name="client_email"
-                v-model="formData.email"
+                v-model="formData.client_email"
                 placeholder="Inserisci la tua email"
                 required
               />
@@ -120,7 +130,7 @@
                 pattern="[0-9]{8,15}"
                 class="form-control"
                 id="client_phone"
-                name="client_phone"
+                v-model="formData.client_phone"
                 placeholder="Inserisci il tuo numero di telefono"
                 required
               />
@@ -130,16 +140,14 @@
               <label for="note">Aggiungi una nota per il ristorante</label>
               <textarea
                 class="form-control"
-                id="client_address"
-                name="client_address"
-                placeholder="Inserisci il tuo indirizzo"
+                id="note"
+                v-model="formData.note"
+                placeholder="Inserisci una nota per il ristorante"
               />
             </div>
-          </form>
 
-          <!-- BRAINTREE -->
-
-          <form id="payment-form">
+            <!-- BRAINTREE -->
+            <div class="totale">Totale da pagare: {{ finalPrice() }}€</div>
             <!-- <input type="hidden" :value="window.token" name="_token" /> -->
             <section>
               <div class="bt-drop-in-wrapper">
@@ -171,17 +179,26 @@ export default {
     return {
       cart: [],
       formData: {
-        name: "",
-        surname: "",
-        email: "",
-        // post_id: null,
+        client_name: "Luna",
+        client_surname: "Lovegood",
+        client_address: "via luna 1",
+        delivery_address: "via luna 1",
+        client_email: "luna@gmail.com",
+        client_phone: "3496668594",
+        note: "",
+        price_tot: 0,
+        restaurant_id: "",
       },
     };
   },
   mounted() {
+    //LocalStorage Carrello
     if (localStorage.cart) {
       this.cart = JSON.parse(localStorage.cart);
     }
+
+    // //prezzo totale
+    // this.formData.price_tot = this.finalPrice();
 
     // <!-- BRAINTREE -->
     //Ajax chiama la rotta che restituisce il token di autorizzazione nella risposta
@@ -212,27 +229,26 @@ export default {
 
                 // Add the nonce to the form and submit
                 document.getElementById("nonce").value = payload.nonce;
-                console.log("sto per passare amount", this.finalPrice());
 
                 let tot = this.finalPrice();
 
                 let data = {
                   amount: tot,
                   payment_method_nonce: payload.nonce,
-                  name: this.formData.name,
-                  surname: this.formData.surname,
-                  email: this.formData.email,
+                  name: this.formData.client_name,
+                  surname: this.formData.client_surname,
+                  email: this.formData.client_email,
                 };
                 axios
                   .post("/payment/checkout", data)
                   .then((response) => {
-                    console.log("SUCCESSO FINALE", response);
-                    //Funzione con CHIAMATA AXIOS CHE SCRIVE NEGLI ORDINI
-                    // addOrder();
+                    console.log("SUCCESSO /payment/checkout", response);
+                    //Funzione con CHIAMATA AXIOS CHE AGGIUNGE NUOVO ORDINE NEL DB
+                    this.addOrder();
                     window.location.href = "/transaction";
                   })
                   .catch((error) => {
-                    console.log("ERRORE FINALE", error.data);
+                    console.log("ERRORE /payment/checkout", error.data);
                   });
               });
             });
@@ -292,17 +308,22 @@ export default {
 
       return finalPrice;
     },
+    //Aggiunge un ordine al DB
     addOrder() {
       // /api/orders
+      this.formData.price_tot = this.finalPrice();
+      this.formData.restaurant_id = this.cart[0][0].restaurant_id;
+      
       axios
-        .post("/order/create", this.formData)
+        .post("/api/order/create", {
+          formData: this.formData,
+          cart: this.cart,
+        })
         .then((response) => {
-          //pulisco i campi
-          // this.formData.name = "";
-          // this.formData.content = "";
+          console.log("Successo Creazione Ordine", response);
         })
         .catch((error) => {
-          console.log("BBBBBBB", error.data);
+          console.log("ERRORE Creazione Ordine", error.data);
         });
     },
   },
