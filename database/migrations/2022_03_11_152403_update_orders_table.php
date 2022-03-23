@@ -15,6 +15,7 @@ class UpdateOrdersTable extends Migration
   {
     Schema::table('orders', function (Blueprint $table) {
       $table->foreignId("restaurant_id")->constrained()->onDelete('cascade');
+      // $table->foreignId("order_dish_id")->constrained()->onDelete('cascade');
     });
   }
 
@@ -28,6 +29,8 @@ class UpdateOrdersTable extends Migration
     Schema::table('orders', function (Blueprint $table) {
       $table->dropForeign(['restaurant_id']);
       $table->dropColumn('restaurant_id');
+      // $table->dropForeign(['order_dish_id']);
+      // $table->dropColumn('order_dish_id');
     });
   }
 }

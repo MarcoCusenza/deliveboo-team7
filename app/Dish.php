@@ -11,9 +11,9 @@ class Dish extends Model
     return $this->belongsTo("App\Restaurant");
   }
 
-  public function orders()
+  public function purchases()
   {
-    return $this->belongsToMany("App\Order");
+    return $this->belongsToMany("App\Purchase");
   }
 
   public function course()
