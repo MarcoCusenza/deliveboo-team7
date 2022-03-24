@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Dish;  // ********************************
+use App\Order;  // ********************************
 use App\Chart;
 use App\Restaurant;
-// use DB;
+use DB;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller
@@ -19,13 +19,16 @@ class ChartController extends Controller
   public function index()
   {
     $rest = Restaurant::where("user_id", auth()->id())->first();
-    // Per selezionare i campi
-    $groups = Dish::where("restaurant_id", $rest->id)->pluck('price', 'name')->all();
 
-    // Crea Oggetto Chart
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M-%d - %H:%i") as month'))
+      ->groupBy('month')
+      ->orderBy('month', 'desc')
+      ->pluck('tot', 'month')->all();
+
     $chart = new Chart;
-    $chart->labels = (array_keys($groups)); // Salva le parole chiave
-    $chart->dataset = (array_values($groups)); // Salva i valori delle parole chiave
+    $chart->labels = (array_keys($groups));
+    $chart->dataset = (array_values($groups));
     return view('admin.charts.index', compact('chart'));
   }
 

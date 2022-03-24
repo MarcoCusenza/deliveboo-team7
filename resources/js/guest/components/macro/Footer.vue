@@ -1,46 +1,67 @@
 <template>
     <footer>
-        <div class="footer-top container-fluid text-white">
-            <div class="row mt-5 py-2 d-flex justify-content-center">
-                <div class="col-sm-12 col-lg-3 d-flex align-items-center justify-content-center">
-                    <div class="image-container">
+        <div class="footer-top container text-white">
+            <div class="row mt-5 py-3 d-flex justify-content-around">
+                <div class="col-footer col-5 col-lg-2 p-4">
+                    <ul>
+                        <h4>Scopri Deliveboo</h4>
+                        <li>Chi siamo</li>
+                        <li>Dicono di noi</li>
+                        <li>Takeaway</li>
+                        <li>Altro</li>
+                        <li>News</li>
+                        <li>Food Blog</li>
+                        <li>Engineering blog</li>
+                        <li>Carte regalo</li>
+                        <li>Diventa un rider</li>
+                        <li>Diventa un ristoratore</li>
+                        <li>Unisciti a noi</li>
+                    </ul>
+                    <!-- <div class="image-container">
                         <img src="https://i.postimg.cc/43rpZ7Xr/logo-footer.png" alt="deliveroo-logo-footer" />
-                    </div>
+                    </div> -->
                 </div>
-                <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
+                <div class="col-footer col-5 col-lg-2 p-4">
                     <ul>
-                        <li>Link1</li>
-                        <li>Link2</li>
-                        <li>Link3</li>
-                        <li>Link4</li>
+                        <h4>Nozioni legali</h4>
+                        <li>Termini e condizioni</li>
+                        <li>Privacy</li>
+                        <li>Cookies</li>
+                        <li>Altro</li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-lg-2 d-flex align-items-center justify-content-center py-sm-5">
+                <div class="col-footer  col-5 col-lg-2 p-4">
                     <ul>
-                        <li>Link1</li>
-                        <li>Link2</li>
-                        <li>Link3</li>
-                        <li>Link4</li>
+                        <h4>Aiuti</h4>
+                        <li>Contatti</li>
+                        <li>FAQs</li>
+                        <li>Partner</li>
+                        <li>Brands</li>
                     </ul>
                 </div>
-                <div class="col-sm-12 col-lg-3 d-flex justify-content-center align-items-sm-center flex-column">
-
-                    <form>
-                        <div class="form-group">
-                            <label>
-                                <h3> Inserisci qui la tua mail per maggiori novità!</h3>
-                            </label>
-                            <input type="email" class="form-control" placeholder="Inserisci qui la tua mail" />
-                            <button class="btn-home mt-3 float-right" type="submit">Invia</button>
-
-                        </div>
-                    </form>
+                <div class="col-footer col-5 col-lg-2 p-4">
+                    <ul>
+                        <h4>Porta Deliveboo con te!</h4>
+                        <img src="https://i.postimg.cc/Z5L7Z6y8/Tavola-da-disegno-4.png" alt="download android">
+                        <img src="https://i.postimg.cc/RZmsjgqC/Tavola-da-disegno-5.png" alt="download ios">
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-top-icon d-flex justify-content-between align-items-center mb-3">
+                <div class="container-social d-flex justify-content-around">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div class="container-copyright">
+                    <span style="color: #b9b3b3">©Team-7 - Boolean</span>
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom d-flex align-items-center justify-content-center text-white">
             <p class="py-3 text-center">
-                Made with <i class="fa-solid fa-heart"></i> by Marco Cusenza, Francesca
+                Made with <span style="color: red"><i class="fa-solid fa-heart"></i></span> by Marco Cusenza, Francesca
                 De Luca, Andrei Gabriel Andrescu, Roberto D'Ambrosio
             </p>
         </div>
@@ -55,85 +76,44 @@
 
 <style lang="scss" scoped>
     footer {
-        background-color: #1d1d1d;
+        background-color: #2E3333;
         width: 100%;
 
         .footer-top {
 
-            .image-container {
-                // height: 200px;
-                max-width: 140px;
-                &:hover {
-                        animation: shake 0.5s;
-                        animation-iteration-count: infinite;
-                    }
-
-                    @keyframes shake {
-                        0% {
-                            transform: translate(0px, 0px) rotate(-10deg);
-                        }
-
-                        25% {
-                            transform: translate(0px, 0px) rotate(10deg);
-                        }
-
-                        50% {
-                            transform: translate(0px, 0px) rotate(-10deg);
-                        }
-
-                        75% {
-                            transform: translate(0px, 0px) rotate(10deg);
-                        }
-
-                        100% {
-                            transform: translate(0px, 0px) rotate(-10deg);
-                        }
-                    }
+            .col-footer {
+                background: #434848;
+                min-width: 200px;
+                border-radius: 3px;
+                margin-top: 20px;
 
                 img {
-                    width: 140px;
-                    transition: transform 0.2s;
-                    &:hover {
-                        transform: scale(1.5);
-                    }
-                    
+                    width: 135px;
+                    margin: 3px 0;
+                    border-radius: 7px;
+                    border: 1px solid white;
                 }
-            }
 
-            ul {
-                list-style: none;
+                ul {
+                    list-style: none;
 
-                li {
-                    line-height: 30px;
-                }
-            }
+                    li {
+                        line-height: 30px;
+                        cursor: pointer;
 
-            form {
-                width: 70%;
-
-                .form-control {
-                    transition: opacity 0.3s;
-
-                    &:hover {
-                        opacity: 0.8;
+                        &:hover {
+                            color: #00CCBC
+                        }
                     }
                 }
 
-                .btn-home {
-                    padding: 5px 20px;
-                    background-color: #00ccbc;
-                    color: white;
-                    font-weight: bold;
-                    border-radius: 57px;
-                    border: none;
-                    font-size: 15px;
-                    transition: background 0.3s;
-
-                    &:hover {
-                        background: #007067;
-                    }
-                }
             }
+        }
+
+        .container-social {
+            width: 100px;
+            font-size: 20px;
+            color: #757a7a;
         }
 
         .footer-bottom {
@@ -144,4 +124,35 @@
             }
         }
     }
+
+    @media screen and (min-width: 600px) {
+        footer {
+            .footer-top {
+                .col-footer {
+                    min-width: 200px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        footer {
+            .footer-top {
+                .col-footer {
+                    min-width: 230px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        footer {
+            .footer-top {
+                .col-footer {
+                    min-width: 270px;
+                }
+            }
+        }
+    }
+</style>
 </style>
