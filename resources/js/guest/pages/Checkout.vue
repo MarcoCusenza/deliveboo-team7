@@ -3,8 +3,8 @@
     <div class="container my-5">
       <h2 class="my-5">Checkout</h2>
       <div class="row">
-        <div class="col-12 col-checkout p-5">
-          <table class="cart table table-borderless" v-if="cart.length > 0">
+        <div class="col-12 col-checkout p-5 mb-3">
+          <table class="cart table table-borderless " v-if="cart.length > 0">
             <thead>
               <tr>
                 <th scope="col">Nome piatto</th>
@@ -53,8 +53,8 @@
           <div v-else>Il tuo carrello è vuoto</div>
         </div>
 
-        <!-- FORM CLIENTE -->
-        <div class="col-sm-12 col-lg-5 col-checkout p-5 mt-5">
+        <!-- FORM CLIENTE --><div class="col-12 col-checkout p-5">
+        <div class="cart table table-borderless">
           <form id="payment-form">
             <div class="form-group">
               <label for="client_name">Nome *</label>
@@ -157,16 +157,14 @@
 
             <input id="nonce" type="hidden" />
 
-            <button class="button" type="submit" ref="submit">
-              <span>Test Transaction</span>
+            <button class="btn btn-home" type="submit" ref="submit">
+              <span>Paga</span>
             </button>
           </form>
           <!-- BRAINTREE -->
         </div>
-
-        <div class="col-sm-12 col-lg-5 col-checkout ml-auto p-5 mt-5">
-          qui ci va il rider
-        </div>
+</div>
+        
       </div>
     </div>
   </div>
