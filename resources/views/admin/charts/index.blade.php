@@ -12,14 +12,14 @@
     var ctx = document.getElementById('userChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'bar',
+        type: 'line',
 
         // The data for our dataset
         data: {
             labels:  {!!json_encode($chart->labels)!!}, // Pariole sotto la tabella
             datasets: [
                 {
-                    label: 'Prezzo dei piatti',
+                    label: 'Numero ordini',
                     data:  {!! json_encode($chart->dataset)!!} ,
                     
                     // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
