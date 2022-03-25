@@ -13,14 +13,51 @@
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     color: #292929;
 
+    .cover-dish {
+        border-radius: 2em;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 2em;
+            filter: brightness(50%);
+
+        }
+
+        .overlay-text-dish {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            h2 {
+                color: white;
+                margin: 1em;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 50px
+            }
+        }
+    }
+
+    .card {
+        border: none;
+        box-shadow: rgba(17, 12, 46, 0.15) 20px 20px 50px 0px;
+        border-radius: 2em;
+    }
+
     .btn-dashboard {
         background-color: #00ccbc;
         border-radius: 3px;
         color: white;
         font-weight: bold;
         align-self: flex-end;
+
+        &:hover {
+            background-color: #007067;
+        }
     }
-}
-.container_img {
-    width: 50%;
 }

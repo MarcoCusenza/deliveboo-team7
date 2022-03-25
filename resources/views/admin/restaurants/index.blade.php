@@ -4,75 +4,100 @@
 <div class="container">
     <div class="mx-auto">
         @foreach ($restaurants as $restaurant)
-        <div class="card card-dashboard-dishes mb-3 p-3">
-            <h2 class="row d-flex justify-content-around m-3">{{ $restaurant->restaurant_name }}</span></h2>
+        <div class="card card-dashboard-rest mb-3 p-3">
 
-            <div class="container_img mx-auto">
+
+            <div class="cover-rest cover">
                 @if (Storage::exists($restaurant->image))
-                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ asset("storage/{$restaurant->image}") }}"
+                <img class="mx-auto p-3 d-block img-fluid" src="{{ asset("storage/{$restaurant->image}") }}"
                     alt="{{ $restaurant->name }}">
                 @else
-                <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ $restaurant->image }}"
-                    alt="{{ $restaurant->name }}">
+                <img class="mx-auto p-3 d-block img-fluid" src="{{ $restaurant->image }}" alt="{{ $restaurant->name }}">
                 @endif
+                <div class="overlay-text-rest">
+                    <h2 class="row d-flex justify-content-around m-3">{{ $restaurant->restaurant_name }}</span></h2>
+                </div>
             </div>
-            <div class="row d-flex justify-content-around">
-                <div class="col-lg-12 col-sm-12 mt-3">
-                    <ul class="list-group list-group-flush border-bottom border-0">
-                        <li class="list-group-item">Numero di telefono: {{ $restaurant->phone }}</li>
-                        <li class="list-group-item">Indirizzo: {{ $restaurant->address }}</li>
-                        <li class="list-group-item">Prezzo per la consegna: {{ $restaurant->delivery_price }} euro
-                        </li>
-                        <li class="list-group-item">Categorie:
-                            <ul class="list-group list-group-flush">
-                                @foreach ($restaurant->categories as $category)
-                                <li class="list-group-item">{{ $category->name }}</li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="mt-3 row d-flex justify-content-around">
-                        <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
-                                class="btn btn-warning mr-3">Modifica</button></a>
-                        <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-dashboard">Visualizza
-                            menu</a>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                            Elimina
-                        </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Conferma eliminazione</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Sei sicuro di voler eliminare?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Torna indietro</button>
-                                        <form action="{{ route('restaurants.destroy', $restaurant->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method("DELETE")
-                                            <a onclick="return confirm ('Confermi di voler eliminare?')"
-                                                href="{{ route('restaurants.destroy', $restaurant->id) }}"><button
-                                                    type="submit" class="btn btn-danger">Elimina</button></a>
-                                        </form>
-                                    </div>
+            <div class="row d-flex justify-content-between p-3">
+                <div class="col-lg-6 col-sm-12 mt-3">
+                    <div class="card p-4">
+                        <div class="text-container">
+                            <h5><i class="fa-solid fa-phone"></i> Numero di telefono:</h5>
+                            <h3 class="m-0">{{ $restaurant->phone }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-3">
+                    <div class="card p-4">
+                        <div class="text-container">
+                            <h5><i class="fa-solid fa-location-dot"></i> Indirizzo:</h5>
+                            <h3 class="m-0">{{ $restaurant->address }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-3">
+                    <div class="card p-4">
+                        <div class="text-container">
+                            <h5><i class="fa-solid fa-truck"></i> Costo di spedizione:</h5>
+                            <h3 class="m-0">{{ $restaurant->delivery_price }} €</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-3">
+                    <div class="card p-4">
+                        <div class="text-container">
+                            <h5><i class="fa-solid fa-utensils"></i> Categorie:</h5>
+                            <h3 class="m-0">
+                                 @foreach ($restaurant->categories as $category)
+                                    {{ $category->name }} /
+                                @endforeach
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 container-button d-flex justify-content-around mx-auto">
+                    <a href="{{ route('restaurants.edit', $restaurant->id) }}"><button type="button"
+                            class="btn btn-dashboard mr-3">Modifica ristorante</button></a>
+                    <a href="{{ route('dishes.index', $restaurant->id) }}" class="btn btn-dashboard mr-3">Visualizza
+                        menu</a>
+                    <!-- Button trigger modal -->
+                        
+                    <button type="button" class="btn btn-danger mr-3" data-toggle="modal" data-target="#exampleModal">
+                        Elimina
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Conferma eliminazione</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Torna
+                                        indietro</button>
+                                    <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <a onclick="return confirm ('Confermi di voler eliminare?')"
+                                            href="{{ route('restaurants.destroy', $restaurant->id) }}"><button
+                                                type="submit" class="btn btn-danger">Elimina</button></a>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
