@@ -4,7 +4,7 @@
       <h2 class="my-5">Checkout</h2>
       <div class="row">
         <div class="col-12 col-checkout p-5 mb-3">
-          <table class="cart table table-borderless " v-if="cart.length > 0">
+          <table class="cart table table-borderless" v-if="cart.length > 0">
             <thead>
               <tr>
                 <th scope="col">Nome piatto</th>
@@ -53,118 +53,120 @@
           <div v-else>Il tuo carrello è vuoto</div>
         </div>
 
-        <!-- FORM CLIENTE --><div class="col-12 col-checkout p-5">
-        <div class="cart table table-borderless">
-          <form id="payment-form">
-            <div class="form-group">
-              <label for="client_name">Nome *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_name"
-                v-model="formData.client_name"
-                placeholder="Inserisci il tuo nome"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="client_surname">Cognome *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_surname"
-                v-model="formData.client_surname"
-                placeholder="Inserisci il tuo cognome"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="client_address">Indirizzo di fatturazione *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_address"
-                v-model="formData.client_address"
-                placeholder="Inserisci il tuo indirizzo di fatturazione"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="client_delivAddress">Indirizzo di spedizione *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_delivAddress"
-                v-model="formData.delivery_address"
-                placeholder="Inserisci il tuo indirizzo di spedizione"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="client_email">Email *</label>
-              <input
-                type="email"
-                maxlength="150"
-                class="form-control"
-                id="client_email"
-                v-model="formData.client_email"
-                placeholder="Inserisci la tua email"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="client_phone">Telefono *</label>
-              <input
-                minlength="8"
-                maxlength="15"
-                type="tel"
-                pattern="[0-9]{8,15}"
-                class="form-control"
-                id="client_phone"
-                v-model="formData.client_phone"
-                placeholder="Inserisci il tuo numero di telefono"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="note">Aggiungi una nota per il ristorante</label>
-              <textarea
-                class="form-control"
-                id="note"
-                v-model="formData.note"
-                placeholder="Inserisci una nota per il ristorante"
-              />
-            </div>
-
-            <!-- BRAINTREE -->
-            <div class="totale">Totale da pagare: {{ finalPrice() }}€</div>
-            <!-- <input type="hidden" :value="window.token" name="_token" /> -->
-            <section>
-              <div class="bt-drop-in-wrapper">
-                <div id="bt-dropin"></div>
+        <!-- FORM CLIENTE -->
+        <div class="col-12 col-checkout p-5">
+          <div class="cart table table-borderless">
+            <form id="payment-form">
+              <div class="form-group">
+                <label for="client_name">Nome *</label>
+                <input
+                  type="text"
+                  maxlength="150"
+                  class="form-control"
+                  id="client_name"
+                  v-model="formData.client_name"
+                  placeholder="Inserisci il tuo nome"
+                  required
+                />
               </div>
-            </section>
 
-            <input id="nonce" type="hidden" />
+              <div class="form-group">
+                <label for="client_surname">Cognome *</label>
+                <input
+                  type="text"
+                  maxlength="150"
+                  class="form-control"
+                  id="client_surname"
+                  v-model="formData.client_surname"
+                  placeholder="Inserisci il tuo cognome"
+                  required
+                />
+              </div>
 
-            <button class="btn btn-home" type="submit" ref="submit">
-              <span>Paga</span>
-            </button>
-          </form>
-          <!-- BRAINTREE -->
+              <div class="form-group">
+                <label for="client_address">Indirizzo di fatturazione *</label>
+                <input
+                  type="text"
+                  maxlength="150"
+                  class="form-control"
+                  id="client_address"
+                  v-model="formData.client_address"
+                  placeholder="Inserisci il tuo indirizzo di fatturazione"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="client_delivAddress"
+                  >Indirizzo di spedizione *</label
+                >
+                <input
+                  type="text"
+                  maxlength="150"
+                  class="form-control"
+                  id="client_delivAddress"
+                  v-model="formData.delivery_address"
+                  placeholder="Inserisci il tuo indirizzo di spedizione"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="client_email">Email *</label>
+                <input
+                  type="email"
+                  maxlength="150"
+                  class="form-control"
+                  id="client_email"
+                  v-model="formData.client_email"
+                  placeholder="Inserisci la tua email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="client_phone">Telefono *</label>
+                <input
+                  minlength="8"
+                  maxlength="15"
+                  type="tel"
+                  pattern="[0-9]{8,15}"
+                  class="form-control"
+                  id="client_phone"
+                  v-model="formData.client_phone"
+                  placeholder="Inserisci il tuo numero di telefono"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="note">Aggiungi una nota per il ristorante</label>
+                <textarea
+                  class="form-control"
+                  id="note"
+                  v-model="formData.note"
+                  placeholder="Inserisci una nota per il ristorante"
+                />
+              </div>
+
+              <!-- BRAINTREE -->
+              <div class="totale">Totale da pagare: {{ finalPrice() }}€</div>
+              <!-- <input type="hidden" :value="window.token" name="_token" /> -->
+              <section>
+                <div class="bt-drop-in-wrapper">
+                  <div id="bt-dropin"></div>
+                </div>
+              </section>
+
+              <input id="nonce" type="hidden" />
+
+              <button class="btn btn-home" type="submit" ref="submit">
+                <span>Paga</span>
+              </button>
+            </form>
+            <!-- BRAINTREE -->
+          </div>
         </div>
-</div>
-        
       </div>
     </div>
   </div>
@@ -243,7 +245,7 @@ export default {
                     console.log("SUCCESSO /payment/checkout", response);
                     //Funzione con CHIAMATA AXIOS CHE AGGIUNGE NUOVO ORDINE NEL DB
                     this.addOrder();
-                    // window.location.href = "/transaction";
+                    window.location.href = "/transaction";
                   })
                   .catch((error) => {
                     console.log("ERRORE /payment/checkout", error.data);
@@ -311,7 +313,7 @@ export default {
       // /api/orders
       this.formData.price_tot = this.finalPrice();
       this.formData.restaurant_id = this.cart[0][0].restaurant_id;
-      
+
       axios
         .post("/api/order/create", {
           formData: this.formData,
@@ -319,6 +321,7 @@ export default {
         })
         .then((response) => {
           console.log("Successo Creazione Ordine", response);
+          // localStorage.cart = "[]";  DA FIXAREEE
         })
         .catch((error) => {
           console.log("ERRORE Creazione Ordine", error.data);
