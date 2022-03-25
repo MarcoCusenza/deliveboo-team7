@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\Purchase;
 use Illuminate\Http\Request;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -81,6 +83,9 @@ class OrderController extends Controller
       $newPurchase->quantity = $dish[1];
       $newPurchase->save();
     }
+
+    //invio email conferma creazione ordine
+    Mail::to("webmaster@deliveboo.com")->send(new OrderMail());
 
     // Restituisco una risposta
     return response()->json([
