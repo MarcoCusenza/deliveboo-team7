@@ -81,7 +81,7 @@
                     @enderror
                 </div>
     
-                <div class="form-group form-check mb-5">
+                <div class="form-group form-check mb-2">
                     <input class="form-check-input @error('visible') is-invalid @enderror" type="checkbox" id="visible"
                         name="visible" {{ old('visible') ? 'checked' : '' }}>
                     <label class="form-check-label" for="visible">Visibile al pubblico</label>
@@ -90,9 +90,9 @@
                     @enderror
                 </div>
     
-                <h5 class="text-muted">* Campo obbligatorio</h5>
-                <div class="mt-3 row d-flex justify-content-around">
-                <button type="submit" class="btn btn-dashboard">Crea</button>
+                <h6 class="text-muted">* Campo obbligatorio</h6>
+                <div class="mt-3 row d-flex justify-content-end">
+                <button type="submit" class="btn btn-dashboard mr-3">Aggiungi piatto</button>
                 </div>
             </form>
         </div>

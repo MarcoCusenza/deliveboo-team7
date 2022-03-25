@@ -4,7 +4,7 @@
 <div class="container">
     <div class="mx-auto">
         @foreach ($restaurants as $restaurant)
-        <div class="card card-dashboard-dishes mb-3 p-3">
+        <div class="card card-dashboard-rest mb-3 p-3">
 
 
             <div class="cover-rest cover">
@@ -14,7 +14,7 @@
                 @else
                 <img class="mx-auto p-3 d-block img-fluid" src="{{ $restaurant->image }}" alt="{{ $restaurant->name }}">
                 @endif
-                <div class="overlay-text">
+                <div class="overlay-text-rest">
                     <h2 class="row d-flex justify-content-around m-3">{{ $restaurant->restaurant_name }}</span></h2>
                 </div>
             </div>
