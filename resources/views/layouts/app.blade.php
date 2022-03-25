@@ -24,79 +24,61 @@
 
 <body>
     <div id="app">
-
-        <nav class="navbar navbar-expand-md navbar-light bg-white">
-            <div class="container-fluid">
-
-                {{-- //LOGO --}}
-                <div class="logo-container">
-                    <a href="{{ url('/') }}"><img src="https://i.postimg.cc/s2WnCRpD/logo.png"
-                            alt="deliveroo logo" class="logo" />
-                        {{ config('DeliveBoo') }}
-                    </a>
+        <header class="mb-4">
+            <nav class="navbar navbar-expand-lg container-header bg-white">
+                <div class="col-header navbar-brand ml-lg-5 ml-md-4 ml-sm-3 ml-2">
+                    <a href="{{ url('/') }}"><img src="https://i.postimg.cc/s2WnCRpD/logo.png" alt="deliveroo logo"
+                            class="logo" /> {{ config('DeliveBoo') }} </a>
                 </div>
-                {{-- //HAMBURGER MOBILE --}}
 
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
 
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars navbar-toggler-icon"></i>
                 </button>
-                {{-- //INIT DIV X RESPONSIVE MENU --}}
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto">
-                            {{-- //LINK AUTENTICAZIONE --}}
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
-                            </li>
-                            @endif
-                            @else
 
-                            {{-- //LINK MENU --}}
-                            <a href="{{ route('restaurants.index') }}" class="btn btn-light">Ristorante</a>
-                            <a href="{{ route('dishes.index') }}" class="btn btn-light">Piatti</a>
-                            {{-- //LINK UTENTE X LOGOUT --}}
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+
+                <div class="collapse navbar-collapse bg-white" id="navbarNavDropdown">
+                    <ul class="navbar-nav d-flex align-items-center ml-auto mr-lg-5">
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('login') }}">{{ __('Accedi') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                        </li>
+                        @endif
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('restaurants.index') }}" class="btn">Ristorante</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dishes.index') }}" class="btn">Piatti</a>
+                        </li>
+                        <div class="nav-item dropdown ">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('home') }}">Pannello utente</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Esci') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('home') }}">Pannello utente</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                        {{ __('Esci') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                        {{-- //FINE ELEMENTI MENU --}}
-                    </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </ul>
+                    @endguest
                 </div>
-
-                {{-- //FINE DIV X RESPONSIVE MENU --}}
-
-        </nav>
-
-
-
+            </nav>
+        </header>
 
 
     </div>

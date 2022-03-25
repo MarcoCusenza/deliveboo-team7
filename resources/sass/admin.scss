@@ -31,19 +31,20 @@ body {
     background-color: #f8fafc;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    padding-top: 5em;
 
 
-
-    .navbar {
-        position: fixed;
+    header {
+        position: sticky;
         top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
+        z-index: 10000;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
-        .container-fluid {
-            .logo-container {
+
+
+        .container-header {
+            height: 60px;
+
+            .col-header {
                 .logo {
                     width: 120px;
                     transition: transform 0.3s;
@@ -52,8 +53,15 @@ body {
                     &:hover {
                         transform: scale(1.2);
                     }
+
                 }
+            }
+
+            .nav-item a {
+                color: black;
+                text-decoration: none;
             }
         }
     }
+
 }
