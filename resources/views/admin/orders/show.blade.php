@@ -7,10 +7,7 @@
                 <div class="card">
                     <h3 class="card-header">{{$order->order_number}}</h3>
 
-                    @foreach ($order-> as $item)
-                        
-                    @endforeach
-                    <h3 class="card-header">{{$order->order_number}}</h3>
+                    @dd($order)
                 </div>
             </div>
         </div>
