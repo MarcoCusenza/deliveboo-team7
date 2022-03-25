@@ -44,6 +44,7 @@
                                 use App\Restaurant;
                                 use App\Order;
                                 $areThereRest = Restaurant::where('user_id', auth()->id())->first();
+                                $areThereOrders = null;
                                 
                                 if ($areThereRest != null) {
                                     $areThereOrders = Order::where('restaurant_id', $areThereRest->id)->first();
