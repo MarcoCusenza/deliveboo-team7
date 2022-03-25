@@ -78,10 +78,10 @@
         </div>
 
         <div class="form-group">
-            <span class="text-muted d-block">L'immagine non deve pesare più di 4 MB</span>
+            <span class="text-muted d-block mb-2">L'immagine non deve pesare più di 4 MB</span>
             <img id="uploadPreview" width="100" src="{{ asset('storage/' . $restaurant->image) }}">
             <label for="image">Modifica l'immagine</label>
-            <input class="d-block mt-1" type="file" id="image" name="image" onchange="PreviewImage();">
+            <input class="d-block my-3" type="file" id="image" name="image" onchange="PreviewImage();">
             <script type="text/javascript">
                 function PreviewImage() {
                     var oFReader = new FileReader();
@@ -97,11 +97,11 @@
             @enderror
         </div>
 
-        <h5 class="text-muted">* Campo obbligatorio</h5>
-        <div class="mt-3 row d-flex justify-content-around">
-            <button type="submit" class="btn btn-warning">Modifica Ristorante</button>
+        <h6 class="text-muted">* Campo obbligatorio</h6>
+        <div class="mt-3 row d-flex justify-content-end">
+            <button type="submit" class="btn btn-success mr-3">Modifica Ristorante</button>
 
-            <a href="{{ route('restaurants.index') }}" class="btn btn-dashboard">Annulla e torna indietro</a>
+            <a href="{{ route('restaurants.index') }}" class="btn btn-danger mr-3">Annulla e torna indietro</a>
 
         </div>
     </form>

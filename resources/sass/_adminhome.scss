@@ -19,5 +19,10 @@
         color: white;
         font-weight: bold;
         align-self: flex-end;
+
+                &:hover {
+                    background-color: #007067;
+                    color: white;
+                }
     }
 }

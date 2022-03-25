@@ -10,7 +10,7 @@
     </nav>
     <div class="card card-dashboard-dishes mb-3 p-3">
         <h2 class="row d-flex justify-content-around m-3">{{ $dish->name }}</span></h2>
-        <div class="container_img mx-auto">
+        <div class="container_img_dish mx-auto">
             @if (Storage::exists($dish->image))
             <img class="rounded mx-auto p-3 d-block img-fluid" src="{{ asset("storage/{$dish->image}") }}"
                 alt="{{ $dish->name }}">
