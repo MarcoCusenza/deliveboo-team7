@@ -243,7 +243,7 @@ export default {
                     console.log("SUCCESSO /payment/checkout", response);
                     //Funzione con CHIAMATA AXIOS CHE AGGIUNGE NUOVO ORDINE NEL DB
                     this.addOrder();
-                    window.location.href = "/transaction";
+                    // window.location.href = "/transaction";
                   })
                   .catch((error) => {
                     console.log("ERRORE /payment/checkout", error.data);

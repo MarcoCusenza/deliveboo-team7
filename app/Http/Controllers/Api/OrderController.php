@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Purchase;
+// use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Mail;
@@ -12,17 +13,15 @@ use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
 {
   protected $validationRules = [
-    // "order_number" => "required|regex:/^[0-9]/|min:7|max:7",
-    "client_name" => "required|string|max:100",
-    "client_surname" => "required|string|max:100",
-    // E' REQUIRED? C'E' ANCHE DELIVERY_ADDRESS
-    "client_address" => "required|string|max:150",
-    "delivery_address" => "required|string|max:150",
-    "client_email" => "required|string|max:150",
-    "client_phone" => "required|regex:/^[0-9]/|min:8|max:15",
-    "note" => "nullable|text",
-    // "delivery_time" => "required|tinyInteger|min:0",
-    "price_tot" => "required|numeric|min:0|max:99999999",
+    "formData.client_name" => "required|string|max:100",
+    "formData.client_surname" => "required|string|max:100",
+    "formData.client_address" => "required|string|max:150",
+    "formData.delivery_address" => "required|string|max:150",
+    "formData.client_email" => "required|string|max:150",
+    "formData.client_phone" => "required|regex:/^[0-9]/|min:8|max:15",
+    "formData.note" => "nullable|text",
+    "formData.price_tot" => "required|numeric|min:0|max:99999999",
+    "formData.restaurant_id" => "required|numeric|min:1",
 
     // "dishes" => "required|min:1",
   ];
@@ -45,31 +44,39 @@ class OrderController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->formData;
+    // $data = $request->formData;
     $cart = $request->cart;
 
-
-
+    // dd($cart);
     // dd($data);
 
     // Validazione dati
-    // $data->validate($this->validationRules);
+    $request->validate($this->validationRules);
+    // $validator = Validator::make($data, [
+    //   "client_name" => "required|string|max:100",
+    //   "client_surname" => "required|string|max:100",
+    //   "client_address" => "required|string|max:150",
+    //   "delivery_address" => "required|string|max:150",
+    //   "client_email" => "required|string|max:150",
+    //   "client_phone" => "required|regex:/^[0-9]/|min:8|max:15",
+    //   "note" => "nullable|text",
+    //   "price_tot" => "required|numeric|min:0|max:99999999",
+    // ]);
 
     $order_number = $this->orderNumber();
 
-    // Creazione del commento
     $newOrder = new Order();
     // DATI DAL FORM CLIENTE
     $newOrder->order_number = $order_number;
-    $newOrder->client_name = $data["client_name"];
-    $newOrder->client_surname = $data["client_surname"];
-    $newOrder->client_address = $data["client_address"];
-    $newOrder->delivery_address = $data["delivery_address"];
-    $newOrder->client_email = $data["client_email"];
-    $newOrder->client_phone = $data["client_phone"];
-    $newOrder->note = $data["note"];
-    $newOrder->price_tot = $data["price_tot"];
-    $newOrder->restaurant_id = $data["restaurant_id"];
+    $newOrder->client_name = $request->formData["client_name"];
+    $newOrder->client_surname = $request->formData["client_surname"];
+    $newOrder->client_address = $request->formData["client_address"];
+    $newOrder->delivery_address = $request->formData["delivery_address"];
+    $newOrder->client_email = $request->formData["client_email"];
+    $newOrder->client_phone = $request->formData["client_phone"];
+    $newOrder->note = $request->formData["note"];
+    $newOrder->price_tot = $request->formData["price_tot"];
+    $newOrder->restaurant_id = $request->formData["restaurant_id"];
 
     // DATO DAL RISTORANTE
     // $newOrder->delivery_time = 20;

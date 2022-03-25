@@ -26,7 +26,7 @@ Route::prefix("admin")->namespace("Admin")->middleware("verified")->group(
     Route::resource("restaurants", "RestaurantController");
     Route::resource("dishes", "DishController");
     Route::get('/charts', 'ChartController@index')->name('charts');
-    Route::get('/orders', 'OrderController@index')->name('orders');
+    /* Route::get('/orders', 'OrderController@index')->name('orders'); */ Route::resource("orders", "OrderController");
   }
 );
 
