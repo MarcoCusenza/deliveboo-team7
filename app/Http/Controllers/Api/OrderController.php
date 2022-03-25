@@ -85,7 +85,7 @@ class OrderController extends Controller
     }
 
     //invio email conferma creazione ordine
-    Mail::to("webmaster@deliveboo.com")->send(new OrderMail());
+    Mail::to("webmaster@deliveboo.com")->send(new OrderMail($newOrder));
 
     // Restituisco una risposta
     return response()->json([
