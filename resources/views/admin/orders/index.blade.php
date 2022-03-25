@@ -33,6 +33,9 @@
                                     <td>{{$order->client_email}}</td>
                                     <td>{{$order->client_phone}}</td>
                                     <td>{{$order->delivery_address}}</td>
+                                    <td>
+                                        <a href="{{route("orders.show", $order->id)}}"><button type="button" class="btn btn-primary">Dettagli</button></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

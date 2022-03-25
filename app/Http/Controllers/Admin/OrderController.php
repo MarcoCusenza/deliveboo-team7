@@ -63,4 +63,15 @@ class OrderController extends Controller
 
     // return redirect()->route('orders.show', $newOrder->id);
   }
+
+  /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Order $order)
+    {
+        return view("admin.orders.show", compact("order"));
+    }
 }
