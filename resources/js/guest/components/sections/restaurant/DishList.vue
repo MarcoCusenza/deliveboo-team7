@@ -396,10 +396,12 @@ export default {
       user-select: none;
       font-weight: bold;
       font-size: 18px;
+      transition: background-color 0.2s ease-in-out;
     }
 
     .value-button:hover {
       cursor: pointer;
+      background-color: #00ccbc;
     }
 
     #decrease {
