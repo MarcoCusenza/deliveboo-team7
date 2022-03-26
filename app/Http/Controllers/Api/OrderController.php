@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Order;
 use App\Purchase;
+use App\Mail\ClientOrderMail;
 // use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -93,6 +94,9 @@ class OrderController extends Controller
 
     //invio email conferma creazione ordine
     Mail::to("webmaster@deliveboo.com")->send(new OrderMail($newOrder));
+    //invio email conferma cliente
+    $clientMail = $newOrder->client_email;
+    Mail::to($clientMail)->send(new ClientOrderMail($newOrder));
 
     // Restituisco una risposta
     return response()->json([

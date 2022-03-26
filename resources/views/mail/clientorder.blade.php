@@ -99,8 +99,8 @@
                                                             <td>
                                                                 <h1
                                                                     style="margin: 0; color: #555555; font-size: 23px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">
-                                                                    <span class="tinyMce-placeholder">Il tuo ristorante
-                                                                        ha ricevuto un nuovo ordine!</span></h1>
+                                                                    <span class="tinyMce-placeholder">Il tuo ordine è
+                                                                        stato effettuato con successo!</span></h1>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -117,70 +117,17 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <table border="0" cellpadding="25" cellspacing="0"
-                                                        class="heading_block" role="presentation"
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        class="addon_block" role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
                                                         width="100%">
                                                         <tr>
-                                                            <td>
-                                                                <h1
-                                                                    style="margin: 0; color: #555555; font-size: 23px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">
-                                                                    <span class="tinyMce-placeholder">Nome e cognome
-                                                                        cliente:
-                                                                        {{ $order->client_name }}{{ $order->client_surname }}</span>
-                                                                </h1>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <table border="0" cellpadding="25" cellspacing="0"
-                                                        class="heading_block" role="presentation"
-                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                        width="100%">
-                                                        <tr>
-                                                            <td>
-                                                                <h1
-                                                                    style="margin: 0; color: #555555; font-size: 23px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">
-                                                                    <span class="tinyMce-placeholder">Indirizzo cliente:
-                                                                        {{ $order->client_address }}</span></h1>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <table border="0" cellpadding="25" cellspacing="0"
-                                                        class="heading_block" role="presentation"
-                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                        width="100%">
-                                                        <tr>
-                                                            <td>
-                                                                <h1
-                                                                    style="margin: 0; color: #555555; font-size: 23px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">
-                                                                    <span class="tinyMce-placeholder">Telefono cliente:
-                                                                        {{ $order->client_phone }}</span></h1>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <table border="0" cellpadding="25" cellspacing="0"
-                                                        class="heading_block" role="presentation"
-                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                        width="100%">
-                                                        <tr>
-                                                            <td>
-                                                                <h1
-                                                                    style="margin: 0; color: #555555; font-size: 23px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">
-                                                                    <span class="tinyMce-placeholder">Prezzo totale:
-                                                                        {{ $order->price_tot }} €</span></h1>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <table border="0" cellpadding="25" cellspacing="0"
-                                                        class="heading_block" role="presentation"
-                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                        width="100%">
-                                                        <tr>
-                                                            <td>
-                                                                <a href="http://localhost:8000/admin/orders/{{$order->id}}"
-                                                                    style="margin-top: 5em; text-align: center; margin: 0 auto"><button
-                                                                        style="background-color:#00CCBC; color: white; padding: 15px 35px; font-size: 20px; border-radius: 8px; border:none;">Visualizza
-                                                                        ordine</button></a>
+                                                            <td style="width:100%;padding-right:0px;padding-left:0px;">
+                                                                <div align="center" style="line-height:10px"><img
+                                                                        alt="Image"
+                                                                        src="https://media3.giphy.com/media/wMKoz9qBdVs1hwipGP/giphy.gif?cid=20eb4e9d5x0hzg5fx60ee1d4dx55yt7qxvkprzw2fdzo192y&rid=giphy.gif&ct=g"
+                                                                        style="display: block; height: auto; width: 480px; max-width: 100%;"
+                                                                        title="Image" width="480" /></div>
                                                             </td>
                                                         </tr>
                                                     </table>
