@@ -50,7 +50,12 @@
             </div>
           </table>
 
-          <div v-else>Il tuo carrello è vuoto</div>
+          <div v-else>
+            <div class=" empty-cart py-2 text-center d-flex flex-column align-items-center justify-content-center">
+            <i class="fa-solid fa-basket-shopping py-2"></i>
+            <p>Il tuo carrello è vuoto</p>
+          </div>
+          </div>
         </div>
 
         <!-- FORM CLIENTE -->
@@ -170,6 +175,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
