@@ -45,16 +45,29 @@
                 </td>
               </tr>
             </tbody>
+            <div class="delivery-price">
+              <span>Costo di spedizione: {{ deliveryPrice }}&euro;</span>
+            </div>
             <div class="final-price">
               <h4>Totale = {{ finalPrice().toFixed(2) }}€</h4>
             </div>
           </table>
 
           <div v-else>
-            <div class=" empty-cart py-2 text-center d-flex flex-column align-items-center justify-content-center">
-            <i class="fa-solid fa-basket-shopping py-2"></i>
-            <p>Il tuo carrello è vuoto</p>
-          </div>
+            <div
+              class="
+                empty-cart
+                py-2
+                text-center
+                d-flex
+                flex-column
+                align-items-center
+                justify-content-center
+              "
+            >
+              <i class="fa-solid fa-basket-shopping py-2"></i>
+              <p>Il tuo carrello è vuoto</p>
+            </div>
           </div>
         </div>
 
@@ -167,15 +180,15 @@
 
               <input id="nonce" type="hidden" />
 
-            <button class="btn btn-home" type="submit" ref="submit">
-              <span>Conferma e paga</span>
-            </button>
-          </form>
-          <!-- BRAINTREE -->
+              <button class="btn btn-home" type="submit" ref="submit">
+                <span>Conferma e paga</span>
+              </button>
+            </form>
+            <!-- BRAINTREE -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -185,6 +198,7 @@ export default {
   data() {
     return {
       cart: [],
+      deliveryPrice: 0,
       formData: {
         client_name: "Luna",
         client_surname: "Lovegood",
@@ -203,9 +217,6 @@ export default {
     if (localStorage.cart) {
       this.cart = JSON.parse(localStorage.cart);
     }
-
-    // //prezzo totale
-    // this.formData.price_tot = this.finalPrice();
 
     // <!-- BRAINTREE -->
     //Ajax chiama la rotta che restituisce il token di autorizzazione nella risposta
@@ -264,6 +275,19 @@ export default {
       );
     });
     // <!-- BRAINTREE -->
+
+    //Calcolo deliveryPrice
+    axios
+      .get(`/api/restaurantid/${this.cart[0][0].restaurant_id}`)
+      .then((response) => {
+        this.deliveryPrice = response.data.delivery_price;
+      })
+      .catch((error) => {
+        console.log("Nessun ristorante trovato?", error);
+        // this.$router.push({
+        //     name: "page-404"
+        // });
+      });
   },
   watch: {
     cart: {
@@ -313,7 +337,7 @@ export default {
         finalPrice += item[0].price * item[1];
       });
 
-      return finalPrice;
+      return finalPrice + this.deliveryPrice;
     },
     //Aggiunge un ordine al DB
     addOrder() {
@@ -352,19 +376,19 @@ export default {
     border-radius: 30px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
-      .empty-cart {
-    font-size: 20px;
-    color: grey;
-  }
+    .empty-cart {
+      font-size: 20px;
+      color: grey;
+    }
 
     .table {
-    .final-price {
-      border-top: 1px solid #00ac9d;
-      padding: 10px;
-      width: 180px;
-      text-align: center;
-      font-size: 20px;
-    }
+      .final-price {
+        border-top: 1px solid #00ac9d;
+        padding: 10px;
+        width: 200px;
+        text-align: center;
+        font-size: 20px;
+      }
     }
 
     .counter {
