@@ -1,150 +1,103 @@
 <template>
-  <div class="container-bg">
-    <div class="container my-5">
-      <h2 class="my-5">Checkout</h2>
-      <div class="row">
-        <div class="col-12 col-checkout p-5 mb-3">
-          <table class="cart table table-borderless " v-if="cart.length > 0">
-            <thead>
-              <tr>
-                <th scope="col">Nome piatto</th>
-                <th scope="col">Prezzo</th>
-                <th scope="col">Quantità</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(dish, i) in cart" :key="i">
-                <td class="dish-name">{{ dish[0].name }}</td>
-                <td class="dish-price">{{ dish[0].price }}€</td>
-                <td class="dish-quantity">
-                  <div class="counter">
-                    <div
-                      class="value-button"
-                      id="decrease"
-                      @click="decreaseQuantity(dish)"
-                      value="Decrease Value"
-                    >
-                      -
+    <div class="container-bg">
+        <div class="container my-5">
+            <h2 class="my-5">Checkout</h2>
+            <div class="row">
+                <div class="col-12 col-checkout p-5 mb-3">
+                    <table class="cart table table-borderless " v-if="cart.length > 0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome piatto</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Quantità</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(dish, i) in cart" :key="i">
+                                <td class="dish-name">{{ dish[0].name }}</td>
+                                <td class="dish-price">{{ dish[0].price }}€</td>
+                                <td class="dish-quantity">
+                                    <div class="counter">
+                                        <div class="value-button" id="decrease" @click="decreaseQuantity(dish)"
+                                            value="Decrease Value">
+                                            -
+                                        </div>
+                                        <input type="number" id="number" :value="dish[1]" />
+                                        <div class="value-button" id="increase" @click="increaseQuantity(dish)"
+                                            value="Increase Value">
+                                            +
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-home" @click="removeDish(dish)">
+                                        <i class="fa-solid fa-trash-can delete"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <div class="final-price">
+                            <h4>Totale = {{ finalPrice() }}€</h4>
+                        </div>
+                    </table>
+
+                    <div v-else>
+                        <div class="empty-cart py-2 text-center d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa-solid fa-basket-shopping py-2"></i>
+                            <p>Il tuo carrello è vuoto</p>
+                        </div>
                     </div>
-                    <input type="number" id="number" :value="dish[1]" />
-                    <div
-                      class="value-button"
-                      id="increase"
-                      @click="increaseQuantity(dish)"
-                      value="Increase Value"
-                    >
-                      +
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <button class="btn btn-home" @click="removeDish(dish)">
-                    <i class="fa-solid fa-trash-can delete"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-            <div class="final-price">
-              <h4>Totale = {{ finalPrice() }}€</h4>
-            </div>
-          </table>
+                </div>
 
-          <div v-else>Il tuo carrello è vuoto</div>
-        </div>
+                <!-- FORM CLIENTE -->
+                <div class="col-12 col-checkout p-5">
+                    <div class="cart table table-borderless">
+                        <form id="payment-form">
+                            <div class="form-group">
+                                <label for="client_name">Nome *</label>
+                                <input type="text" maxlength="150" class="form-control" id="client_name"
+                                    v-model="formData.client_name" placeholder="Inserisci il tuo nome" required />
+                            </div>
 
-        <!-- FORM CLIENTE --><div class="col-12 col-checkout p-5">
-        <div class="cart table table-borderless">
-          <form id="payment-form">
-            <div class="form-group">
-              <label for="client_name">Nome *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_name"
-                v-model="formData.client_name"
-                placeholder="Inserisci il tuo nome"
-                required
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="client_surname">Cognome *</label>
+                                <input type="text" maxlength="150" class="form-control" id="client_surname"
+                                    v-model="formData.client_surname" placeholder="Inserisci il tuo cognome" required />
+                            </div>
 
-            <div class="form-group">
-              <label for="client_surname">Cognome *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_surname"
-                v-model="formData.client_surname"
-                placeholder="Inserisci il tuo cognome"
-                required
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="client_address">Indirizzo di fatturazione *</label>
+                                <input type="text" maxlength="150" class="form-control" id="client_address"
+                                    v-model="formData.client_address"
+                                    placeholder="Inserisci il tuo indirizzo di fatturazione" required />
+                            </div>
 
-            <div class="form-group">
-              <label for="client_address">Indirizzo di fatturazione *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_address"
-                v-model="formData.client_address"
-                placeholder="Inserisci il tuo indirizzo di fatturazione"
-                required
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="client_delivAddress">Indirizzo di spedizione *</label>
+                                <input type="text" maxlength="150" class="form-control" id="client_delivAddress"
+                                    v-model="formData.delivery_address"
+                                    placeholder="Inserisci il tuo indirizzo di spedizione" required />
+                            </div>
 
-            <div class="form-group">
-              <label for="client_delivAddress">Indirizzo di spedizione *</label>
-              <input
-                type="text"
-                maxlength="150"
-                class="form-control"
-                id="client_delivAddress"
-                v-model="formData.delivery_address"
-                placeholder="Inserisci il tuo indirizzo di spedizione"
-                required
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="client_email">Email *</label>
+                                <input type="email" maxlength="150" class="form-control" id="client_email"
+                                    v-model="formData.client_email" placeholder="Inserisci la tua email" required />
+                            </div>
 
-            <div class="form-group">
-              <label for="client_email">Email *</label>
-              <input
-                type="email"
-                maxlength="150"
-                class="form-control"
-                id="client_email"
-                v-model="formData.client_email"
-                placeholder="Inserisci la tua email"
-                required
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="client_phone">Telefono *</label>
+                                <input minlength="8" maxlength="15" type="tel" pattern="[0-9]{8,15}"
+                                    class="form-control" id="client_phone" v-model="formData.client_phone"
+                                    placeholder="Inserisci il tuo numero di telefono" required />
+                            </div>
 
-            <div class="form-group">
-              <label for="client_phone">Telefono *</label>
-              <input
-                minlength="8"
-                maxlength="15"
-                type="tel"
-                pattern="[0-9]{8,15}"
-                class="form-control"
-                id="client_phone"
-                v-model="formData.client_phone"
-                placeholder="Inserisci il tuo numero di telefono"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="note">Aggiungi una nota per il ristorante</label>
-              <textarea
-                class="form-control"
-                id="note"
-                v-model="formData.note"
-                placeholder="Inserisci una nota per il ristorante"
-              />
-            </div>
+                            <div class="form-group">
+                                <label for="note">Aggiungi una nota per il ristorante</label>
+                                <textarea class="form-control" id="note" v-model="formData.note"
+                                    placeholder="Inserisci una nota per il ristorante" />
+                                </div>
 
             <!-- BRAINTREE -->
             <div class="totale">Totale da pagare: {{ finalPrice() }}€</div>
@@ -158,7 +111,7 @@
             <input id="nonce" type="hidden" />
 
             <button class="btn btn-home" type="submit" ref="submit">
-              <span>Paga</span>
+              <span>Conferma e paga</span>
             </button>
           </form>
           <!-- BRAINTREE -->
@@ -342,15 +295,19 @@ export default {
     border-radius: 30px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
+      .empty-cart {
+    font-size: 20px;
+    color: grey;
+  }
+
     .table {
-      .final-price {
-        margin: 20px 0 0 10px;
-        padding: 10px;
-        width: 180px;
-        text-align: center;
-        border-radius: 10px;
-        background-color: rgb(240, 240, 240);
-      }
+    .final-price {
+      border-top: 1px solid #00ac9d;
+      padding: 10px;
+      width: 180px;
+      text-align: center;
+      font-size: 20px;
+    }
     }
 
     .counter {
