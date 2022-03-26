@@ -46,7 +46,7 @@
               </tr>
             </tbody>
             <div class="final-price">
-              <h4>Totale = {{ finalPrice() }}€</h4>
+              <h4>Totale = {{ finalPrice().toFixed(2) }}€</h4>
             </div>
           </table>
 
@@ -150,7 +150,9 @@
               </div>
 
               <!-- BRAINTREE -->
-              <div class="totale">Totale da pagare: {{ finalPrice() }}€</div>
+              <div class="totale">
+                Totale da pagare: {{ finalPrice().toFixed(2) }}€
+              </div>
               <!-- <input type="hidden" :value="window.token" name="_token" /> -->
               <section>
                 <div class="bt-drop-in-wrapper">
@@ -321,7 +323,7 @@ export default {
         })
         .then((response) => {
           console.log("Successo Creazione Ordine", response);
-          // localStorage.cart = "[]";  DA FIXAREEE
+          this.cart = [];
         })
         .catch((error) => {
           console.log("ERRORE Creazione Ordine", error.data);
