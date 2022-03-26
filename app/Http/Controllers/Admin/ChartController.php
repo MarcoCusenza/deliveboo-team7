@@ -21,9 +21,11 @@ class ChartController extends Controller
     $rest = Restaurant::where("user_id", auth()->id())->first();
 
     $groups = Order::where("restaurant_id", $rest->id)
-      ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M-%d - %H:%i") as month'))
+    
+      // ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M-%d - %H:%i") as month'))
+      ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M") as month'))
+      // ->orderBy('month', "asc")
       ->groupBy('month')
-      ->orderBy('month', 'desc')
       ->pluck('tot', 'month')->all();
 
     $chart = new Chart;

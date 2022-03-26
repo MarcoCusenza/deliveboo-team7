@@ -3,7 +3,7 @@
 @section('content')
 
 {{-- CHARTJS --}}
-<div>
+<div class="container card">
     <canvas id="userChart" class="rounded shadow"></canvas>
 </div>
 
@@ -12,7 +12,7 @@
     var ctx = document.getElementById('userChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'line',
+        type: 'bar',
 
         // The data for our dataset
         data: {
@@ -29,6 +29,7 @@
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
+                        
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
