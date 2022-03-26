@@ -39,8 +39,8 @@
                 </div>
               </td>
               <td>
-                <button class="btn btn-home" @click="removeDish(dish)">
-                  <i class="fa-solid fa-trash-can delete"></i>
+                <button class="btn btn-home delete" @click="removeDish(dish)">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
               </td>
             </tr>
@@ -434,6 +434,10 @@ export default {
 
   .delete {
     cursor: pointer;
+    transition: background 0.2 ease-in-out;
+    &:hover {
+      background-color: #d10000;
+    }
   }
 
   .cart-bottom {
