@@ -181,12 +181,12 @@
                     background-color: #00ccbc;
                     color: white;
                     font-weight: bold;
-                    transition: all .2s ease-in-out;
-
-
+                    transition: background-color 0.2s ease-out;
                     &:hover {
-                        transform: scale(1.3);
-                        background-color:#00ccbc;
+                        background-color:#0081cc;
+                    }
+                    &:active {
+                        background-color:#a300cc;
                     }
                 }
 
