@@ -162,12 +162,11 @@
 
               <input id="nonce" type="hidden" />
 
-              <button class="btn btn-home" type="submit" ref="submit">
-                <span>Paga</span>
-              </button>
-            </form>
-            <!-- BRAINTREE -->
-          </div>
+            <button class="btn btn-home" type="submit" ref="submit">
+              <span>Conferma e paga</span>
+            </button>
+          </form>
+          <!-- BRAINTREE -->
         </div>
       </div>
     </div>
@@ -347,15 +346,19 @@ export default {
     border-radius: 30px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
+      .empty-cart {
+    font-size: 20px;
+    color: grey;
+  }
+
     .table {
-      .final-price {
-        margin: 20px 0 0 10px;
-        padding: 10px;
-        width: 180px;
-        text-align: center;
-        border-radius: 10px;
-        background-color: rgb(240, 240, 240);
-      }
+    .final-price {
+      border-top: 1px solid #00ac9d;
+      padding: 10px;
+      width: 180px;
+      text-align: center;
+      font-size: 20px;
+    }
     }
 
     .counter {

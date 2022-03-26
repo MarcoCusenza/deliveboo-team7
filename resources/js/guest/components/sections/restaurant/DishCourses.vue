@@ -119,7 +119,7 @@
                         <p class="card-text ingredients">{{ dish.ingredients }}</p>
                         <p class="card-text font-weight-bold">{{ dish.price }} &euro;</p>
                         <button class="btn btn-home" @click="$emit('isTheSameRestaurant', dish)">
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-plus icon-plus"></i>
                         </button>
                     </div>
                 </div>
@@ -144,12 +144,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .btn-home {
-        background-color: #00ccbc;
-        color: white;
-        font-weight: bold;
-    }
-
     .card-grid {
         display: grid;
         //grid-template: repeat(1, 1fr) / repeat(1, 1fr);
@@ -184,6 +178,16 @@
                     right: 0;
                     border-radius: 10px 0 0 0;
                     padding: 10px 20px;
+                    background-color: #00ccbc;
+                    color: white;
+                    font-weight: bold;
+                    transition: all .2s ease-in-out;
+
+
+                    &:hover {
+                        transform: scale(1.3);
+                        background-color:#00ccbc;
+                    }
                 }
 
                 .card-text {
