@@ -20,18 +20,29 @@ class ChartController extends Controller
   {
     $rest = Restaurant::where("user_id", auth()->id())->first();
 
+    //CHIAMATA MESI
     $groups = Order::where("restaurant_id", $rest->id)
-    
-      // ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M-%d - %H:%i") as month'))
-      ->select(DB::raw('COUNT(id) as tot'), DB::raw('DATE_FORMAT(created_at, "%Y-%M") as month'))
-      // ->orderBy('month', "asc")
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
+      ->orderBy('month', "asc")
       ->groupBy('month')
       ->pluck('tot', 'month')->all();
 
-    $chart = new Chart;
-    $chart->labels = (array_keys($groups));
-    $chart->dataset = (array_values($groups));
-    return view('admin.charts.index', compact('chart'));
+    $chartMonth = new Chart;
+    $chartMonth->labels = (array_keys($groups));
+    $chartMonth->dataset = (array_values($groups));
+
+    //CHIAMATA ANNI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('COUNT(id) as tot'))
+      ->orderBy('year', "asc")
+      ->groupBy('year')
+      ->pluck('tot', 'year')->all();
+
+    $chartYear = new Chart;
+    $chartYear->labels = (array_keys($groups));
+    $chartYear->dataset = (array_values($groups));
+
+    return view('admin.charts.index', compact('chartMonth', 'chartYear'));
   }
 
   /**
