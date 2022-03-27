@@ -20,10 +20,9 @@ class OrderController extends Controller
     "formData.delivery_address" => "required|string|max:150",
     "formData.client_email" => "required|string|max:150",
     "formData.client_phone" => "required|regex:/^[0-9]/|min:8|max:15",
-    "formData.note" => "nullable|text",
+    "formData.note" => "nullable|string",
     "formData.price_tot" => "required|numeric|min:0|max:99999999",
     "formData.restaurant_id" => "required|numeric|min:1",
-
     // "dishes" => "required|min:1",
   ];
 
