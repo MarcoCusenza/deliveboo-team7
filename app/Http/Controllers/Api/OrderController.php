@@ -23,7 +23,6 @@ class OrderController extends Controller
     "formData.note" => "nullable|string",
     "formData.price_tot" => "required|numeric|min:0|max:99999999",
     "formData.restaurant_id" => "required|numeric|min:1",
-    // "dishes" => "required|min:1",
   ];
 
   /**
@@ -44,24 +43,10 @@ class OrderController extends Controller
    */
   public function store(Request $request)
   {
-    // $data = $request->formData;
     $cart = $request->cart;
-
-    // dd($cart);
-    // dd($data);
 
     // Validazione dati
     $request->validate($this->validationRules);
-    // $validator = Validator::make($data, [
-    //   "client_name" => "required|string|max:100",
-    //   "client_surname" => "required|string|max:100",
-    //   "client_address" => "required|string|max:150",
-    //   "delivery_address" => "required|string|max:150",
-    //   "client_email" => "required|string|max:150",
-    //   "client_phone" => "required|regex:/^[0-9]/|min:8|max:15",
-    //   "note" => "nullable|text",
-    //   "price_tot" => "required|numeric|min:0|max:99999999",
-    // ]);
 
     $order_number = $this->orderNumber();
 
@@ -77,9 +62,6 @@ class OrderController extends Controller
     $newOrder->note = $request->formData["note"];
     $newOrder->price_tot = $request->formData["price_tot"];
     $newOrder->restaurant_id = $request->formData["restaurant_id"];
-
-    // DATO DAL RISTORANTE
-    // $newOrder->delivery_time = 20;
 
     $newOrder->save();
 
