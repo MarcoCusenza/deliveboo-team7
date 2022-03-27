@@ -9,10 +9,20 @@
 
           <div class="client-data">
             <div class="client-name">Cliente: {{ $order->client_name }} {{ $order->client_surname }}</div>
-            <div class="client-address">{{ $order->client_address }}</div>
+
+            <div class="client-address">Indirizzo: {{ $order->client_address }}</div>
             @if ($order->client_address != $order->delivery_address)
-              <div class="delivery-address">{{ $order->delivery_address }}</div>
+              <div class="delivery-address">Indirizzo di spedizione: {{ $order->delivery_address }}</div>
             @endif
+
+            <div class="client-address">Email: {{ $order->client_email }}</div>
+            <div class="client-address">Telefono: {{ $order->client_phone }}</div>
+
+            @if ($order->note != null)
+              <div class="delivery-address">Note: {{ $order->note }}</div>
+            @endif
+
+            <div class="delivery-address">Prezzo totale: {{ $order->price_tot }}€</div>
           </div>
 
 
