@@ -14,7 +14,7 @@
           </h2>
           <div class="row d-flex justify-content-around">
             {{-- INFO UTENTE --}}
-            <div class="col-lg-3 col-sm-12 mt-3">
+            <div class="col-12 col-lg-6 mt-3">
               <h5>Info Utente:</h5>
               <ul class="list-group  list-group-flush">
                 <li class="list-group-item"><span style="font-weight: bold">Nome e cognome</span>
@@ -36,7 +36,7 @@
               </ul>
             </div>
             {{-- INFO + CREA/GUARDA RISTORANTE --}}
-            <div class="col-lg-3 col-sm-12 mt-3 d-flex flex-column">
+            <div class="col-12 col-lg-6 mt-3 d-flex flex-column">
 
               <h5>Info Ristorante:</h5>
 
@@ -66,7 +66,7 @@
                   {{ $areThereRest->restaurant_name }}
                 </p>
 
-                <div class="visualizza-container mt-3">
+                <div class="visualizza-container mt-3 w-50">
                   <h5>Visualizza:</h5>
                   <div class="buttons-container d-flex flex-column align-items-start">
 
