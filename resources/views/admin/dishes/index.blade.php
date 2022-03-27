@@ -28,7 +28,7 @@
                     @foreach ($dishes as $dish)
                     <tr>
                         <td class="pt-3">{{ $dish->name }}</td>
-                        <td  class="pt-3">{{ $dish->price }} &euro;</td>
+                        <td  class="pt-3">{{number_format($dish->price, 2)}} &euro;</td>
                         <td  class="pt-3">
                             @if ($dish->visible)
                             <h6><span class="badge badge-success">Visibile</span></h6>

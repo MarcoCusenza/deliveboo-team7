@@ -27,7 +27,7 @@
                 <tr>
                   <td class="d-none d-md-block">{{ $order->created_at }}</td>
                   <td>{{ $order->order_number }}</td>
-                  <td>{{ $order->price_tot }} &euro;</td>
+                  <td>{{ number_format($order->price_tot, 2) }} &euro;</td>
                   <td class="d-none d-md-block">{{ $order->client_name }} {{ $order->client_surname }}</td>
 
                   <td>
