@@ -1,9 +1,9 @@
 <template>
     <div class="container-banner my-5">
         <div class="container-text">
-            <h2 class="banner-text text-white font-weight-bold">Fino al 10 APRILE la spedizione è a
+            <h2 class="banner-text text-white font-weight-bold">Dal 10 APRILE la spedizione è a
                 SOLO 1 €</h2>
-            <p class="text-white">Con Deliveboo fino al 10 Aprile potrai portare i tuoi ordini a casa tua a solo 1€,
+            <p class="text-white">Con Deliveboo dal 10 Aprile potrai portare i tuoi ordini a casa tua a solo 1€,
                 cosa stai aspettando?</p>
         </div>
     </div>

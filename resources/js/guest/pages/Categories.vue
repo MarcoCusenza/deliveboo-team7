@@ -19,19 +19,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="col-sm-12 col-lg-3">
-                    <div class="form-group">
-                        <ul class="list-group">
-                            <li class="list-group-item" v-for="(category, index) in allCategories" :key="index">
-                                <label>
-                                    <input type="checkbox" :value="category" v-model="selectedCategories"
-                                        :name="category.name" />
-                                    {{ category.name }}
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
                 <div class="restaurants-container col-sm-12 col-lg-9" v-if="restaurants.data">
                     <div class="card-grid">
                         <!-- Stampare tutti i ristoranti dati dalla ricerca-->
