@@ -25,16 +25,17 @@ class OrderController extends Controller
   }
 
   /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($order_id)
-    {
-        $order = Order::where("id", $order_id)->first();
-        $dishes = Purchase::where("order_id", $order_id)->get();
-        // dd($dishes);
-        return view("admin.orders.show", compact("order", "dishes"));
-    }
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($order_id)
+  {
+    $order = Order::where("id", $order_id)->first();
+    $purchase = Purchase::where("order_id", $order_id)->get();
+    $dishes = [];
+    // dd($dishes);
+    return view("admin.orders.show", compact("order", "dishes"));
+  }
 }
