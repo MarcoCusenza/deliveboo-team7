@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Purchase;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($order_id)
     {
-        return view("admin.orders.show", compact("order"));
+        $order = Order::where("id", $order_id)->first();
+        $dishes = Purchase::where("order_id", $order_id)->get();
+        // dd($dishes);
+        return view("admin.orders.show", compact("order", "dishes"));
     }
 }

@@ -25,8 +25,6 @@
             <div class="delivery-address">Prezzo totale: {{ $order->price_tot }}€</div>
           </div>
 
-
-
         </div>
       </div>
     </div>
