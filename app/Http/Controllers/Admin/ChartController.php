@@ -42,7 +42,31 @@ class ChartController extends Controller
     $chartYear->labels = (array_keys($groups));
     $chartYear->dataset = (array_values($groups));
 
-    return view('admin.charts.index', compact('chartMonth', 'chartYear'));
+    //CHIAMATA VENDITE MENSILI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%m") as month'), DB::raw('SUM(price_tot) as tot'))
+      ->orderBy('month', "asc")
+      ->groupBy('month')
+      ->pluck('tot', 'month')->all();
+
+    $chartPriceMonth = new Chart;
+    $chartPriceMonth->labels = (array_keys($groups));
+    $chartPriceMonth->dataset = (array_values($groups));
+
+    //CHIAMATA VENDITE ANNUALI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('SUM(price_tot) as tot'))
+      ->orderBy('year', "asc")
+      ->groupBy('year')
+      ->pluck('tot', 'year')->all();
+
+    $chartPriceYear = new Chart;
+    $chartPriceYear->labels = (array_keys($groups));
+    $chartPriceYear->dataset = (array_values($groups));
+
+    
+
+    return view('admin.charts.index', compact('chartMonth', 'chartYear', 'chartPriceMonth', 'chartPriceYear'));
   }
 
   /**
