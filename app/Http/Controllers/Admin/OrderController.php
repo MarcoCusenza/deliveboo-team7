@@ -34,6 +34,10 @@ class OrderController extends Controller
   public function show($order_id)
   {
     $order = Order::where("id", $order_id)->first();
+
+    // The current user can view this dish?
+    $this->authorize('view', $order);
+
     $purchase = Purchase::where("order_id", $order_id)->get();
     $dishes = [];
 
