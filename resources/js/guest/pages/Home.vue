@@ -64,7 +64,7 @@ export default {
   padding-right: 0px;
 
   .hamburger-container {
-    width: 38%;
+    width: 45%;
     position: relative;
     overflow: hidden;
 
@@ -88,13 +88,13 @@ export default {
       }
 
       .btn-home {
-        padding: 10px 50px;
+        padding: 10px 30px;
         background-color: #00ccbc;
         color: white;
         font-weight: bold;
         border-radius: 57px;
         border: none;
-        font-size: 20px;
+        font-size: 15px;
         transition: background 0.3s;
 
         &:hover {
@@ -108,13 +108,15 @@ export default {
 
 @media screen and (min-width: 600px) {
   .container-fluid {
+    .container {
     .text-area-container {
       max-width: 480px;
       .btn-home {
         padding: 8px 40px;
-        font-size: 15px;
+        font-size: 20px;
         cursor: pointer;
       }
+    }
     }
 
     .hamburger-container {

@@ -1,13 +1,12 @@
 <template>
     <header>
-        <nav class="container-fluid container-header">
-            <div class="container-fluid container-xl m-auto d-flex align-items-center justify-content-between p-0 m-0">
-                <div class="col-header col-lg-2 col-6 text-lg-left p-0 m-0">
+            <div class="container-fluid container-header d-flex align-items-center justify-content-between">
+                <div class="col-header col-lg-2 col-6 text-left text-lg-center">
                     <a href="/"><img src="https://i.postimg.cc/s2WnCRpD/logo.png" alt="deliveroo logo"
                             class="logo" /></a>
                 </div>
-                <div class="col-header col-icon col-lg-2 col-6 p-0 m-0">
-                    <div class="icons text-lg-right p-0 m-0">
+                <div class="col-header col-icon col-lg-2 col-6 ">
+                    <div class="icons text-right text-lg-center">
                         <a class="button-link mx-2 icon-header" href="/admin/home"><i
                                 class="fa-solid fa-user fa-lg"></i></a>
                         <a class="button-link mx-2 icon-header" href="/checkout"><i
@@ -15,7 +14,6 @@
                     </div>
                 </div>
             </div>
-        </nav>
     </header>
 </template>
 
@@ -35,9 +33,6 @@
 
         .container-header {
             height: 60px;
-
-            .container-xl {
-                height: 100%;
 
                 .logo {
                     width: 120px;
@@ -63,7 +58,6 @@
                         }
                     }
                 }
-            }
         }
     }
 
