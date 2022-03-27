@@ -23,7 +23,6 @@
               <div class="delivery-address">Note: {{ $order->note }}</div>
             @endif
 
-            {{-- @dd($dishes); --}}
             <div class="dishes">
               <h4>Piatti Ordinati:</h4>
               @foreach ($dishes as $dish)
@@ -34,11 +33,9 @@
             </div>
 
             <div class="delivery-address">
-              <h4>Prezzo totale: </h4>
-              <span>{{ number_format($order->price_tot, 2) }} &euro;</span>
+              <h4>Prezzo totale: <span>{{ number_format($order->price_tot, 2) }} &euro;</span></h4>
             </div>
           </div>
-
         </div>
       </div>
     </div>

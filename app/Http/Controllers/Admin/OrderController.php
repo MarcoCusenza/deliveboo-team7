@@ -43,7 +43,7 @@ class OrderController extends Controller
       $dish = [$dish_item, $dish_quantity];
       array_push($dishes, $dish);
     }
-    // dd($dishes);
+
     return view("admin.orders.show", compact("order", "dishes"));
   }
 }
