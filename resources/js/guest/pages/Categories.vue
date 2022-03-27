@@ -5,7 +5,7 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-3">
                     <div class="form-group">
-                        <div class="d-block d-lg-none list-group-item d-flex align-items-center justify-content-between" @click="showDropdown()">
+                        <div class="select-categories d-block d-lg-none list-group-item d-flex align-items-center justify-content-between" @click="showDropdown()">
                             <span>Seleziona una categoria</span> <i class="fa-solid fa-chevron-down ml-auto"></i>
                         </div>
                         <ul class="list-group d-lg-block d-none" id="dropdown">
@@ -43,8 +43,7 @@
                                     <p>
                                         <i class="fa-solid fa-utensils mr-2"></i><span class="restaurant-categories"
                                             v-for="(cat, i) in restaurant.categories" :key="i">
-                                            {{ cat.name
-                      }}<span v-if="i < restaurant.categories.length - 1">,
+                                            {{ cat.name }}<span v-if="i < restaurant.categories.length - 1">,
                                             </span>
                                         </span>
                                     </p>
@@ -63,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-else>Non hai selezionato nessuna categoria</div>
+                <div v-else><h4 class="ml-4 text-center">Non hai selezionato nessuna categoria</h4></div>
             </div>
         </div>
     </section>
@@ -214,13 +213,18 @@
 
 <style lang="scss" scoped>
     section {
-        background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
-        background-color: #f8fafc;
-        background-repeat: no-repeat;
 
         label,
         input {
             cursor: pointer;
+        }
+
+        .select-categories:hover {
+            cursor:pointer;
+            background-color:#00ccbc;
+            color: white;
+            transition: background 0.3s;
+            border: 1px solid #00ccbc;
         }
 
         .card-grid {
@@ -304,6 +308,8 @@
     }
 
     @media screen and (min-width: 610px) {
+
+        
         .container {
             .card-grid {
                 display: grid;
@@ -318,6 +324,7 @@
                 }
             }
         }
+        
     }
 
     @media screen and (min-width: 910px) {
@@ -334,6 +341,13 @@
                     }
                 }
             }
+        }
+    }
+        @media screen and (min-width: 990px) {
+        section {
+        background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
+        background-color: #f8fafc;
+        background-repeat: no-repeat;
         }
     }
 </style>
