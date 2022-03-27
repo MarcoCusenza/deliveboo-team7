@@ -7,6 +7,8 @@
       <h2 class="col-12 mb-3">Numero di ordini</h2>
       <div class="col-12 col-lg-6 mb-5">
         <canvas id="userChart" class="rounded shadow"></canvas>
+        <input type="month" id="startDate">
+        <input onchange="filterData()" type="month" id="endDate">
       </div>
   
       <div class="col-12 col-lg-6">
@@ -27,7 +29,27 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script>
+  <script async>
+
+    const dates = {!! json_encode($chartMonth->labels) !!};
+    console.log(dates);
+    const dataPoints = {!! json_encode($chartMonth->dataset) !!};
+
+    let inpStartDate = document.getElementById('startDate');
+    console.log(inpStartDate)
+
+    inpStartDate.value = dates[0]; //"2022"
+    console.log(inpStartDate)
+
+    inpStartDate.defaulValue = dates[0]+"-01"
+    console.log(inpStartDate)
+
+    let inpEndDate = document.getElementById('endDate').value = dates[dates.length - 1];
+
+    // console.log(inpStartDate, " ", inpEndDate);
+
+
+
     //CHIAMATA MESI
     var ctx = document.getElementById('userChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -36,10 +58,10 @@
 
       // The data for our dataset
       data: {
-        labels: {!! json_encode($chartMonth->labels) !!}, // Pariole sotto la tabella
+        labels: dates, // Pariole sotto la tabella
         datasets: [{
           label: 'N°ordini / mese',
-          data: {!! json_encode($chartMonth->dataset) !!},
+          data: dataPoints,
 
           // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
           backgroundColor: [
@@ -92,8 +114,7 @@
         }
       }
     });
-
-    //CHIAMATA ANNI
+    //CHIAMATA ANNI 
     var ctj = document.getElementById('userChartyear').getContext('2d');
     var chartb = new Chart(ctj, {
       // The type of chart we want to create
@@ -287,5 +308,12 @@
         }
       }
     });
+
+
+    function filterData() {
+      // Copio l'array per evitare di perdere i dati
+      const dates2 = [...dates];
+      console.log(dates2)
+    }
   </script>
 @endsection
