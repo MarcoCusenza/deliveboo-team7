@@ -40,7 +40,7 @@
                     <div class="card p-4">
                         <div class="text-container">
                             <h5><i class="fa-solid fa-truck"></i> Costo di spedizione:</h5>
-                            <h3 class="m-0">{{ $restaurant->delivery_price }} €</h3>
+                            <h3 class="m-0">{{number_format($restaurant->delivery_price, 2)}} €</h3>
                         </div>
                     </div>
                 </div>

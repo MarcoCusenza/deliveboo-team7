@@ -28,7 +28,7 @@
                 <div class="card p-4">
                     <div class="text-container">
                         <h5><i class="fa-solid fa-euro-sign mr-1"></i> Prezzo:</h5>
-                        <h3 class="m-0">{{ $dish->price }} €</h3>
+                        <h3 class="m-0">{{number_format($dish->price, 2)}} €</h3>
                     </div>
                 </div>
             </div>
