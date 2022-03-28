@@ -26,8 +26,7 @@
     <div id="app">
         <header class="mb-4">
             <nav class="navbar navbar-expand-lg container-header bg-white">
-                <div class="container-xl p-0 m-0 m-auto">
-                    <div class="col-header navbar-brand p-0 m-0">
+                    <div class="col-header navbar-brand p-0 m-0 ml-0 ml-lg-5">
                         <a href="{{ url('/') }}"><img src="https://i.postimg.cc/s2WnCRpD/logo.png" alt="deliveroo logo"
                                 class="logo" /> {{ config('DeliveBoo') }} </a>
                     </div>
@@ -40,7 +39,7 @@
     
     
                     <div class="collapse navbar-collapse bg-white" id="navbarNavDropdown">
-                        <ul class="navbar-nav d-flex align-items-center ml-auto">
+                        <ul class="navbar-nav d-flex align-items-center ml-auto mr-5">
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link " href="{{ route('login') }}">{{ __('Accedi') }}</a>
@@ -78,7 +77,6 @@
                         </ul>
                         @endguest
                     </div>
-                </div>
             </nav>
         </header>
 
