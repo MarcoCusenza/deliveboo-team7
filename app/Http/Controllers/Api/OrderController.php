@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
 use App\Order;
 use App\Purchase;
+use App\Restaurant;
+use App\User;
 use App\Mail\ClientOrderMail;
 // use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -73,8 +75,12 @@ class OrderController extends Controller
       $newPurchase->save();
     }
 
+    $restaurant = Restaurant::where("id", $newOrder->restaurant_id)->first();
+    $userRest = User::where("id", $restaurant->user_id)->first();
+    $useremail = $userRest->email;
+
     //invio email conferma creazione ordine
-    Mail::to("webmaster@deliveboo.com")->send(new OrderMail($newOrder));
+    Mail::to($useremail)->send(new OrderMail($newOrder));
     //invio email conferma cliente
     $clientMail = $newOrder->client_email;
     Mail::to($clientMail)->send(new ClientOrderMail($newOrder));
