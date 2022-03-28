@@ -352,8 +352,8 @@ export default {
         })
         .then((response) => {
           console.log("Successo Creazione Ordine", response);
-          localStorage.cart = "[]";
-          this.cart = [];
+          // localStorage.cart = "";
+          // this.cart = [];
         })
         .catch((error) => {
           console.log("ERRORE Creazione Ordine", error.data);
