@@ -39,16 +39,16 @@
             </tbody>
           </table>
 
-          <div class="paginate-box text-center">
+          <div class="paginate-box text-center" style="font-size: 20px">
             @if ($orders->currentPage() - 1 > 0)
-              <a href='/admin/orders?page={{ $orders->currentPage() - 1 }}'>
+              <a href='/admin/orders?page={{ $orders->currentPage() - 1 }}' style="text-decoration: none" class="text-dark">
                 <span class="prev">
                   < </span></a>
             @endif
             <span class="num-page">Pagina {{ $orders->currentPage() }} di
               {{ $orders->lastPage() }}</span>
             @if ($orders->currentPage() + 1 <= $orders->lastPage())
-              <a href='/admin/orders?page={{ $orders->currentPage() + 1 }}'>
+              <a href='/admin/orders?page={{ $orders->currentPage() + 1 }}' style="text-decoration: none;" class="text-dark">
                 <span class="prev">
                   > </span></a>
             @endif
