@@ -4,7 +4,8 @@
             <h2>Antipasti</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in antipasti" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -22,7 +23,8 @@
             <h2>Piatti Unici</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in piattiUnici" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -40,7 +42,8 @@
             <h2>Primi</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in primi" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -58,7 +61,8 @@
             <h2>Secondi</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in secondi" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -75,7 +79,8 @@
             <h2>Contorni</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in contorni" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -94,7 +99,8 @@
             <h2>Dessert</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in dessert" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -112,7 +118,8 @@
             <h2>Drink</h2>
             <div class="card-grid col-lg-12 mt-5">
                 <div v-for="dish in drink" :key="dish.id" class="card-rest shadow-sm bg-white">
-                    <img :src="dish.image" :alt="'Immagine che rappresenta ' + dish.name" v-if="dish.image" />
+                    <img v-if="dish.image && isFirstLetterH(dish.image)" :src="dish.image" :alt="dish.name" />
+                    <img v-else :src="'../storage/' + dish.image" :alt="dish.name" />
 
                     <div class="card-body">
                         <h5 class="card-title">{{ dish.name }}</h5>
@@ -140,6 +147,12 @@
             dessert: Array,
             drink: Array,
         },
+
+        methods: {
+            isFirstLetterH(item) {
+                return item[0] == "h";
+            },
+        }
     }
 </script>
 
@@ -182,11 +195,13 @@
                     color: white;
                     font-weight: bold;
                     transition: background-color 0.2s ease-out;
+
                     &:hover {
-                        background-color:#0081cc;
+                        background-color: #0081cc;
                     }
+
                     &:active {
-                        background-color:#a300cc;
+                        background-color: #a300cc;
                     }
                 }
 
