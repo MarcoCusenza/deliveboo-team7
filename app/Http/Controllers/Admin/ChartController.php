@@ -44,7 +44,7 @@ class ChartController extends Controller
 
     //CHIAMATA VENDITE MENSILI
     $groups = Order::where("restaurant_id", $rest->id)
-      ->select(DB::raw('DATE_FORMAT(created_at, "%m") as month'), DB::raw('SUM(price_tot) as tot'))
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('SUM(price_tot) as tot'))
       ->orderBy('month', "asc")
       ->groupBy('month')
       ->pluck('tot', 'month')->all();

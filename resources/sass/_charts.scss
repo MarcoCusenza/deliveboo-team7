@@ -10,5 +10,25 @@
 
 .chart_bgc {
     background-color: #f8fafc;
-    // background-color: cyan;
+        .labels-fs {
+            font-size: 16px;
+        }
+}
+
+@media screen and (min-width: 600px) {
+    .chart_bgc {
+        .row {
+            .cnt-all {
+                .cnt-all {
+                    .cnt-labels {
+                        div {
+                            .labels-fs {
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
