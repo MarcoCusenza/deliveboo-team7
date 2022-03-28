@@ -5,7 +5,8 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-3">
                     <div class="form-group">
-                        <div class="select-categories d-block d-lg-none list-group-item d-flex align-items-center justify-content-between" @click="showDropdown()">
+                        <div class="select-categories d-block d-lg-none list-group-item d-flex align-items-center justify-content-between"
+                            @click="showDropdown()">
                             <span>Seleziona una categoria</span> <i class="fa-solid fa-chevron-down ml-auto"></i>
                         </div>
                         <ul class="list-group d-lg-block d-none" id="dropdown">
@@ -20,6 +21,7 @@
                     </div>
                 </div>
                 <div class="restaurants-container col-sm-12 col-lg-9" v-if="restaurants.data">
+                    <div class="container-box-height">
                     <div class="card-grid">
                         <!-- Stampare tutti i ristoranti dati dalla ricerca-->
                         <div class="card-rest shadow-sm bg-white" v-for="(restaurant, index) in restaurants.data"
@@ -40,7 +42,7 @@
                                         <i class="fa-solid fa-phone mr-2"></i>
                                         {{ restaurant.phone }}
                                     </p>
-                                    <p>
+                                    <p class="cat-box">
                                         <i class="fa-solid fa-utensils mr-2"></i><span class="restaurant-categories"
                                             v-for="(cat, i) in restaurant.categories" :key="i">
                                             {{ cat.name }}<span v-if="i < restaurant.categories.length - 1">,
@@ -53,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                     <div class="paginate-container">
                         <div class="paginate-box">
                             <span class="prev" @click="prevPage()"></span>
@@ -62,7 +65,9 @@
                         </div>
                     </div>
                 </div>
-                <div v-else><h4 class="ml-4 text-center">Non hai selezionato nessuna categoria</h4></div>
+                <div v-else>
+                    <h4 class="ml-4 text-center">Non hai selezionato nessuna categoria</h4>
+                </div>
             </div>
         </div>
     </section>
@@ -220,8 +225,8 @@
         }
 
         .select-categories:hover {
-            cursor:pointer;
-            background-color:#00ccbc;
+            cursor: pointer;
+            background-color: #00ccbc;
             color: white;
             transition: background 0.3s;
             border: 1px solid #00ccbc;
@@ -254,6 +259,10 @@
 
                     p {
                         margin: 5px;
+
+                        &.cat-box {
+                            min-height: 50px;
+                        }
                     }
 
                     .restaurant-categories {
@@ -309,7 +318,7 @@
 
     @media screen and (min-width: 610px) {
 
-        
+
         .container {
             .card-grid {
                 display: grid;
@@ -324,7 +333,7 @@
                 }
             }
         }
-        
+
     }
 
     @media screen and (min-width: 910px) {
@@ -343,11 +352,23 @@
             }
         }
     }
-        @media screen and (min-width: 990px) {
+
+    @media screen and (min-width: 990px) {
         section {
-        background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
-        background-color: #f8fafc;
-        background-repeat: no-repeat;
+            background-image: url("https://i.postimg.cc/4NKQFsNj/Deliver-Boo-2-2x.png");
+            background-color: #f8fafc;
+            background-repeat: no-repeat;
+
+            .container {
+                .row {
+                    .restaurants-container {
+                        .container-box-height {
+                            min-height: 833px;
+                        }
+
+                    }
+                }
+            }
         }
     }
 </style>
