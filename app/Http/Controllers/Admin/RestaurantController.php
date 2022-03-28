@@ -81,7 +81,7 @@ class RestaurantController extends Controller
       $newRestaurant->categories()->sync($data["categories"]);
     }
 
-    return redirect()->route('restaurants.show', $newRestaurant->id);
+    return redirect()->route('restaurants.index');
   }
 
   /**
@@ -156,7 +156,7 @@ class RestaurantController extends Controller
       $restaurant->categories()->sync($data["categories"]);
     }
 
-    return redirect()->route('restaurants.show', $restaurant->id);
+    return redirect()->route('restaurants.index');
   }
 
   /**

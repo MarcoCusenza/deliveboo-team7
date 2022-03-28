@@ -116,9 +116,9 @@
                 </div>
     
     
-                <h5 class="text-muted">* Campo obbligatorio</h5>
-                <div class="mt-3 row d-flex justify-content-around">
-                <button type="submit" class="btn btn-dashboard">Crea</button>
+                <h6 class="text-muted">* Campo obbligatorio</h6>
+                <div class="mt-3 row d-flex justify-content-end">
+                <button type="submit" class="btn btn-dashboard mr-3">Crea</button>
                 </div>
             </form>
         </div>

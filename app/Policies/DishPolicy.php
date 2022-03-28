@@ -42,8 +42,8 @@ class DishPolicy
    */
   public function view(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
-    return $myRestaurant[0]->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::where("user_id", $user->id)->first();
+    return $myRestaurant->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di mostrare.");
   }
@@ -69,8 +69,8 @@ class DishPolicy
    */
   public function update(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
-    return $myRestaurant[0]->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::where("user_id", $user->id)->first();
+    return $myRestaurant->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di modificare.");
   }
@@ -84,8 +84,8 @@ class DishPolicy
    */
   public function delete(User $user, Dish $dish)
   {
-    $myRestaurant = Restaurant::first()->where("user_id", $user->id)->get();
-    return $myRestaurant[0]->id === $dish->restaurant_id
+    $myRestaurant = Restaurant::where("user_id", $user->id)->first();
+    return $myRestaurant->id === $dish->restaurant_id
       ? Response::allow()
       : Response::deny("Il tuo ristorante non possiede il piatto che stai cercando di eliminare.");
   }

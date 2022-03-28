@@ -17,16 +17,17 @@ use Illuminate\Support\Facades\Auth;
 
 // verify=>true per inviare mail di verifica registrazione
 // Auth::routes(["verify" => true]);
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
-Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(
+Route::prefix("admin")->namespace("Admin")->middleware("verified")->group(
   function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource("restaurants", "RestaurantController");
     Route::resource("dishes", "DishController");
     Route::get('/charts', 'ChartController@index')->name('charts');
-    Route::get('/orders', 'OrderController@index')->name('orders');
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/{slug}', 'OrderController@show')->name('orders.show');
   }
 );
 

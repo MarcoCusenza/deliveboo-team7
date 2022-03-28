@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Dish;  // ********************************
+use App\Order;  // ********************************
 use App\Chart;
 use App\Restaurant;
-// use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller
@@ -19,79 +19,53 @@ class ChartController extends Controller
   public function index()
   {
     $rest = Restaurant::where("user_id", auth()->id())->first();
-    // Per selezionare i campi
-    $groups = Dish::where("restaurant_id", $rest->id)->pluck('price', 'name')->all();
 
-    // Crea Oggetto Chart
-    $chart = new Chart;
-    $chart->labels = (array_keys($groups)); // Salva le parole chiave
-    $chart->dataset = (array_values($groups)); // Salva i valori delle parole chiave
-    return view('admin.charts.index', compact('chart'));
-  }
+    //CHIAMATA MESI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
+      ->orderBy('month', "asc")
+      ->groupBy('month')
+      ->pluck('tot', 'month')->all();
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    //
-  }
+    $chartMonth = new Chart;
+    $chartMonth->labels = (array_keys($groups));
+    $chartMonth->dataset = (array_values($groups));
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-    //
-  }
+    //CHIAMATA ANNI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('COUNT(id) as tot'))
+      ->orderBy('year', "asc")
+      ->groupBy('year')
+      ->pluck('tot', 'year')->all();
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Chart  $chart
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Chart $chart)
-  {
-    //
-  }
+    $chartYear = new Chart;
+    $chartYear->labels = (array_keys($groups));
+    $chartYear->dataset = (array_values($groups));
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Chart  $chart
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Chart $chart)
-  {
-    //
-  }
+    //CHIAMATA VENDITE MENSILI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%m") as month'), DB::raw('SUM(price_tot) as tot'))
+      ->orderBy('month', "asc")
+      ->groupBy('month')
+      ->pluck('tot', 'month')->all();
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Chart  $chart
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Chart $chart)
-  {
-    //
-  }
+    $chartPriceMonth = new Chart;
+    $chartPriceMonth->labels = (array_keys($groups));
+    $chartPriceMonth->dataset = (array_values($groups));
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Chart  $chart
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(Chart $chart)
-  {
-    //
+    //CHIAMATA VENDITE ANNUALI
+    $groups = Order::where("restaurant_id", $rest->id)
+      ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('SUM(price_tot) as tot'))
+      ->orderBy('year', "asc")
+      ->groupBy('year')
+      ->pluck('tot', 'year')->all();
+
+    $chartPriceYear = new Chart;
+    $chartPriceYear->labels = (array_keys($groups));
+    $chartPriceYear->dataset = (array_values($groups));
+
+
+
+    return view('admin.charts.index', compact('chartMonth', 'chartYear', 'chartPriceMonth', 'chartPriceYear'));
   }
 }

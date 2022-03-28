@@ -3,28 +3,58 @@
 
 
 @section('content')
-    <div class="container">
+  <div class="container">
+    <div class="card card-dashboard-dishes mb-5 p-3">
+      <div class="card-header">
         <h2>Lista Ordini</h2>
-        @if ($orders)
-            <table class="table table-striped table-responsive">
-                <thead>
-                    <tr>
-                        <th scope="col">Numero Ordine</th>
-                        <th scope="col">Prezzo</th>
-                        <th scope="col">Data</th>
-                    </tr>
-                </thead>
+      </div>
 
-                <tbody>
-                    @foreach ($orders as $order)
-                        <tr>
-                            <td>{{ $order->order_number }}</td>
-                            <td>{{ $order->price_tot }} &euro;</td>
-                            <td>{{ $order->created_at }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+      <div class="card-body">
+        @if ($orders)
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="d-none d-md-block">Data Ordine</th>
+                <th scope="col">Numero Ordine</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col" class="d-none d-md-block">Cliente</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach ($orders as $order)
+                <tr>
+                  <td class="d-none d-md-block">{{ $order->created_at }}</td>
+                  <td>{{ $order->order_number }}</td>
+                  <td>{{ number_format($order->price_tot, 2) }} &euro;</td>
+                  <td class="d-none d-md-block">{{ $order->client_name }} {{ $order->client_surname }}</td>
+
+                  <td>
+                    <a href="{{ route('orders.show', $order->id) }}"><button type="button"
+                        class="btn btn-primary">Dettagli</button></a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+
+          <div class="paginate-box text-center" style="font-size: 20px">
+            @if ($orders->currentPage() - 1 > 0)
+              <a href='/admin/orders?page={{ $orders->currentPage() - 1 }}' style="text-decoration: none" class="text-dark">
+                <span class="prev">
+                  < </span></a>
+            @endif
+            <span class="num-page">Pagina {{ $orders->currentPage() }} di
+              {{ $orders->lastPage() }}</span>
+            @if ($orders->currentPage() + 1 <= $orders->lastPage())
+              <a href='/admin/orders?page={{ $orders->currentPage() + 1 }}' style="text-decoration: none;" class="text-dark">
+                <span class="prev">
+                  > </span></a>
+            @endif
+          </div>
         @endif
+      </div>
     </div>
+  </div>
 @endsection

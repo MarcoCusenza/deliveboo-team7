@@ -111,12 +111,12 @@
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
-                <h5 class="text-muted">* Campo obbligatorio</h5>
+                <h6 class="text-muted">* Campo obbligatorio</h56>
                 
-                <div class="mt-3 row d-flex justify-content-around">
-                    <button type="submit" class="btn btn-warning">Modifica piatto</button>
+                <div class="mt-3 row d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success mr-3">Modifica piatto</button>
                     
-                    <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-dashboard">Annulla e torna al piatto</a>                
+                    <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-dashboard mr-3">Annulla e torna al piatto</a>                
                 </div>
 
             </form>

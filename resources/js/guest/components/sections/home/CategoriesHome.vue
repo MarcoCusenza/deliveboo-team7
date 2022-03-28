@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="btn-container pb-5">
-            <a href="/categories"><button class="btn-home mt-5" @click="clearCat()">
+            <a href="/categories"><button class="btn-home" @click="clearCat()">
                     Guarda tutte le categorie
                 </button></a>
         </div>
@@ -84,6 +84,7 @@
         justify-content: center;
 
         .btn-home {
+            margin-top: 5.5em;
             padding: 10px 50px;
             background-color: #00ccbc;
             color: white;
@@ -97,8 +98,6 @@
                 background: #007067;
             }
         }
-
-
     }
 
     .card-category {
