@@ -5,18 +5,22 @@
   <div class="container chart_bgc border rounded pb-3">
     <div class="row px-3 pt-3 mb-4">
       <h2 class="col-12 mb-3">Numero di ordini</h2>
-      <div class="col-12 col-lg-6 mb-5">
+      <div class="col-12 col-lg-6 my-2">
         <canvas id="userChart" class="rounded shadow"></canvas>
-        <input onchange="filterData()" type="month" id="startDate">
-        <input onchange="filterData()" type="month" id="endDate">
+        <div class="mt-4 text-center">
+          <label for="startDate">Da:</label>
+          <input onchange="filterData()" type="month" id="startDate">
+          <label class="ml-3" for="endDate">A:</label>
+          <input onchange="filterData()" type="month" id="endDate">
+        </div>
       </div>
 
-      <div class="col-12 col-lg-6">
+      {{-- <div class="col-12 col-lg-6">
         <canvas id="userChartyear" class="rounded shadow"></canvas>
-      </div>
+      </div> --}}
     </div>
 
-    <div class="row px-3 pt-3">
+    {{-- <div class="row px-3 pt-3">
       <h2 class="col-12 mb-3">Ammontare delle vendite</h2>
       <div class="col-12 col-lg-6 container mb-5">
         <canvas id="ChartPriceMonth" class="rounded shadow"></canvas>
@@ -25,7 +29,7 @@
       <div class="col-12 col-lg-6 container">
         <canvas id="chartPriceYear" class="rounded shadow"></canvas>
       </div>
-    </div>
+    </div> --}}
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -100,7 +104,7 @@
 
     filterData();
 
-
+/*
     // CHIAMATA ANNI
     var ctj = document.getElementById('userChartyear').getContext('2d');
     var chartb = new Chart(ctj, {
@@ -295,6 +299,8 @@
         }
       }
     });
+
+    */
 
 
     function filterData() {
