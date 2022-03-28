@@ -10,7 +10,7 @@
         <input onchange="filterData()" type="month" id="startDate">
         <input onchange="filterData()" type="month" id="endDate">
       </div>
-  
+
       {{-- <div class="col-12 col-lg-6">
         <canvas id="userChartyear" class="rounded shadow"></canvas>
       </div> --}}
@@ -30,12 +30,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script async>
-
     const dates = {!! json_encode($chartMonth->labels) !!};
     const dataPoints = {!! json_encode($chartMonth->dataset) !!};
 
     let inpStartDate = document.getElementById('startDate').value = dates[0];
-    console.log(inpStartDate)
+    // console.log(inpStartDate)
     let inpEndDate = document.getElementById('endDate').value = dates[dates.length - 1];
 
     //CHIAMATA MESI
@@ -57,10 +56,6 @@
           ],
           borderColor: [
             'rgba(0, 106, 100, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
           ],
           borderWidth: 2
         }, ]
@@ -102,6 +97,8 @@
         }
       }
     });
+
+    filterData();
 
     /*
       CHIAMATA ANNI 
@@ -177,7 +174,7 @@
 
         // The data for our dataset
         data: {
-          labels: {!!json_encode($chartPriceMonth->labels)!!}, // Pariole sotto la tabella
+          labels: {!! json_encode($chartPriceMonth->labels) !!}, // Pariole sotto la tabella
           datasets: [{
             label: 'Totale vendite mensili',
             data: {!! json_encode($chartPriceMonth->dataset) !!},
@@ -242,7 +239,7 @@
 
         // The data for our dataset
         data: {
-          labels: {!!json_encode($chartPriceYear->labels)!!}, // Pariole sotto la tabella
+          labels: {!! json_encode($chartPriceYear->labels) !!}, // Pariole sotto la tabella
           datasets: [{
             label: 'Totale vendite annuali',
             data: {!! json_encode($chartPriceYear->dataset) !!},
@@ -301,28 +298,100 @@
     */
 
     function filterData() {
-      console.log(inpStartDate)
+      // console.log(inpStartDate)
 
       // Copio l'array per evitare di perdere i dati
       const dates2 = [...dates];
-      console.log("data 2: ",dates2)
+      // console.log("data 2: ",dates2)
       const startDate = document.getElementById('startDate');
       const endDate = document.getElementById('endDate');
 
-      // Prendo l'indice dall'array
-      const indexStartDate = dates2.indexOf(startDate.value);
-      const indexEndDate = dates2.indexOf(endDate.value);
-      // console.log("START: ",indexStartDate, "-- END: ", indexEndDate);
+      console.log(startDate.value);
+      console.log(endDate.value);
 
-      // Slice l'array per vedere solo i dati selezionati
-      const filterDate = dates2.slice(indexStartDate, indexEndDate+1);
+      let suppLabels = [];
+      let tokenTemp = startDate.value;
+      let tokenEnd = endDate.value;
+
+      suppLabels.push(tokenTemp);
+
+      while (tokenTemp != tokenEnd) {
+        let month = "";
+        month += tokenTemp[5];
+        month += tokenTemp[6];
+        let numMonth = parseInt(month);
+
+        if (numMonth != 12) {
+          numMonth++;
+          stringMonth = numMonth.toString();
+
+          if (stringMonth.length < 2) {
+            stringMonth = '0' + stringMonth;
+          }
+
+          tokenTemp = setCharAt(tokenTemp, 5, stringMonth[0]);
+          tokenTemp = setCharAt(tokenTemp, 6, stringMonth[1]);
+        } else {
+          let year = "";
+          year = tokenTemp[0];
+          year += tokenTemp[1];
+          year += tokenTemp[2];
+          year += tokenTemp[3];
+
+          console.log("year", year);
+          let numYear = parseInt(year);
+          console.log("numYear", numYear);
+          numYear++;
+          stringYear = numYear.toString();
+
+          console.log("stringYear", stringYear);
+
+          tokenTemp = setCharAt(tokenTemp, 0, stringYear[0]);
+          tokenTemp = setCharAt(tokenTemp, 1, stringYear[1]);
+          tokenTemp = setCharAt(tokenTemp, 2, stringYear[2]);
+          tokenTemp = setCharAt(tokenTemp, 3, stringYear[3]);
+
+          tokenTemp = setCharAt(tokenTemp, 5, '0');
+          tokenTemp = setCharAt(tokenTemp, 6, '1');
+        }
+        suppLabels.push(tokenTemp);
+        console.log(suppLabels);
+      }
+
+
+      // // Prendo l'indice dall'array
+      // const indexStartDate = dates2.indexOf(startDate.value);
+      // const indexEndDate = dates2.indexOf(endDate.value);
+      // // console.log("START: ",indexStartDate, "-- END: ", indexEndDate);
+
+      // // Slice l'array per vedere solo i dati selezionati
+      // const filterDate = dates2.slice(indexStartDate, indexEndDate + 1);
 
       // Rimpiazza la labels del chart
-      chart.config.data.labels = filterDate;
+      chart.config.data.labels = suppLabels;
+
+
+      let suppData = [];
 
       const dataPoints2 = [...dataPoints];
-      const filterDataPoints = dataPoints2.slice(indexStartDate, indexEndDate+1);
-      chart.config.data.datasets[0].data = filterDataPoints;
+
+      suppLabels.forEach((itemPost, indexPost) => {
+        let boolSent = false;
+        dates2.forEach((itemPre, indexPre) => {
+          if (itemPost == itemPre) {
+            suppData[indexPost] = dataPoints2[indexPre];
+            boolSent = true;
+          }
+        });
+        if (boolSent == false) {
+          suppData[indexPost] = 0;
+        }
+      });
+
+      console.log("suppData", suppData);
+
+      // const filterDataPoints = dataPoints2.slice(indexStartDate, indexEndDate + 1);
+      chart.config.data.datasets[0].data = suppData;
 
       // console.log(dates2[indexStartDate].replace('-', ""));
       // let dates3 = dates2[indexStartDate].replace('-', "");
@@ -341,6 +410,11 @@
       */
 
       chart.update();
+    }
+
+    function setCharAt(str, index, chr) {
+      if (index > str.length - 1) return str;
+      return str.substring(0, index) + chr + str.substring(index + 1);
     }
   </script>
 @endsection
