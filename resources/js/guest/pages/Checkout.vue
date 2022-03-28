@@ -352,6 +352,7 @@ export default {
         })
         .then((response) => {
           console.log("Successo Creazione Ordine", response);
+          localStorage.cart = "[]";
           this.cart = [];
         })
         .catch((error) => {
@@ -454,16 +455,16 @@ export default {
       color: white;
       font-weight: bold;
       &:hover {
-                background: #007067;
-            }
+        background: #007067;
+      }
     }
     .delete {
-    cursor: pointer;
-    transition: background 0.2 ease-in-out;
-    &:hover {
-      background-color: #d10000;
+      cursor: pointer;
+      transition: background 0.2 ease-in-out;
+      &:hover {
+        background-color: #d10000;
+      }
     }
-  }
   }
 }
 
